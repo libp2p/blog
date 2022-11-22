@@ -1,0 +1,55 @@
+@import './typography.css';
+@import './embed-responsive.css';
+
+/* grid margins comp */
+.grid-margins {
+  @apply mx-15px;
+}
+
+@screen md {
+  .grid-margins {
+    margin: 0 15%;
+  }
+}
+/* 1440 max width + 58px left & right padding */
+@media only screen and (min-width: 1556px) {
+  .grid-margins {
+    @apply max-w-screen-xxl mx-auto;
+  }
+}
+/* hr-gradient comp */
+.hr-gradient,
+.hr-transparent {
+  height: 1px;
+  @apply border-0;
+}
+.hr-gradient {
+  @apply bg-gradient-3;
+}
+.hr-transparent {
+  @apply bg-white opacity-60;
+}
+
+
+.custom-block.callout {
+  background-color: #cae8e8;
+	padding: 1rem 2rem;
+	border-color: #296161;
+	border-left-width: 0.5rem;
+	border-left-style: solid;
+}
+
+.custom-block.callout p {
+  line-height: 32px;
+}
+
+
+.custom-block.right {
+	float: right;
+	padding: 1em 0 1em 1em;
+}
+
+.custom-block.left {
+	float: left;
+	padding: 1em 1em 1em 0em;
+}

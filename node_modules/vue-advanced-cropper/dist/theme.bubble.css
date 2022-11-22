@@ -1,0 +1,44 @@
+.vue-advanced-cropper__foreground {
+  opacity: 0.5;
+}
+
+.vue-simple-handler {
+  display: block;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  will-change: height, width;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  -webkit-transition-property: width, height;
+  transition-property: width, height;
+  -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+.vue-simple-handler--hover {
+  width: 25px;
+  height: 25px;
+}
+
+.vue-simple-line {
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.vue-circle-stencil--moving .vue-rectangle-stencil__preview:after, .vue-circle-stencil--moving .vue-rectangle-stencil__preview:before,
+.vue-circle-stencil--moving .vue-circle-stencil__preview:after,
+.vue-circle-stencil--moving .vue-circle-stencil__preview:before, .vue-circle-stencil--resizing .vue-rectangle-stencil__preview:after, .vue-circle-stencil--resizing .vue-rectangle-stencil__preview:before,
+.vue-circle-stencil--resizing .vue-circle-stencil__preview:after,
+.vue-circle-stencil--resizing .vue-circle-stencil__preview:before,
+.vue-rectangle-stencil--moving .vue-rectangle-stencil__preview:after,
+.vue-rectangle-stencil--moving .vue-rectangle-stencil__preview:before,
+.vue-rectangle-stencil--moving .vue-circle-stencil__preview:after,
+.vue-rectangle-stencil--moving .vue-circle-stencil__preview:before,
+.vue-rectangle-stencil--resizing .vue-rectangle-stencil__preview:after,
+.vue-rectangle-stencil--resizing .vue-rectangle-stencil__preview:before,
+.vue-rectangle-stencil--resizing .vue-circle-stencil__preview:after,
+.vue-rectangle-stencil--resizing .vue-circle-stencil__preview:before {
+  opacity: 0.7;
+}

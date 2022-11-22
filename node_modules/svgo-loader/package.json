@@ -1,0 +1,32 @@
+{
+  "name": "svgo-loader",
+  "version": "3.0.3",
+  "description": "svgo loader for webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svg/svgo-loader.git"
+  },
+  "keywords": [
+    "svgo",
+    "webpack"
+  ],
+  "author": "Roman Pominov <rpominov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svg/svgo-loader/issues"
+  },
+  "homepage": "https://github.com/svg/svgo-loader",
+  "devDependencies": {
+    "file-loader": "^2.0.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "loader-utils": "^2.0.3",
+    "svgo": "^2.8.0"
+  }
+}

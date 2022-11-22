@@ -1,0 +1,10 @@
+/* apply custom rich type formatting */
+.type-rich {
+  blockquote {
+    &:before {
+      content: '';
+      width: 4px;
+      @apply bg-gradient-6 h-full left-0 absolute;
+    }
+  }
+}

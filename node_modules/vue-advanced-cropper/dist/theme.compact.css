@@ -1,0 +1,132 @@
+.vue-advanced-cropper__foreground {
+  opacity: 0.7;
+}
+
+.vue-circle-stencil__preview:after, .vue-circle-stencil__preview:before,
+.vue-rectangle-stencil__preview:after,
+.vue-rectangle-stencil__preview:before {
+  content: "";
+  opacity: 0;
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.vue-circle-stencil__preview:after,
+.vue-rectangle-stencil__preview:after {
+  border-left: solid 1px white;
+  border-right: solid 1px white;
+  width: 33%;
+  height: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+  top: 0;
+}
+.vue-circle-stencil__preview:before,
+.vue-rectangle-stencil__preview:before {
+  border-top: solid 1px white;
+  border-bottom: solid 1px white;
+  height: 33%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+}
+.vue-circle-stencil--moving .vue-rectangle-stencil__preview:after, .vue-circle-stencil--moving .vue-rectangle-stencil__preview:before,
+.vue-circle-stencil--moving .vue-circle-stencil__preview:after,
+.vue-circle-stencil--moving .vue-circle-stencil__preview:before, .vue-circle-stencil--resizing .vue-rectangle-stencil__preview:after, .vue-circle-stencil--resizing .vue-rectangle-stencil__preview:before,
+.vue-circle-stencil--resizing .vue-circle-stencil__preview:after,
+.vue-circle-stencil--resizing .vue-circle-stencil__preview:before,
+.vue-rectangle-stencil--moving .vue-rectangle-stencil__preview:after,
+.vue-rectangle-stencil--moving .vue-rectangle-stencil__preview:before,
+.vue-rectangle-stencil--moving .vue-circle-stencil__preview:after,
+.vue-rectangle-stencil--moving .vue-circle-stencil__preview:before,
+.vue-rectangle-stencil--resizing .vue-rectangle-stencil__preview:after,
+.vue-rectangle-stencil--resizing .vue-rectangle-stencil__preview:before,
+.vue-rectangle-stencil--resizing .vue-circle-stencil__preview:after,
+.vue-rectangle-stencil--resizing .vue-circle-stencil__preview:before {
+  opacity: 0.7;
+}
+
+.vue-simple-line {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.vue-simple-handler-wrapper {
+  width: 24px;
+  height: 24px;
+}
+.vue-simple-handler-wrapper--west-north {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.vue-simple-handler-wrapper--east-south {
+  -webkit-transform: translate(-100%, -100%);
+          transform: translate(-100%, -100%);
+}
+.vue-simple-handler-wrapper--west-south {
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+.vue-simple-handler-wrapper--east-north {
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0);
+}
+
+.vue-simple-handler {
+  display: block;
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  border: none;
+  background: white;
+  top: auto;
+  left: auto;
+  height: 4px;
+  width: 4px;
+  opacity: 0;
+}
+.vue-simple-handler--west-north, .vue-simple-handler--east-south, .vue-simple-handler--west-south, .vue-simple-handler--east-north {
+  display: block;
+  height: 16px;
+  width: 16px;
+  background: none;
+  opacity: 0.7;
+}
+.vue-simple-handler--west-north {
+  border-left: solid 2px white;
+  border-top: solid 2px white;
+}
+.vue-simple-handler--east-south {
+  border-right: solid 2px white;
+  border-bottom: solid 2px white;
+}
+.vue-simple-handler--west-south {
+  border-left: solid 2px white;
+  border-bottom: solid 2px white;
+}
+.vue-simple-handler--east-north {
+  border-right: solid 2px white;
+  border-top: solid 2px white;
+}
+.vue-simple-handler--hover {
+  opacity: 1;
+}
+
+.vue-circle-stencil__preview {
+  border: solid 2px rgba(255, 255, 255, 0.8);
+}
+.vue-circle-stencil .vue-simple-line {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.vue-circle-stencil .vue-simple-handler--west-north, .vue-circle-stencil .vue-simple-handler--east-south, .vue-circle-stencil .vue-simple-handler--west-south, .vue-circle-stencil .vue-simple-handler--east-north {
+  opacity: 0.4;
+}
+.vue-circle-stencil .vue-simple-handler--hover {
+  opacity: 1;
+}
