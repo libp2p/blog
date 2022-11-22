@@ -1,0 +1,79 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: ''
+webhook_url: 
+sections:
+- type: heading
+  label: Content Types
+- type: directory
+  path: src/_blog
+  label: Academic papers
+  create: none
+  match: "**/academicpapers.md"
+  templates:
+  - newslinks
+- type: directory
+  path: src/_blog
+  label: Blog posts
+  create: documents
+  match: "**/*"
+  exclude: "{academicpapers,events,newscoverage,releasenotes,tutorials,videos}.md"
+  templates:
+  - blog-post
+- type: directory
+  path: src/_blog
+  label: Events
+  create: none
+  match: "**/events.md"
+  templates:
+  - newslinks
+- type: directory
+  path: src/_blog
+  label: News coverage
+  create: none
+  match: "**/newscoverage.md"
+  templates:
+  - newslinks
+- type: directory
+  path: src/_blog
+  label: Release notes
+  create: none
+  match: "**/releasenotes.md"
+  templates:
+  - newslinks
+- type: directory
+  path: src/_blog
+  label: Tutorials
+  create: none
+  match: "**/tutorials.md"
+  templates:
+  - newslinks
+- type: directory
+  path: src/_blog
+  label: Videos
+  create: none
+  match: "**/videos.md"
+  templates:
+  - newslinks
+- type: heading
+  label: Translations
+- type: directory
+  path: src/_blog_zh
+  label: Chinese blog posts
+  create: documents
+  match: "**/*"
+  templates:
+  - blog-post
+upload_dir: src/assets
+public_path: "../assets"
+front_matter_path: ''
+use_front_matter_path: true
+file_template: ":filename:"
+build:
+  preview_output_directory: dist
+  install_dependencies_command: npm install
+  preview_docker_image: forestryio/node:12
+  mount_path: "/srv"
+  working_dir: "/srv/src"
+  instant_preview_command: npm run dev
