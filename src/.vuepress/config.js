@@ -41,22 +41,18 @@ const themeConfigDefaults = {
     // },
   ],
   footerLegal: '',
-  // headerLinks: [
-  //   { text: 'About', link: 'https://ipfs.tech/#why' },
-  //   { text: 'Install', link: 'https://ipfs.tech/#install' },
-  //   { text: 'Docs', link: 'https://docs.ipfs.tech/' },
-  //   { text: 'Team', link: 'https://ipfs.tech/team' },
-  //   { text: 'Blog', link: '/' },
-  //   { text: 'Help', link: 'https://ipfs.tech/help' },
-  // ],
-  // mobileNavLinks: [
-  //   { text: 'About', link: 'https://ipfs.tech/#why' },
-  //   { text: 'Install', link: 'https://ipfs.tech/#install' },
-  //   { text: 'Docs', link: 'https://docs.ipfs.tech/' },
-  //   { text: 'Team', link: 'https://ipfs.tech/team' },
-  //   { text: 'Blog', link: '/' },
-  //   { text: 'Help', link: 'https://ipfs.tech/help' },
-  // ],
+  headerLinks: [
+    { text: 'Site', link: 'https://libp2p.io/' },
+    { text: 'Docs', link: 'https://docs.libp2p.io/' },
+    { text: 'Community', link: 'https://libp2p.io/#community' },
+    { text: 'Blog', link: '/' },
+  ],
+  mobileNavLinks: [
+    { text: 'Site', link: 'https://libp2p.io/' },
+    { text: 'Docs', link: 'https://docs.libp2p.io/' },
+    { text: 'Community', link: 'https://libp2p.io/#community' },
+    { text: 'Blog', link: '/' },
+  ],
 }
 
 module.exports = {

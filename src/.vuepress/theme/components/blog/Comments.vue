@@ -8,17 +8,6 @@
 <script>
 const safePermalink = (permalink, date) => {
   let domain = 'https://libp2p.io/blog/'
-  try {
-    // Use old domain for legacy comment theads
-    // created before we switched to the new domain
-    // https://github.com/ipfs/ipfs-blog/issues/417
-    if (new Date(date) < new Date('2022-08-15')) {
-        domain = 'https://blog.ipfs.io/'
-    }
-  } catch (e) {
-    console.error('unable to parse this.$frontmatter.date', e)
-  }
-  // https://meta.discourse.org/t/referer-with-domain-name-in-the-slug-breaks-comments-embed/204807/4?u=lidel
   const url = new URL(domain)
   url.pathname = permalink
   return url.toString()

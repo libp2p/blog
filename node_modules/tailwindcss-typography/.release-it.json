@@ -1,6 +1,0 @@
-{
-  "git": {
-    "tagName": "v${version}",
-    "requireCleanWorkingDir": false
-  }
-}
