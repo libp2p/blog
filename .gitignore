@@ -1,0 +1,15 @@
+# node modules
+node_modules
+
+# VuePress temp directory
+.temp
+
+# Docs dist directory
+/vuepress
+
+# Editors
+vscode
+
+# OS generated files
+.DS_Store
+.DS_Store?
