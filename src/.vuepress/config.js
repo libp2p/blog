@@ -1,7 +1,7 @@
 const { reverse, sortBy } = require('lodash')
 
 // configure this to an absolute url to enable a generated sitemap & blog RSS feeds
-const CANONICAL_BASE = process.env.CANONICAL_BASE || 'https://libp2p.io/blog'
+const CANONICAL_BASE = process.env.CANONICAL_BASE || 'https://libp2p.io'
 const IPFS_DEPLOY = process.env.IPFS_DEPLOY === 'true' || false
 
 const themeConfigDefaults = {
@@ -247,12 +247,4 @@ module.exports = {
             .end()
           .end()
   },
-  additionalPages: [
-    {
-      path: '/image-crop/',
-      frontmatter: {
-        layout: 'ImageCrop',
-      },
-    },
-  ],
 }

@@ -1,7 +1,6 @@
 <template>
   <footer class="footer bg-gradient-6 text-white py-8 md:py-16 mt-auto">
     <div class="grid grid-cols-12 grid-margins">
-      <NewsletterForm class="col-start-1 col-span-12 lg:pb-20" />
       <div class="col-start-0 md:col-start-1 col-span-12 md:col-span-12">
         <div class="flex flex-col lg:flex-row lg:items-top lg:justify-between">
           <div
@@ -50,13 +49,12 @@
 import SocialLinks from '@theme/components/SocialLinks'
 import FooterLegal from '@theme/components/FooterLegal'
 import NavLink from '@theme/components/NavLink.vue'
-import NewsletterForm from '@theme/components/blog/NewsletterForm'
 
 import countly from '../util/countly'
 
 export default {
   name: 'Footer',
-  components: { SocialLinks, NewsletterForm, NavLink, FooterLegal },
+  components: { SocialLinks, NavLink, FooterLegal },
   computed: {
     footerLinks() {
       return this.$themeLocaleConfig.footerLinks
