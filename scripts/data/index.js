@@ -3,9 +3,9 @@
 'use strict'
 
 const { generateIndexFile } = require('./latest-posts')
-const { generateNewsFile } = require('./latest-news')
-const { generateVideosFile } = require('./latest-videos')
+// const { generateNewsFile } = require('./latest-news')
+// const { generateVideosFile } = require('./latest-videos')
 
 generateIndexFile()
-generateNewsFile()
-generateVideosFile()
+// generateNewsFile()
+// generateVideosFile()
