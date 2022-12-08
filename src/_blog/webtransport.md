@@ -36,7 +36,6 @@ In this article, we:
 * Give you a [deep dive into how it works](#Meet-WebTransport)
 * Describe the [current state of WebTransport](#What’s-the-current-state-of-WebTransport-and-where-is-it-supported) (specs and implementations)
 
-In this post, we’ll explain how we’re already using it to improve browser connectivity in libp2p.
 
 ## What is WebTransport?
 
@@ -97,7 +96,6 @@ HTTP/3 runs on top of QUIC. A WebTransport session over HTTP/3 allows both endpo
 - Low latency communication and unordered and unreliable delivery of data
 
 > Note: WebTransport with HTTP/2 provides TCP transport functionality where QUIC is unavailable for use.
-> 
 
 The most important change for our peer-to-peer use case is the introduction of a new verification option. Being layered on top of QUIC, WebTransport always requires a (TLS) encrypted connection. The WebTransport browser API allows for two distinct modes:
 
@@ -141,7 +139,6 @@ Let’s dive into the details! Understanding this section is not necessary this 
 Both sides can now open streams (both bidirectional and unidirectional) and send (unreliable) HTTP datagrams.
 
 > Note: the unreliable datagrams are a property of UDP which QUIC is built on top of. This unreliable and out of order delivery is exactly what makes UDP, QUIC, and WebTransport perfect fits for applications like video streaming or browser gaming where low latency and speed are paramount.
-> 
 
 In libp2p, we still need to verify the libp2p peer IDs, so we’re not quite done yet.
 
