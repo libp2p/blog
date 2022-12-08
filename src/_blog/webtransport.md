@@ -24,7 +24,7 @@ This is the first entry in a series of posts on how libp2p achieves browser conn
 
 ## Overview
 
-Universal and seamless browser connectivity is a key goal of the [libp2p project](https://github.com/libp2p/specs). And over the course of many years, libp2p has made many strides to realize that vision. Today, we are proud to announce a major milestone that puts us much closer towards that aim:
+Universal and seamless browser connectivity is a key goal of the [libp2p project](https://libp2p.io). And over the course of many years, libp2p has made many strides to realize that vision. Today, we are proud to announce a major milestone that puts us much closer towards that aim:
 
 **libp2p now supports the new, bleeding-edge [WebTransport protocol](#What-is-WebTransport)!**
 
