@@ -134,3 +134,4 @@ fields:
     target="_blank">file an issue</a> with the details.
 pages:
 - src/_blog/libp2p-day-2022-recap.md
+- src/blog/webtransport.md
