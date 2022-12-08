@@ -44,13 +44,13 @@ At a high level, [WebTransport](https://www.w3.org/TR/webtransport/) is a new [t
 
 This protocol was developed [to meet these goals](https://github.com/w3c/webtransport/blob/main/explainer.md#goals):
 
-- Enable low latency communication between browsers and servers (efficiently transfer data and decrease travel time from browser to server.)
-- Have an API that supports different protocols and use cases e.g. reliable/unreliable and ordered/unordered data transmission, client-server and peer-to-peer architectures, transmitting audio/video media as well as generic data.
-- Have the same security properties as current solutions (WebSocket over TLS.)
+- Enable low latency communication between browsers and servers (efficiently transfer data and decrease travel time from browser to server).
+- Have an API that supports different protocols and use cases (e.g., reliable/unreliable and ordered/unordered data transmission, client-server and peer-to-peer architectures, transmitting audio/video media as well as generic data).
+- Have the same security properties as current solutions (e.g., WebSocket over TLS.)
 
 With these goals in mind, WebTransport seeks to address a multitude of use cases including browser gaming, live streaming, multimedia applications, and more. Low latency is important because these types of applications need to send & receive data as fast as possible. Additionally, applications like video conferencing/streaming can handle data transmitted unreliably and out of order. They even prefer that as it's [more efficient for their use case](https://www.cloudflare.com/learning/video/what-is-streaming/).
 
-WebTransport meets their goals and makes it possible to send data quickly, on the web.
+WebTransport meets their goals and makes it possible to send data quickly on the web.
 
 ## The old solution (WebSocket) and its challenges
 
@@ -80,7 +80,7 @@ This means that we never could expect the WebSocket transport to be a fast and p
 
 In practice, a different obstacle prevented WebSocket from achieving widespread deployment in libp2p. When a browser connects to a website, in practically all cases it does so via [HTTPS](https://www.cloudflare.com/learning/ssl/what-is-https/). HTTPS enforces the use of *Secure WebSocket*, which is just a fancy name WebSocket over HTTPS (and not HTTP). This means that the server needs a valid [TLS certificate](https://aws.amazon.com/what-is/ssl-certificate/), i.e. a certificate signed by a [Certificate Authority](https://en.wikipedia.org/wiki/Certificate_authority) like [Let’s Encrypt](https://letsencrypt.org/).
 
-However, most libp2p nodes don’t have such a certificate. This is because libp2p nodes constitue a peer-to-peer decentralized network where participants can run nodes on home laptop or browsers as well as join or leave the network at will. Most nodes don’t even possess a domain name, which is a requirement for getting a certificate from many CAs. While it’s not too hard to obtain a TLS certificate, it’s non-trivial to do so fully automatically in a decentralized manner.
+However, most libp2p nodes don’t have such a certificate. This is because libp2p nodes constitue a peer-to-peer decentralized network where participants can run nodes on home laptop or browsers as well as join or leave the network at will. Most nodes don’t even possess a domain name, which is a requirement for getting a certificate from many CAs. While it’s not too hard to obtain a TLS certificate, it’s non-trivial to do so automatically in a decentralized manner.
 
 As a result, due to difficulty of use in a peer-to-peer setting and because of performance penalties, WebSocket has always been a fringe transport protocol in the libp2p stack.
 
@@ -96,17 +96,17 @@ HTTP/3 runs on top of QUIC. A WebTransport session over HTTP/3 allows both endpo
 - Advanced loss recovery and congestion control
 - Low latency communication and unordered and unreliable delivery of data
 
-> Note: WebTransport also HTTP/2 provides TCP transport functionality where QUIC is unavailable for use.
+> Note: WebTransport with HTTP/2 provides TCP transport functionality where QUIC is unavailable for use.
 > 
 
-The most important change for our peer-to-peer use case is the introduction of a new verification option. Being layered on top of QUIC, WebTransport always requires a (TLS-) encrypted connection. The WebTransport browser API allows for two distinct modes:
+The most important change for our peer-to-peer use case is the introduction of a new verification option. Being layered on top of QUIC, WebTransport always requires a (TLS) encrypted connection. The WebTransport browser API allows for two distinct modes:
 
 1. Verification of the TLS certificate chain.
     - This is exactly what the browser does when checking the certificate for any website it connects to. This means that the server must possess a certificate signed by a CA.
 2. Verification of the TLS certificate hash.
     - This option is intended for short-lived VM deployments, where servers only have self-signed certificates. The browser will trust the server if the hash of the certificate used during the handshake matches a hash that it expects.
 
-Option (1) comes with the exactly the same problems that we encountered with WebSocket.
+Option (1) comes with the exactly the same problems that we encountered with WebSockets.
 
 Option (2) allows us to use WebTransport on *any* libp2p node without manual configuration!
 
@@ -200,7 +200,7 @@ Additionally, [rust-libp2p](https://github.com/libp2p/rust-libp2p) will add supp
 
 At the time of publication, the latest go-libp2p release is [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0) and WebTransport is not yet a default transport. The work to enable it [is being done here](https://github.com/libp2p/go-libp2p/pull/1915).
 
-As mentioned, as the IETF specification is still in the draft stage. When browsers adopt newer versions of the draft, libp2p will need to adopt the draft versions accordingly. Depending on the scope of change between two versions, libp2p implementations make take the same approach as browsers: drop support for WebTransport implementations from older draft versions.
+As mentioned, the IETF specification is still in the draft stage. When browsers adopt newer versions of the draft, libp2p will need to adopt the draft versions accordingly. Depending on the scope of change between two versions, libp2p implementations make take the same approach as browsers: drop support for WebTransport implementations from older draft versions.
 
 > Note: A consequence of this may be that as libp2p nodes and browsers upgrade to new versions, there will temporarily be a mismatch between the WebTransport versions, resulting in unsuccessful connection attempts.
 
