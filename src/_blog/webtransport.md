@@ -192,7 +192,7 @@ WebTransport is supported in two libp2p implementations as an experimental featu
 
 What's more, naturally these two implementations are interoperable with one another. Here's a demonstration given by Alex Potsides (software engineer at Protocol Labs and maintainer of js-libp2p) at [libp2p Day](https://blog.ipfs.tech/2022-11-22-libp2p-day-2022-recap/#webtransport-transport). He demoed WebTransport [using the browser to fetch a file from Kubo (go-ipfs) directly](https://github.com/libp2p/js-libp2p-webtransport/tree/main/examples/fetch-file-from-kubo):
 
-[https://www.youtube.com/watch?v=Dt42Ss6X_Vk](https://www.youtube.com/watch?v=Dt42Ss6X_Vk)
+@[youtube](Dt42Ss6X_Vk)
 
 Additionally, [rust-libp2p](https://github.com/libp2p/rust-libp2p) will add support for WebTransport [in the near future](https://github.com/libp2p/rust-libp2p/blob/master/ROADMAP.md#webtransport).
 
