@@ -6,7 +6,7 @@ description:
 date: 2022-12-15
 permalink: "/2022-12-15-libp2p-webtransport/"
 translationKey: ''
-header_image: /
+header_image: /libp2p-day-blog-header.png
 author: Marten Seemann
 ---
 
