@@ -135,8 +135,6 @@ Let’s dive into the details! Understanding this section is not necessary this 
     </figure>
 </div>
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/62a6e617-0cdc-4a13-81c2-163dd738432a/62069AF6-577B-4404-9F14-1C27289861FB.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/62a6e617-0cdc-4a13-81c2-163dd738432a/62069AF6-577B-4404-9F14-1C27289861FB.jpeg)
-
 1. The browser dials a regular HTTP/3 connection to the server, verifying the certificate either by its chain of trust, or by the hash of the certificate.
 2. The browser sends an `Extended CONNECT` request on a HTTP/3 stream, requesting the establishment of a WebTransport session. If the server sends a `200` HTTP status, the WebTransport session is successfully established.
 
