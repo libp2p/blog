@@ -26,15 +26,15 @@ This is the first entry in a series of posts on how libp2p achieves browser conn
 
 Universal and seamless browser connectivity is a key goal of the [libp2p project](https://github.com/libp2p/specs). And over the course of many years, libp2p has made many strides to realize that vision. Today, we are proud to announce a major milestone that puts us much closer towards that aim:
 
-**libp2p now supports the new, bleeding-edge [WebTransport protocol](https://www.notion.so/WebTransport-Blog-Post-b9f0649fd1924bbba65aeca005f27fb6)!**
+**libp2p now supports the new, bleeding-edge [WebTransport protocol](#What-is-WebTransport)!**
 
 In this article, we:
 
-- [Introduce WebTranport](https://www.notion.so/WebTransport-Blog-Post-b9f0649fd1924bbba65aeca005f27fb6)
-- Show what it means for apps and [how you can use it today](https://www.notion.so/WebTransport-Blog-Post-b9f0649fd1924bbba65aeca005f27fb6)
-- Explain [its advantages over existing solutions](https://www.notion.so/WebTransport-Blog-Post-b9f0649fd1924bbba65aeca005f27fb6)
-- Give you a [deep dive into how it works](https://www.notion.so/WebTransport-Blog-Post-b9f0649fd1924bbba65aeca005f27fb6)
-- Describe the [current state of WebTransport](https://www.notion.so/WebTransport-Blog-Post-b9f0649fd1924bbba65aeca005f27fb6) (specs and implementations)
+* [Introduce WebTranport](#What-is-WebTransport)
+* Show what it means for apps and [how you can use it today](#Can-I-use-this-right-now) 
+* Explain [its advantages over existing solutions](#The-old-solution-WebSocket-and-its-challenges)
+* Give you a [deep dive into how it works](#Meet-WebTransport)
+* Describe the [current state of WebTransport](#What’s-the-current-state-of-WebTransport-and-where-is-it-supported) (specs and implementations)
 
 In this post, we’ll explain how we’re already using it to improve browser connectivity in libp2p.
 
@@ -126,6 +126,15 @@ As described above, option (2) is intended for short-lived deployments, and brow
 
 Let’s dive into the details! Understanding this section is not necessary this if you just want to use WebTransport, so feel free to skip ahead.
 
+
+<div class="container" style="display:flex; column-gap:10px;">
+    <figure>
+        <img src="../assets/webtransport_diagram.jpg" >
+        <figcaption style="font-size:x-small;">
+        </figcaption>
+    </figure>
+</div>
+
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/62a6e617-0cdc-4a13-81c2-163dd738432a/62069AF6-577B-4404-9F14-1C27289861FB.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/62a6e617-0cdc-4a13-81c2-163dd738432a/62069AF6-577B-4404-9F14-1C27289861FB.jpeg)
 
 1. The browser dials a regular HTTP/3 connection to the server, verifying the certificate either by its chain of trust, or by the hash of the certificate.
@@ -201,7 +210,7 @@ Lastly, the feature will have to be promoted up from an experimental once it is 
 
 ## Can I use this right now?
 
-Yes, please! As demonstrated [above](https://www.notion.so/WebTransport-Blog-Post-b9f0649fd1924bbba65aeca005f27fb6), WebTransport already works between browsers and servers in applications powered by go-libp2p and js-libp2p.
+Yes, please! As demonstrated [above](#State-of-WebTransport-in-libp2p-implementations), WebTransport already works between browsers and servers in applications powered by go-libp2p and js-libp2p.
 
 ### What use cases and applications does this unlock?
 
