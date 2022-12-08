@@ -73,7 +73,7 @@ This has multiple drawbacks:
 - Inefficiency
     - We’re double-encrypting the data: The first time, it’s encrypted on the outer (HTTPS) connection, and then again by the libp2p security protocol.
 - Increased latency
-    - There's no native stream multiplexing in WebSockets, and even after we add our own multiplexer, each internal stream can still suffer from head-of-line blocking.
+    - There's no native stream multiplexing in WebSocket, and even after we add our own multiplexer, each internal stream can still suffer from head-of-line blocking.
 
 This means that we never could expect the WebSocket transport to be a fast and performant transport to begin with. Given that WebSocket was the only connectivity option for browsers, we had no choice but to pay the performance penalty.
 
@@ -85,7 +85,7 @@ As a result, due to difficulty of use in a peer-to-peer setting and because of p
 
 ## Meet WebTransport
 
-Thankfully, WebTransport addresses almost all of the pain points that existed with when using WebSockets!
+Thankfully, WebTransport addresses almost all of the pain points that existed with when using WebSocket!
 
 Conceptually, WebTransport is quite similar to WebSocket, although it’s a completely new protocol on the wire. The browser can “upgrade” an [HTTP/2](https://datatracker.ietf.org/doc/draft-ietf-webtrans-http2/) or an [HTTP/3 connection](https://datatracker.ietf.org/doc/draft-ietf-webtrans-http3/) to a **WebTransport session**.
 HTTP/3 runs on top of QUIC. A WebTransport session over HTTP/3 allows both endpoints to open (very thinly wrapped) QUIC streams to each other. This enables WebTransport to take advantage of QUIC's offerings, resulting in:
@@ -104,7 +104,7 @@ The most important change for our peer-to-peer use case is the introduction of a
 2. Verification of the TLS certificate hash.
     - This option is intended for short-lived VM deployments, where servers only have self-signed certificates. The browser will trust the server if the hash of the certificate used during the handshake matches a hash that it expects.
 
-Option (1) comes with the exactly the same problems that we encountered with WebSockets.
+Option (1) comes with the exactly the same problems that we encountered with WebSocket.
 
 Option (2) allows us to use WebTransport on *any* libp2p node without manual configuration!
 
@@ -212,7 +212,7 @@ Yes, please! As demonstrated [above](#State-of-WebTransport-in-libp2p-implementa
 There are many use cases this unlocks and we are excited for builders to strike their own path. Here are some ideas:
 
 - Enable browser nodes (or light clients) as "full" peers in a decentralized network.
-    - Browser nodes can gossip directly to their peers in the wider decentralized network. This means they can receive and submit egress and ingress messages directly without relying on centralized infrastructure or a interfaces like an HTTP/GraphQL api.
+    - Browser nodes can gossip directly to their peers in the wider decentralized network. This means they can receive and submit, egress and ingress messages directly without relying on centralized infrastructure or interfaces like an HTTP/GraphQL api.
 - Enable browser extension crypto wallets to submit transactions directly to the blockchain.
 - Get data from the DHT by directly connecting to a DHT server node.
 - Upload to Filecoin directly from the browser.
