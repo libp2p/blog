@@ -41,7 +41,7 @@ In this article, we:
 
 At a high level, [WebTransport](https://www.w3.org/TR/webtransport/) is a new [transport protocol](https://osi-model.com/transport-layer/) and [Web API](https://developer.mozilla.org/en-US/docs/Web/API) currently under development by both the [Internet Engineering Task Force (IETF)](https://www.ietf.org/) and the [World Wide Web Consortium (W3C)](https://www.w3.org/).
 
-This protocol was developed [to meet these goals](https://github.com/w3c/webtransport/blob/main/explainer.md#goals):
+WebTransport is developing to meet [these goals](https://github.com/w3c/webtransport/blob/main/explainer.md#goals):
 
 - Enable low latency communication between browsers and servers (efficiently transfer data and decrease travel time from browser to server).
 - Have an API that supports different protocols and use cases (e.g., reliable/unreliable and ordered/unordered data transmission, client-server and peer-to-peer architectures, transmitting audio/video media as well as generic data).
@@ -81,11 +81,11 @@ In practice, a different obstacle prevented WebSocket from achieving widespread 
 
 However, most libp2p nodes don’t have such a certificate. This is because libp2p nodes constitute a decentralized peer-to-peer network where participants can run nodes on home laptops or browsers and join or leave the network at will. Most nodes don’t even possess a domain name, requiring a certificate from many CAs. While it’s not too hard to obtain a TLS certificate, it’s non-trivial to do so automatically in a decentralized manner.
 
-As a result, due to difficulty of use in a peer-to-peer setting and because of performance penalties, WebSocket has always been a fringe transport protocol in the libp2p stack.
+Due to the difficulty of use in a peer-to-peer setting and performance penalties, WebSocket has always been a fringe transport protocol in the libp2p stack.
 
 ## Meet WebTransport
 
-Thankfully, WebTransport addresses almost all of the pain points that existed with when using WebSocket!
+Thankfully, WebTransport addresses almost all of the pain points when using WebSocket!
 
 Conceptually, WebTransport is similar to WebSocket, although it’s a new protocol on the wire. The browser can “upgrade” an [HTTP/2](https://datatracker.ietf.org/doc/draft-ietf-webtrans-http2/) or an [HTTP/3 connection](https://datatracker.ietf.org/doc/draft-ietf-webtrans-http3/) to a **WebTransport session**.
 HTTP/3 runs on top of QUIC. A WebTransport session over HTTP/3 allows both endpoints to open (very thinly wrapped) QUIC streams to each other. This enables WebTransport to take advantage of QUIC's offerings, resulting in the following:
@@ -169,13 +169,13 @@ This will likely be the case for many more months. As such, we don’t yet know 
 
 ### libp2p Specs
 
-We have a prose specification on how libp2p uses WebTransport here: [libp2p WebTransport spec](https://github.com/libp2p/specs/tree/master/webtransport). This describes the addressing scheme, certificate use, HTTP endpoint, and security handshake in greater detail. Different libp2p language implementations write their WebTransport implementations in accordance with this specification.
+We have a prose specification on how libp2p uses WebTransport here: [libp2p WebTransport spec](https://github.com/libp2p/specs/tree/master/webtransport). This describes the addressing scheme, certificate use, HTTP endpoint, and security handshake in greater detail. Different libp2p language implementations write their WebTransport implementations following this specification.
 
 It's important to note that libp2p only specifies the [HTTP/3](https://datatracker.ietf.org/doc/draft-ietf-webtrans-http3/) variant.
 
 ### State of WebTransport in Browsers
 
-Currently, WebTransport support is limited to Chromium browsers ([which shipped in Chrome 97](https://chromestatus.com/feature/4854144902889472)) as the protocol and Web API is not supported elsewhere.
+Currently, WebTransport support is limited to Chromium browsers ([which shipped in Chrome 97](https://chromestatus.com/feature/4854144902889472)) as the protocol and Web API are not supported elsewhere.
 See the [Can I Use? page for more details](https://caniuse.com/webtransport).
 
 From our experience integrating QUIC into libp2p, browser vendors will likely not simultaneously support multiple draft versions of WebTransport. Instead, they will drop support for older versions as soon as they deploy support for a new version.
