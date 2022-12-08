@@ -3,7 +3,7 @@ tags:
 - browser, transport
 title: WebTransport in libp2p
 description:
-date: 2022-12-15
+date: 2022-12-07
 permalink: "/2022-12-15-libp2p-webtransport/"
 translationKey: ''
 header_image: /libp2p-day-blog-header.png
