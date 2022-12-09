@@ -1,6 +1,7 @@
 ---
 tags:
-- browser, transport
+- browser
+- transport
 title: WebTransport in libp2p
 description:
 date: 2022-12-07
