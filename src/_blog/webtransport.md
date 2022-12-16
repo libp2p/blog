@@ -238,11 +238,3 @@ Thank you for reading!
 
 <!-- consider deleting this section -->
 
-### The organizations behind this effort
-
-*A quick aside on the organizations that have spearheaded this effort.*
-
-The IETF is the standards body responsible for specifying and standardizing network protocols for the internet. You might have heard of TCP, QUIC, HTTP, SMTP, and TLS, to name a few examples.
-Protocol Labs were the creators and incubators of [libp2p](https://github.com/libp2p) and has been the consumer of IETF specifications. However, Protocol Labs has also contributed back. Recently we have been actively involved in the standardization process of both QUIC and WebTransport (among others).
-
-The W3C is the standards body that is, among others, responsible for standardizing browser or Web APIs. These standards make sure that a JavaScript function call or applying a CSS property does the same thing, no matter if done in Chrome, Firefox, or Safari. As such, the W3C is responsible for specifying the Web API for WebTransport.
