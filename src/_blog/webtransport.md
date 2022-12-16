@@ -128,7 +128,7 @@ Let’s dive into the details! Understanding this section is unnecessary if you 
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="../assets/webtransport_diagram.jpg" >
+        <img src="../assets/webtransport_diagram.png" >
         <figcaption style="font-size:x-small;">
         </figcaption>
     </figure>
