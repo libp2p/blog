@@ -5,7 +5,7 @@ tags:
 title: WebTransport in libp2p
 description:
 date: 2022-12-19
-permalink: "/2022-12-15-libp2p-webtransport/"
+permalink: "/2022-12-19-libp2p-webtransport/"
 translationKey: ''
 header_image: /libp2p_WebTransport_Blog_Header.png
 author: Marten Seemann
