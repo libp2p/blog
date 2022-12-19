@@ -4,10 +4,10 @@ tags:
 - transport
 title: WebTransport in libp2p
 description:
-date: 2022-12-07
+date: 2022-12-19
 permalink: "/2022-12-15-libp2p-webtransport/"
 translationKey: ''
-header_image: /libp2p-day-blog-header.png
+header_image: /libp2p_WebTransport_Blog_Header.png
 author: Marten Seemann
 ---
 
@@ -128,7 +128,7 @@ Let’s dive into the details! Understanding this section is unnecessary if you 
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="../assets/webtransport_diagram.png" >
+        <img src="../assets/WebTransport-blog-post-diagram-1.png" >
         <figcaption style="font-size:x-small;">
         </figcaption>
     </figure>
@@ -235,6 +235,3 @@ If you would like to contribute, please:
 - [Connect with the libp2p maintainers](https://libp2p.io/#community)
 
 Thank you for reading!
-
-<!-- consider deleting this section -->
-
