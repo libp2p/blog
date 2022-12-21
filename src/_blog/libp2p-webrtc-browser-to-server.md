@@ -24,7 +24,6 @@ Read about the [first article on WebTransport here](https://blog.libp2p.io/2022-
 
 **Table of Contents**
 
-_IN DRAFT, NOT READY FOR REVIEW_
 
 [[toc]]
 
