@@ -49,7 +49,7 @@ Before going further we'd like to acknowledge the organizations involved in this
 First, kudos goes to [Little Bear Labs](https://littlebearlabs.io/) who teamed up with Protocol Labs and the libp2p community to define the WebRTC specification and work on the implementation. Protocol Labs authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation, while Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations.
 Second, thanks goes to Parity Technologies for helping initiate this effort [many years ago](todo: link to issue or pr) and for all the valuable input on the specification and Rust implementation.
 
-Before we deep dive into the WebRTC implementation within libp2p, let's first understand what WebRTC is and how it's currently being used.
+Without further ado, let's begin by introducing WebRTC and how it's currently used. Then we'll go into a deep dive of the WebRTC implementation within libp2p.
 
 ## WebRTC in the Browser
 
