@@ -19,7 +19,7 @@ WebTransport in libp2p: Part 1 of Universal Browser Connectivity
 WebRTC (Browser to Server): Part 2 of Universal Browser Connectivity
 WebRTC (Browser to Browser): Part 3 of Universal Browser Connectivity
 -->
-This is the second entry in a series of posts on how libp2p achieves browser connectivity.
+This is the second entry in the Universal Browser Connectivity series on how libp2p achieves browser connectivity.
 Read about WebTransport in the [first post](https://blog.libp2p.io/2022-12-19-libp2p-webtransport/).
 
 **Table of Contents**
@@ -56,7 +56,7 @@ Second, thanks to Parity Technologies for helping initiate this effort [many yea
 
 Without further ado, let's begin by introducing WebRTC and how it's currently used. Then we'll dive deep into the WebRTC implementation within libp2p.
 
-## WebRTC in the Browser
+## WebRTC in the browser
 
 `Web Real-Time Communication`, commonly referred to as `WebRTC`, is a [set of standards](https://w3c.github.io/webrtc-pc/) that allows browsers, clients, and servers to connect to other peers to exchange audio, video, and data. In most cases, peers directly connect to other peers, improving privacy and requiring fewer hops than on a relay.
 
@@ -149,7 +149,7 @@ The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of 
 
 ### Benefits
 
-#### Self-Signed Certificate
+#### Self-signed Certificate
 
 WebRTC enables browsers to connect to public libp2p nodes without the nodes requiring a TLS certificate in the browser's [certificate chain](https://en.wikipedia.org/wiki/X.509#Certificate_chains_and_cross-certification). Because the server can use a self-signed TLS certificate, WebRTC removes the need to include additional services like DNS and Let's Encrypt. 
 
@@ -157,7 +157,7 @@ WebRTC enables browsers to connect to public libp2p nodes without the nodes requ
 
 WebRTC allows for peer-to-peer connections, opening up the browser-to-browser use case in libp2p. While this [specification](https://github.com/libp2p/specs/pull/497) is still a work in progress, the potential is very exciting as no other non-WebRTC transport offers this.
 
-#### Broad Support
+#### Broad support
 
 Chrome has supported WebRTC since 2012.  Other browsers soon followed, achieving support [on all evergreen browsers](https://caniuse.com/?search=webrtc).  WebRTC is literally everywhere.
 
@@ -167,7 +167,7 @@ In contrast to standard WebRTC signaling, you might notice signaling is complete
 
 ### Limitations
 
-#### Setup and Configuration
+#### Setup and configuration
 
 Because WebRTC represents a collection of technologies, it requires extensive setup and configuration compared to other transports.
 
@@ -235,17 +235,17 @@ libp2p-webrtc-star was released earlier this year. This transport utilizes centr
 
 libp2p-webrtc-direct utilizes WebSockets to exchange SDPs, removing the need for centralized dependency in libp2p-webrtc-star. While libp2p-webrtc-direct solved the centralized problem, the servers must have valid TLS certificates for WebSocket connectivity. The repository was archived in November.
 
-## Can I use WebRTC Now?
+## Can I use WebRTC now?
 
 Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to complete.  Follow the [PR](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when merged.
 
-## What's Next?
+## What's next?
 
 WebRTC offers the capability for browsers to connect 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
 
 The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start.  Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information.
 
-## Resources and How you can help contribute
+## Resources and how you can help contribute
 
 If you would like to read further about WebRTC. Please see the libp2p:
 
