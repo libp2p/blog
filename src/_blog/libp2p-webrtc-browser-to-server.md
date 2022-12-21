@@ -57,7 +57,7 @@ Before we deep dive into the WebRTC implementation within libp2p, let's first un
 
 While WebRTC handles audio, video, and data traffic, we're just going to focus on the data aspect because that's the API leveraged in libp2p-webrtc.
 
-WebRTC is built directlry into browsers, so using the API is a simple and straightfoward task.  Peers connect to each other via a `RTCPeerConnection` interface.  Once connected, `RTCDataChannels` can be added to the connection to send and receive binary data.
+WebRTC is built directly into browsers, so using the API is a simple and straightfoward task.  Peers connect to each other via a `RTCPeerConnection` interface.  Once connected, `RTCDataChannels` can be added to the connection to send and receive binary data.
 
 ![](https://i.imgur.com/Zv221BT.png)
 
