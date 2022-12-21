@@ -30,7 +30,19 @@ _IN DRAFT, NOT READY FOR REVIEW_
 
 ## Overview
 
-The [libp2p project](https://libp2p.io) specifies many [transports](https://libp2p.io/implementations/#transports) developed in a variety of implementations (Rust, Go,  and JavaScript).  While connecting servers to servers has been around for a while via TCP and QUIC, there haven't been optimal solutions for connecting browsers to servers that work on a broad spectrum of browsers.  Additionally, there was a need to establish browser-to-browser connectivity in a decentralized way.
+The [libp2p project](https://libp2p.io) supports many [transport protocols](https://libp2p.io/implementations/#transports) across a variety of implementations.
+These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser.)
+
+Historically, libp2p has bridged these runtime environments with different node connectivity options to varying degrees:
+- server node to server node via TCP and QUIC
+- browser node to server node via WebSockets and more recently [WebTransport](https://blog.libp2p.io/2022-12-19-libp2p-webtransport)
+- browser node to browser node (via [less than ideal solutions](#prior-webrtc-implementations)
+
+Today our focus is on advancements in the **browser to server** use case...🥁*drumroll*
+ 
+We're excited to present a new paradigm for browser to server connectivity and announce,
+
+**native support for WebRTC now exists in libp2p!**
 
 Other transports laid the groundwork for a WebRTC implementation in libp2p, but had some shortcomings, including centralized signaling and the need for a trusted TLS certificate, that created a need for a formal specification. [Little Bear Labs](https://littlebearlabs.io/) teamed up with Protocol Labs and the libp2p community to define a specification and work on the SDK implementation.  Protocol Labs authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation, while Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations.
 
