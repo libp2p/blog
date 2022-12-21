@@ -236,3 +236,18 @@ Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp
 WebRTC offers the capability for browsers to connect to each other 🎉.  This isn't currently possible in any of the active libp2p transports and represents a major achievement in libp2p.
 
 The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start.  Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information.
+
+## Resources and How you can help contribute
+
+If you would like to read further about WebRTC. Please see the libp2p:
+
+- [Documentation on WebRTC](https://github.com/libp2p/docs/pull/264)
+- [Connectivity site section on the protocol](https://connectivity.libp2p.io/#webrtc)
+    - This describes WebRTC along with other transport implementations
+- [Specification on WebRTC](https://github.com/libp2p/specs/tree/master/webrtc)
+
+If you would like to contribute, please:
+
+- [Connect with the libp2p maintainers](https://libp2p.io/#community)
+
+Thank you for reading!
