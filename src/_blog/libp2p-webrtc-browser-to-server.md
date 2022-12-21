@@ -158,7 +158,7 @@ Chrome has supported WebRTC since 2012.  Other browsers soon followed, achieving
 
 #### Signaling Removed
 
-In contrast to standard WebRTC siglaling, you might notice signaling is completely removed in libp2p browser-to-server communication and that Signal Channels aren't needed.  Removing singaling results in fewer roundrips needed to establish a Data Channel as well as the added complexity of creating signaling. Additionally, in situations in standard WebRTC where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
+In contrast to standard WebRTC signaling, you might notice signaling is completely removed in libp2p browser-to-server communication and that Signal Channels aren't needed.  Removing singaling results in fewer roundrips needed to establish a Data Channel as well as the added complexity of creating signaling. Additionally, in situations in standard WebRTC where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
 ### Limitations
 
