@@ -229,7 +229,7 @@ libp2p-webrtc-direct utizes websockets to exchange SDPs, removing the need for t
 
 ## Can I use WebRTC Now?
 
-Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to complete.  Follow the [PR](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when merged.
+Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to complete.  Follow the [PR](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when merged.
 
 ## What's Next?
 
