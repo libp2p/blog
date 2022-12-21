@@ -32,6 +32,10 @@ Read about the [first article on WebTransport here](https://blog.libp2p.io/2022-
 The [libp2p project](https://libp2p.io) supports many [transport protocols](https://libp2p.io/implementations/#transports) across a variety of implementations.
 These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser.)
 
+Browser to server offerings, old and new, came with their own set of shortcomings.
+This new libp2p WebRTC solution establishes browser to server connectivity in a decentralized way, across a broad spectrum of browsers, and in multiple libp2p implementations.
+
+> Note: If you're familiar with the libp2p ecosystem, you may be wondering: Is this new? Hasn't there already been support for WebRTC in libp2p? The answer to both questions is yes. Although support has existed, this libp2p WebRTC solution is a fresh departure from older uses of the transport protocol in libp2p. We describe more further below.
 Historically, libp2p has bridged these runtime environments with different node connectivity options to varying degrees:
 - server node to server node via TCP and QUIC
 - browser node to server node via WebSockets and more recently [WebTransport](https://blog.libp2p.io/2022-12-19-libp2p-webtransport)
