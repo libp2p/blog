@@ -51,8 +51,8 @@ This new libp2p WebRTC solution establishes browser-to-server connectivity in a 
 ## Acknowledgements
 
 Before going further, we'd like to acknowledge the organizations involved in this breakthrough.
-First, kudos to [Little Bear Labs](https://littlebearlabs.io/), who teamed up with Protocol Labs and the libp2p community to define the WebRTC specification and work on the implementation. Parity (i.e. @melekes) authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation and Protocol Labs (i.e. @thomaseizinger) provided valuable input on the Rust implementation.  Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations.
-Second, thanks to Parity Technologies for helping initiate this effort [many years ago](todo: link to issue or pr) and for all the valuable input on the specification and Rust implementation.
+First, kudos to [Little Bear Labs](https://littlebearlabs.io/), who teamed up with Protocol Labs and the libp2p community to define the WebRTC specification and work on the implementation. Second, thanks to Parity Technologies for helping initiate this effort [many years ago](todo: link to issue or pr) and for all the valuable input on the specification and Rust implementation.
+Parity authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation. Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations. Protocol Labs led the specification work and provided reviews of the implementations.
 
 Without further ado, let's begin by introducing WebRTC and how it's currently used. Then we'll dive deep into the WebRTC implementation within libp2p.
 
