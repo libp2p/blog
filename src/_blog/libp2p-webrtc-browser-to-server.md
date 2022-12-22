@@ -93,7 +93,7 @@ Signaling Channel<->Peer B:Duplex Send/Receive SCTP data, encrypted with DTLS
 
 <div style="font-size: 1.25rem; text-align: center; margin-bottom: 1rem; font-style: italic;">2 browsers connecting via WebRTC, where Peer A has router restrictions (i.e. behind a firewall)</div>
 
-Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers to determine their public address, as well as any router restrictions that prohibit peer-to-peer communications.  In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers are used to relay data between peers using a Signaling Channel.
+Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers to determine their public address and any router restrictions that prohibit peer-to-peer communications. In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers relay data between peers using a Signaling Channel.
 
 Once IP addresses are obtained, a peer sends an Offer [SDP](https://datatracker.ietf.org/doc/html/rfc4566) to the other peer. This Offer SDP details how the initiating peer can communicate (IP address, protocols, fingerprints, encryption, etc.). The other peer sends an Answer SDP to the initiating peer. Both peers now have enough information to start the DTLS handshake.
 
@@ -163,7 +163,7 @@ Chrome has supported WebRTC since 2012.  Other browsers soon followed, achieving
 
 #### Signaling Removed
 
-In contrast to standard WebRTC signaling, you might notice signaling is completely removed in libp2p browser-to-server communication and that Signal Channels aren't needed.  Removing singaling results in fewer roundrips needed to establish a Data Channel as well as the added complexity of creating signaling. Additionally, in situations in standard WebRTC where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
+In contrast to standard WebRTC signaling, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
 ### Limitations
 
@@ -241,7 +241,7 @@ Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp
 
 ## What's next?
 
-WebRTC offers the capability for browsers to connect 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
+WebRTC offers the capability for browsers to connect to browsers 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
 
 The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start.  Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information.
 
