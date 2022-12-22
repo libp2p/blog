@@ -134,7 +134,7 @@ Chrome has supported WebRTC since 2012.  Other browsers soon followed, achieving
 
 #### Signaling Removed
 
-In contrast to standard WebRTC signaling, you might notice signaling is completely removed in libp2p browser-to-server communication and that Signal Channels aren't needed.  Removing singaling results in fewer roundrips needed to establish a Data Channel as well as the added complexity of creating signaling. Additionally, in situations in standard WebRTC where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
+In contrast to standard WebRTC signaling, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
 ### Limitations
 
@@ -208,7 +208,7 @@ Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp
 
 ## What's next?
 
-WebRTC offers the capability for browsers to connect 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
+WebRTC offers the capability for browsers to connect to browsers 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
 
 The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start.  Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information.
 
