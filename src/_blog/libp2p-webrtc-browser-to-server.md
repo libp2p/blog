@@ -160,7 +160,7 @@ const node = await createLibp2p({
 The only difference from other transports is initializing with `webRTC()`.  That's all you need to do to implement WebRTC in the browser.  Easy, right?
 
 
-## Alternative Transports
+## Alternative transports
 
 WebRTC is one of many ways to connect browsers to a libp2p node. [Choosing the transport](https://connectivity.libp2p.io/) that fits your use case is one of the many unique strengths of libp2p.
 
