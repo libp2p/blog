@@ -43,10 +43,10 @@ We're excited to present a new paradigm for browser-to-server connectivity and a
 
 **native support for WebRTC now exists in libp2p!**
 
-Browser-to-server offerings, old and new, came with their own set of shortcomings.
+Browser to server offerings, old and new, came with their own set of shortcomings.
 This new libp2p WebRTC solution establishes browser-to-server connectivity in a decentralized way across a broad spectrum of browsers and in multiple implementations.
 
-_Note: If you're familiar with the libp2p ecosystem, you may be wondering: Is this new? Hasn't there already been support for WebRTC in libp2p? The answer to both questions is yes. Although support has existed, this libp2p WebRTC solution is a fresh departure from older uses of the transport protocol in libp2p. We describe more further below._
+> If you're familiar with the libp2p ecosystem, you may wonder, is this new? Hasn't there already been support for WebRTC in libp2p? The answer to both questions is **yes** - although support has existed, this new WebRTC solution is a fresh departure from older uses for WebRTC in libp2p. We describe more below.
 
 ## Acknowledgements
 
@@ -170,7 +170,7 @@ The [WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc6455) dates back to
 
 #### Limitations
 
-WebSockets run over TCP, which is inherently slower than WebRTC's UDP. The various upgrades and handshakes add up to six round trips before data can be exchanged. Additionally, while WebRTC can leverage self-signed certificates, WebSockets cannot, as they require the server to have a trusted TLS certificate using TCP.
+The various upgrades and handshakes add up to six round trips before data can be exchanged. Additionally, while WebRTC can leverage self-signed certificates, WebSockets cannot, as they require the server to have a trusted TLS certificate using TCP.
 
 ### WebTransport
 
