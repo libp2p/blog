@@ -7,7 +7,7 @@
 
 <script>
 const safePermalink = (permalink, date) => {
-  let domain = 'https://libp2p.io/blog/'
+  let domain = 'https://blog.libp2p.io/'
   const url = new URL(domain)
   url.pathname = permalink
   return url.toString()
