@@ -34,7 +34,7 @@ module.exports = [
     'script',
     {
       defer: true,
-      'data-domain': 'libp2p.io/blog',
+      'data-domain': 'blog.libp2p.io',
       'data-api': 'https://proxy.daas.workers.dev/api/event',
       src: 'https://proxy.daas.workers.dev/js/script.js',
     },

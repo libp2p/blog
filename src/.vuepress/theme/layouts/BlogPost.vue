@@ -85,7 +85,7 @@ export default {
     this.showComments =
       !!ipfsPathPrefix ||
       window.location.hostname.includes('.ipns.localhost') ||
-      window.location.hostname === 'libp2p.io/blog' ||
+      window.location.hostname === 'blog.libp2p.io' ||
       window.location.hostname === 'libp2p-blog.on.fleek.co' ||
       window.location.hostname === 'libp2p-blog-staging.on.fleek.co'
   },
