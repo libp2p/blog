@@ -51,8 +51,8 @@ This new libp2p WebRTC solution establishes browser-to-server connectivity in a 
 ## Acknowledgements
 
 Before going further, we'd like to acknowledge the organizations involved in this breakthrough.
-First, kudos to [Little Bear Labs](https://littlebearlabs.io/), who teamed up with Protocol Labs and the libp2p community to define the WebRTC specification and work on the implementation. Second, thanks to Parity Technologies for helping initiate this effort [many years ago](todo: link to issue or pr) and for all the valuable input on the specification and Rust implementation.
-Parity authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation. Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations. Protocol Labs led the specification work and provided reviews of the implementations.
+First, kudos to [Little Bear Labs](https://littlebearlabs.io/), who teamed up with Protocol Labs and the libp2p community to define the WebRTC specification and work on the implementation. Second, thanks to [Parity Technologies](https://www.parity.io/) for helping initiate this effort [many years ago](https://github.com/paritytech/smoldot/issues/1712) and for all the valuable input on the specification and Rust implementation.
+Parity Technologies authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation. Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations. Protocol Labs led the specification work and provided reviews of the implementations.
 
 Without further ado, let's begin by introducing WebRTC and how it's currently used. Then we'll dive deep into the WebRTC implementation within libp2p.
 
@@ -62,13 +62,13 @@ Without further ado, let's begin by introducing WebRTC and how it's currently us
 
 While WebRTC handles audio, video, and data traffic, we're just going to focus on the data aspect because that's the API leveraged in libp2p-webrtc.
 
-WebRTC is built directly into browsers, so using the API is straightforward. Peers connect via an `RTCPeerConnection` interface. Once connected, `RTCDataChannels` can be added to the connection to send and receive binary data.
+WebRTC is built directly into browsers, so using the API is straightforward. Peers connect via an `RTCPeerConnection` interface. Once connected, `RTCDataChannel`s can be added to the connection to send and receive binary data.
 
 Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers to determine their public address and any router restrictions that prohibit peer-to-peer communications. In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers relay data between peers using a Signaling Channel.
 
 Once IP addresses are obtained, a peer sends an Offer [SDP](https://datatracker.ietf.org/doc/html/rfc4566) to the other peer. This Offer SDP details how the initiating peer can communicate (IP address, protocols, fingerprints, encryption, etc.). The other peer sends an Answer SDP to the initiating peer. Both peers now have enough information to start the DTLS handshake.
 
-The DTLS handshake is performed using fingerprints contained in the Offer and Answer SDPs. After the handshake is complete, data is sent between peers using the SCTP (Stream Control Transmission Protocol) protocol, encrypting messages with DTLS over UDP.
+The DTLS handshake is performed using fingerprints contained in the Offer and Answer SDPs. After the handshake is complete, data is sent between peers using the SCTP (Stream Control Transmission Protocol) protocol, encrypting messages with DTLS over UDP or TCP.
 
 
 ## WebRTC in libp2p
@@ -206,6 +206,11 @@ libp2p-webrtc-direct utilizes WebSockets to exchange SDPs, removing the need for
 
 Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to complete.  Follow the [PR](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when merged.
 
+In fact, the Parity team has already began using the Rust WebRTC implementation!
+The transport has been enabled as an experimental feature and [added to Smoldot](https://github.com/paritytech/smoldot/issues/1712) (a lightweight [Substrate](https://substrate.io/) and [Polkadot](https://polkadot.network/) client!
+There is also ongoing work to [enable it directly in Substrate](https://github.com/paritytech/substrate/pull/12529).
+
+This is exciting news as WebRTC is already contributing to Parity's [roadmap to enable browser to server connectivity](https://github.com/paritytech/substrate/issues/7467) on their network!
 ## What's next?
 
 WebRTC offers the capability for browsers to connect to browsers 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
