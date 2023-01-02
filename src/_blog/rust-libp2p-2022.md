@@ -23,7 +23,7 @@ We started the year with the release of the various components needed for hole p
 We added the [Circuit Relay v2 protocol](https://github.com/libp2p/rust-libp2p/pull/2059), [DCUtR protocol](https://github.com/libp2p/rust-libp2p/pull/2438) and [AutoNAT protocol](https://github.com/libp2p/rust-libp2p/pull/2262).
 With that rust-libp2p [v0.43.0](https://github.com/libp2p/rust-libp2p/releases/tag/v0.43.0) in February was the first rust-libp2p release with hole punching capabilities.
 
-To improve what we rolled out in the beginning of the year, the libp2p project started the _Hole Punching Measurement Campaign_ aka. _Hole Punching Month_in collaboration with ProbeLab.
+To improve what we rolled out in the beginning of the year, the libp2p project started the _Hole Punching Measurement Campaign_ aka. _Hole Punching Month_ in collaboration with ProbeLab.
 A multitude of [clients using both go-libp2p and rust-libp2p](https://github.com/libp2p/punchr/) are currently punching holes across the globe, providing valuable data that we can later on use to improve the libp2p specification and the two implementations.
 
 Over the year we worked on two new transports, namely [WebRTC](https://github.com/libp2p/rust-libp2p/pull/2622) and [QUIC](https://github.com/libp2p/rust-libp2p/issues/2883), which we both released towards the end of the year as alphas.
@@ -34,22 +34,25 @@ Along the way, given that QUIC already requires TLS, [rust-libp2p can now secure
 
 Along the way we tackled many smaller improvements, as a whole having a big impact on the user experience.
 To mention a couple: [naming consistency across crates](https://github.com/libp2p/rust-libp2p/issues/2217), [refactoing of the many `inject_*` into a single `enum` event handler in both `NetworkBehaviour` and `ConnectionHandler`](https://github.com/libp2p/rust-libp2p/issues/2832), [deprecation of event-based `PollParameters`](https://github.com/libp2p/rust-libp2p/pull/3153), and the [rework of our Rust feature flags](https://github.com/libp2p/rust-libp2p/pull/2918).
-
 Still remember the old days with the `NetworkBehaviourEventProcess` trait?
 [All gone](https://github.com/libp2p/rust-libp2p/pull/2784) in favor of the much simpler (generated) `OutEvent` mechanism.
-
 The `StreamMuxer` trait received numerous significant simplifications, [basically rewriting](https://github.com/libp2p/rust-libp2p/issues/2722) the trait as well as the trait implementation in yamux, mplex and now QUIC and WebRTC.
 
 Defense against denial-of-service attacks is a cornerstone of a networking library, especially in the peer-to-peer space.
 rust-libp2p saw a lot of related improvements in 2022.
-We enforce various limits (e.g. on the [number of streams](https://github.com/libp2p/rust-libp2p/pull/2697), bytes of a request) and [prioritize local work over new incoming work from a remote](https://github.com/libp2p/rust-libp2p/pull/2627) across the many layers.
-Up next is a patch [enabling `NetworkBehaviour` implementations to implement their own connection management strategies](https://github.com/libp2p/rust-libp2p/issues/2824).
+We enforce various limits (e.g. on the [number of streams](https://github.com/libp2p/rust-libp2p/pull/2697) and bytes of a request) and [prioritize local work over new incoming work from a remote](https://github.com/libp2p/rust-libp2p/pull/2627) across the many layers.
+Up next is [a patch](https://github.com/libp2p/rust-libp2p/issues/2824) enabling `NetworkBehaviour` implementations to implement their own connection management strategies.
 
 Understanding large systems is hard.
 Understanding distributed systems is even harder.
 We made understanding large libp2p networks a bit easier in 2022 introducing a metric crate for rust-libp2p exposing Prometheus metrics, e.g. the [time to establish a connection](https://github.com/libp2p/rust-libp2p/pull/3134) or the [protocols supported by peers](https://github.com/libp2p/rust-libp2p/pull/2734).
 
 Since January the rust-libp2p monorepo has a [handy CLI tool for libp2p key management](https://github.com/libp2p/rust-libp2p/pull/2453).
+
+In general, we keep up with [recent developments of the Rust language], and incorporate some of its new shiny features.
+We make use of [Cargo's weak dependencies](https://github.com/libp2p/rust-libp2p/pull/2646). 
+In November we introduced [a patch using const generics](https://github.com/libp2p/rust-libp2p/pull/2712) (in tests).
+In December we merged our [first pull request using GATs](https://github.com/libp2p/rust-libp2p/pull/3239).
 
 ## Meta - Improvements to the Project
 
@@ -74,20 +77,11 @@ In 2022 we started the libp2p interoperability project and as of [September 2022
 
 At this point, rust-libp2p is a large complex codebase.
 In August we added a [coding guideline](https://github.com/libp2p/rust-libp2p/pull/2780) to the project, allowing us to agree on a set of rules to enforce consistency across the project and enable newcomers to hit the ground running.
-Projects outside of the libp2p realm might find this guideline useful, as it documents an opinionated style doing asynchronous networking in Rust.
-
-In general, we try to stay on [recent Rust versions], and incorporate some of the new shiny Rust features.
-We make use of [Cargo's weak dependencies](https://github.com/libp2p/rust-libp2p/pull/2646). 
-In November we introduced [a patch using const generics](https://github.com/libp2p/rust-libp2p/pull/2712) (in tests).
-In December we merged our [first pull request using GATs](https://github.com/libp2p/rust-libp2p/pull/3239).
-
-- Which conferences did we speak at?
-- More stats on contributions, number of releases, number of downloads
-- What did we not do?
+Projects outside of the libp2p realm might find this guideline useful, as it documents an opinionated way of doing asynchronous networking in Rust.
 
 In 2022 we published 9 releases of the main `libp2p` crate and a total of 268 releases across the workspace including sub-crates and patch releases.
 
 ## What's Next?
 
-Let's end this post with the document for rust-libp2p's future, namely our [project roadmap](https://github.com/libp2p/rust-libp2p/blob/master/ROADMAP.md) which [we added in October](https://github.com/libp2p/rust-libp2p/pull/2997).
+Let's end this post with the document describing rust-libp2p's future, namely our [project roadmap](https://github.com/libp2p/rust-libp2p/blob/master/ROADMAP.md) which [we added in October](https://github.com/libp2p/rust-libp2p/pull/2997).
 There are lots of exciting features and improvements coming up in 2023, e.g. improved WASM support, the WebRTC browser-to-browser feature and hopefully an implementation of the shiny new WebTransport transport.
