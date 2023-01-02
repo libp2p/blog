@@ -23,7 +23,7 @@ We started the year with the release of the various components needed for hole p
 We added the [Circuit Relay v2 protocol](https://github.com/libp2p/rust-libp2p/pull/2059), [DCUtR protocol](https://github.com/libp2p/rust-libp2p/pull/2438) and [AutoNAT protocol](https://github.com/libp2p/rust-libp2p/pull/2262).
 With that rust-libp2p [v0.43.0](https://github.com/libp2p/rust-libp2p/releases/tag/v0.43.0) in February was the first rust-libp2p release with hole punching capabilities.
 
-To improve what we rolled out in the beginning of the year, the libp2p project started the _Hole Punching Measurement Campaign_ aka. _Hole Punching Month_ in collaboration with ProbeLab.
+To improve what we rolled out in the beginning of the year, the libp2p project started the _Hole Punching Measurement Campaign_ aka. _Hole Punching Month_ in collaboration with [ProbeLab](https://research.protocol.ai/groups/probelab/).
 A multitude of [clients using both go-libp2p and rust-libp2p](https://github.com/libp2p/punchr/) are currently punching holes across the globe, providing valuable data that we can later on use to improve the libp2p specification and the two implementations.
 
 Over the year we worked on two new transports, namely [WebRTC](https://github.com/libp2p/rust-libp2p/pull/2622) and [QUIC](https://github.com/libp2p/rust-libp2p/issues/2883), which we both released towards the end of the year as alphas.
