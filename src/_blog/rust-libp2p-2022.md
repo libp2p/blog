@@ -11,9 +11,9 @@ header_image:
 author: Max Inden
 ---
 
-# The rust-libp2p Project in 2022
+# The rust-libp2p Project A Recap of 2022
 
-In 2022, the rust-libp2p project saw many notable developments and improvements.
+The rust-libp2p project has made significant strides in 2022, with numerous technical advancements and improvements to the project itself.
 Let's take a closer look at some of the technical highlights and on the meta level developments of the project itself.
 Note that while I (Max Inden) am writing this blog post, this is the work of many across various organizations.
 
@@ -59,7 +59,7 @@ In December we merged our [first pull request using GATs](https://github.com/lib
 libp2p is an open-community open-source project.
 What do I mean by that?
 libp2p's source code is open-source and that source code is written by an open community.
-libp2p is not developed by one or 10 people, but much rather >100 people across many organizations.
+libp2p is not developed by one or 10 people, but much rather >100 (part-time) people across many organizations.
 
 The core rust-libp2p maintainer team grew from two engineers to four, with [Elena](https://github.com/libp2p/rust-libp2p/pull/2656) and [João](https://github.com/libp2p/rust-libp2p/pull/3295) joining the team. Beyond the core maintainers, a total of 70 people contributed to rust-libp2p's `master` branch in 2022.
 
@@ -83,5 +83,5 @@ In 2022 we published 9 releases of the main `libp2p` crate and a total of 268 re
 
 ## What's Next?
 
-Let's end this post with the document describing rust-libp2p's future, namely our [project roadmap](https://github.com/libp2p/rust-libp2p/blob/master/ROADMAP.md) which [we added in October](https://github.com/libp2p/rust-libp2p/pull/2997).
-There are lots of exciting features and improvements coming up in 2023, e.g. improved WASM support, the WebRTC browser-to-browser feature and hopefully an implementation of the shiny new WebTransport transport.
+To conclude this post, it's worth mentioning the rust-libp2p [project roadmap](https://github.com/libp2p/rust-libp2p/blob/master/ROADMAP.md), which [was added in October](https://github.com/libp2p/rust-libp2p/pull/2997) and outlines the planned developments for the project in the future.
+Some notable features to look forward to in 2023 include improved WASM support, the WebRTC browser-to-browser feature, and the potential implementation of the new WebTransport transport.
