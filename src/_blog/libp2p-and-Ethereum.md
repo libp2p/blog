@@ -26,7 +26,7 @@ Today we'd like to highlight [years long effort behind this integration](#how-li
 Let's begin with a brief reflection on libp2p's history.
 
 [Protocol Labs](https://protocol.ai/) first developed [libp2p](https://libp2p.io/) as a networking library inside of [IPFS](https://ipfs.tech/).
-At the outset, their code and repositories were coupled. However, libp2p's potential and utility beyond IPFS was soon realized, and project maintainers split the two services apart. This enabled libp2p to truly become a product agnostic, general purpose networking library.
+At the outset, their code and repositories were coupled. However, libp2p's potential and utility beyond IPFS was soon realized, and project maintainers split the two codebases apart. This enabled libp2p to truly become a product agnostic, reusable, general purpose networking library.
 
 As a result, the libp2p project saw tremendous growth and adoption across the ecosystem; what started as a humble part of IPFS has come to power much of the decentralized web today.
 Besides IPFS and [Filecoin](https://filecoin.io/), libp2p is relied on by networks like [Polkadot](https://wiki.polkadot.network/docs/faq#does-polkadot-use-libp2p), [Polygon](https://wiki.polygon.technology/docs/edge/architecture/modules/networking/), [Mina](https://github.com/MinaProtocol/mina/blob/develop/rfcs/0029-libp2p.md), [Celestia](https://docs.celestia.org/concepts/how-celestia-works/transaction-lifecycle/#checking-data-availability), [Flow](https://github.com/onflow/flow/blob/master/specs/access-node-architecture/index.md#access-node), and many more.
@@ -62,12 +62,12 @@ Let's take a closer look at what the collaboration between Protocol Labs and the
 # How libp2p was integrated into Ethereum :handshake:
 In the early days of Ethereum and libp2p, some commonly asked questions were: "Does Ethereum use libp2p?" or "Why doesn't Ethereum use libp2p?"
 
-Until recently, the answer to the first question was no. The reason for that was the answer to the second question: libp2p didn't exist when Ethereum was first developed.
+Until recently, the answer to the first question was no. The reason for that was the answer to the second question: libp2p didn't exist when Ethereum was first developed, so it never got a chance to be evaluated and/or adopted.
 [Felix Lange](https://github.com/fjl), developer of [go-ethereum (Geth)](https://geth.ethereum.org/) at the Ethereum Foundation, reflected on this in an article titled ["Ethereum ♥ libp2p"](https://twurst.com/articles/eth-loves-libp2p.html):
 
 *"libp2p didn't exist when we started building the peer-to-peer networking stack for Ethereum. There were discussions about building something together very early on, but in the end we were more set on shipping a working system than to discussing how to make the most flexible and generic framework."*
 
-Thus, prior to the Merge, Ethereum solely used [devp2p](https://github.com/ethereum/devp2p), a set of networking protocols not unlike libp2p.
+Thus, prior to the Merge, Ethereum solely used [devp2p](https://github.com/ethereum/devp2p), a dedicated networking stack and set of networking protocols, not unlike libp2p in some manners.
 And though there were talks between the Ethereum and IPFS/libp2p communities to have a one solution instead of two, the timing didn't work and Ethereum shipped with devp2p as its solution.
 
 (To learn more about the differences between devp2p and libp2p, please read the [section at the bottom of the page](#comparing-devp2p-and-libp2p-🤼).)
@@ -106,7 +106,7 @@ Both solutions were to be developed on a separate chain from the mainnet, called
 
 At this time, the Ethereum 2.0 community began evaluating the networking requirements for the Beacon Chain. Designing a libp2p integration became a formal effort. Focus moved towards adding libp2p to the Beacon Chain instead of extending/replacing devp2p on the Ethereum mainnet.
 
-[Raul Kripalani](https://twitter.com/raulvk), then the libp2p team lead at Protocol Labs, joined in on many of the [early Eth 2.0 implementers calls](https://github.com/ethereum/eth2.0-pm/issues?q=is%3Aissue+libp2p+is%3Aclosed) and advocated for libp2p.
+[Raul Kripalani](https://twitter.com/raulvk), then the libp2p team lead at Protocol Labs, joined in on many of the [early Eth 2.0 implementers calls](https://github.com/ethereum/eth2.0-pm/issues?q=is%3Aissue+libp2p+is%3Aclosed), advocated for libp2p, and supported the Ethereum community in evaluations and decision-making.
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
