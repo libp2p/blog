@@ -164,7 +164,7 @@ Collaboration between these communities and the Beacon Chain's use of libp2p yie
 
 ## Full Speed Ahead (2020-present) 🏎️
 
-The Eth 2.0 team started hosting dedicated "networking" meetings (started in Dec 2019) in addition to implementer calls. These meetings were dedicated to [discussing progress and unblocking libp2p related endeavors](https://github.com/ethereum/eth2.0-pm/issues/124#issuecomment-579740557) (GossipSub paper & peer scoring, Noise, etc.)
+The Eth 2.0 team started hosting dedicated "networking" meetings (started in Dec 2019) in addition to implementer calls. As before, libp2p core team members were key participants. These meetings were dedicated to [discussing progress and unblocking libp2p related endeavors](https://github.com/ethereum/eth2.0-pm/issues/124#issuecomment-579740557) (GossipSub paper & peer scoring, Noise, etc.)
 
 
 ### GossipSub v1.1
