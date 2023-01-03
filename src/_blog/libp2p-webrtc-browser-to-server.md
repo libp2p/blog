@@ -30,7 +30,7 @@ Read about WebTransport in the [first post](https://blog.libp2p.io/2022-12-19-li
 ## Overview
 
 The [libp2p project](https://libp2p.io) supports many [transport protocols](https://libp2p.io/implementations/#transports) across a variety of implementations.
-These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser.)
+These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser).
 
 Historically, libp2p has bridged these runtime environments with different node connectivity options to varying degrees:
 - server node to server node via TCP and QUIC;
@@ -104,7 +104,9 @@ The browser creates a [RTCPeerConnection](https://developer.mozilla.org/en-US/do
 
 Setting the Offer and Answer SDP on the browser triggers the sending of STUN packets to the server.  The server then creates the browser's Offer SDP using the values in the STUN Binding Request. 
 
-The browser and server then engage in a DTLS handshake, opening the UDP Data Channel.  Since the server does not know the TLS certificate of the browser, a [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP and completed by the browser over the Data Channel. DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.
+The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  Since the server does not know the TLS certificate of the browser, a [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.
+
+In contrast to standard WebRTC signaling, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
 #### Multiaddress
 
@@ -131,10 +133,6 @@ WebRTC allows for peer-to-peer connections, opening up the browser-to-browser us
 #### Broad support
 
 Chrome has supported WebRTC since 2012.  Other browsers soon followed, achieving support [on all evergreen browsers](https://caniuse.com/?search=webrtc).  WebRTC is literally everywhere.
-
-#### Signaling Removed
-
-In contrast to standard WebRTC signaling, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
 ### Limitations
 
@@ -187,8 +185,6 @@ As opposed to WebSockets, libp2p can use raw WebTransport streams and avoid the 
 You might be asking yourself, why pick WebRTC over WebTransport in libp2p? It's like WebRTC but easier to implement and with less complexity. WebTransport is not without its limitations.
 
 WebTransport isn't supported [in all browsers](https://caniuse.com/webtransport). This lack of support is a big concern as it's unreasonable to expect users to _not_ use Firefox or Safari, or even older versions of Chromium-based browsers.
-
-Another issue is that browsers utilizing the WebTransport API can only connect to servers. This severely limits the utility of the transport as browser-to-browser communication is critical to closing the loop on full interoperability in libp2p.
 
 ## Legacy WebRTC implementations in libp2p
 
