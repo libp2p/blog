@@ -44,7 +44,7 @@ We're excited to present a new paradigm for browser-to-server connectivity and a
 **native support for WebRTC now exists in libp2p!**
 
 Browser to server offerings, old and new, came with their own set of shortcomings.
-This new libp2p WebRTC solution establishes browser-to-server connectivity in a decentralized way across a broad spectrum of browsers and in multiple implementations.
+A new libp2p WebRTC solution establishes browser-to-server connectivity in a decentralized way across a broad spectrum of browsers and in multiple libp2p implementations.
 
 > If you're familiar with the libp2p ecosystem, you may wonder, is this new? Hasn't there already been support for WebRTC in libp2p? The answer to both questions is **yes** - although support has existed, this new WebRTC solution is a fresh departure from older uses for WebRTC in libp2p. We describe more below.
 
@@ -104,7 +104,7 @@ The browser creates a [RTCPeerConnection](https://developer.mozilla.org/en-US/do
 
 Setting the Offer and Answer SDP on the browser triggers the sending of STUN packets to the server.  The server then creates the browser's Offer SDP using the values in the STUN Binding Request. 
 
-The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  Since the server does not know the TLS certificate of the browser, a [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.
+The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  Since the server does not know the TLS certificate of the browser, a [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.
 
 In contrast to standard WebRTC signaling, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
