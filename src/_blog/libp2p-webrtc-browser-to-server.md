@@ -68,7 +68,7 @@ Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers
 
 Once IP addresses are obtained, a peer sends an Offer [SDP](https://datatracker.ietf.org/doc/html/rfc4566) to the other peer. This Offer SDP details how the initiating peer can communicate (IP address, protocols, fingerprints, encryption, etc.). The other peer sends an Answer SDP to the initiating peer. Both peers now have enough information to start the DTLS handshake.
 
-The DTLS handshake is performed using fingerprints contained in the Offer and Answer SDPs. After the handshake is complete, data is sent between peers using the SCTP (Stream Control Transmission Protocol) protocol, encrypting messages with DTLS over UDP or TCP.  A total of 6 roundtrips are performed before data is exchanged.
+The DTLS handshake is performed using fingerprints contained in the Offer and Answer SDPs. After the handshake is complete, data is sent between peers using the SCTP (Stream Control Transmission Protocol) protocol, encrypting messages with DTLS over UDP or TCP.
 
 
 ## WebRTC in libp2p
@@ -77,6 +77,8 @@ The DTLS handshake is performed using fingerprints contained in the Offer and An
 participantspacing 20
 entryspacing 0.75
 
+participant Browser
+participant Server
 box over Server: Generate TLS Certificate
 box over Server: Listen on UDP Port
 box over Browser: Create RTCPeerConnection
@@ -94,7 +96,7 @@ Browser->(1)Server:LibP2P Noise Handshake
 
 Browser<->Server:Multiplex Send/Receive Framed Data
 -->
-![](https://i.imgur.com/fIg6zOh.png)
+![](https://i.imgur.com/m7SdrC0.png)
 
 Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.
 
@@ -104,9 +106,25 @@ The browser creates a [RTCPeerConnection](https://developer.mozilla.org/en-US/do
 
 Setting the Offer and Answer SDP on the browser triggers the sending of STUN packets to the server.  The server then creates the browser's Offer SDP using the values in the STUN Binding Request. 
 
-The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  Since the server does not know the TLS certificate of the browser, a [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.
+The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  Since the server does not know the TLS certificate of the browser, a [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  A total of 6 roundtrips are performed.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.  
 
-In contrast to standard WebRTC signaling, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
+In contrast to standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.  In fact, many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p.
+
+#### Message Framing
+
+Since WebRTC doesn't support stream resets or half-closing of streams, messaging framing was implemented on the data channels to achieve those goals.  Encoded Protobuf messages are sent in the following format:
+
+```proto
+message Message {
+  enum Flag {
+    FIN = 0;
+    STOP_SENDING = 1;
+    RESET_STREAM = 2;
+  }
+  optional Flag flag=1;
+  optional bytes message = 2;
+}
+```
 
 #### Multiaddress
 
@@ -178,13 +196,15 @@ The various upgrades and handshakes add up to six round trips before data can be
 
 WebTransport has many of the enhanced features of WebRTC (fast, secure, multiplexed) without requiring servers to implement the stack while also getting around the valid TLS certificate requirement.
 
-As opposed to WebSockets, libp2p can use raw WebTransport streams and avoid the need for double encryption.
+As opposed to WebSockets, libp2p can use raw WebTransport streams and avoid the need for double encryption.  
+
+WebTransport requires less roundtrips than WebRTC to establish a connection, making it the preferred choice when supported.
 
 #### Limitations
 
 You might be asking yourself, why pick WebRTC over WebTransport in libp2p? It's like WebRTC but easier to implement and with less complexity. WebTransport is not without its limitations.
 
-WebTransport isn't supported [in all browsers](https://caniuse.com/webtransport). This lack of support is a big concern as it's unreasonable to expect users to _not_ use Firefox or Safari, or even older versions of Chromium-based browsers.
+WebTransport isn't supported [in all browsers](https://caniuse.com/webtransport). This lack of support is a big concern as it's unreasonable to expect users to _not_ use Firefox or Safari, or even older versions of Chromium-based browsers.  While both Firefox and Safari plan to implement WebTransport, WebRTC is a great fallback while we wait for universal support.
 
 ## Legacy WebRTC implementations in libp2p
 
