@@ -62,7 +62,7 @@ Without further ado, let's begin by introducing WebRTC and how it's currently us
 
 While WebRTC handles audio, video, and data traffic, we're just going to focus on the data aspect because that's the API leveraged in libp2p-webrtc.
 
-WebRTC is built directly into browsers, so using the API is straightforward. Peers connect via an `RTCPeerConnection` interface. Once connected, `RTCDataChannel`s can be added to the connection to send and receive binary data.
+WebRTC is built directly into browsers, so using the API is straightforward. Peers connect via an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) interface. Once connected, [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel) can be added to the connection to send and receive binary data.
 
 Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers to determine their public address and any router restrictions that prohibit peer-to-peer communications. In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers relay data between peers using a Signaling Channel.
 
@@ -89,9 +89,11 @@ box over Server: Create Browser's Offer SDP
 
 Server->(1)Browser:DTLS Handshake
 Browser->(1)Server:DTLS Handshake
+Server->(1)Browser:DTLS Handshake
+Browser->(1)Server:DTLS Handshake
 
-Server->(1)Browser:LibP2P Noise Handshake
-Browser->(1)Server:LibP2P Noise Handshake
+Server->(1)Browser:libp2p Noise Handshake
+Browser->(1)Server:libp2p Noise Handshake
 
 
 Browser<->Server:Multiplex Send/Receive Framed Data
@@ -100,15 +102,17 @@ Browser<->Server:Multiplex Send/Receive Framed Data
 
 Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.
 
+Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p.  The primary WebRTC component that libp2p leverages is the [RTCDataChannels(https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
+
 The server first generates a self-signed TLS certificate and listens on a UDP port for incoming STUN packets.  Whether known upfront or discovered, the assembled multiaddress of the server is an input into the browser.
 
 The browser creates a [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection). The browser creates the server's Answer SDP using the components in the multiaddress. The SDP is edited, or `munged`, to include an auto-generated ufrag and password and the server's components (IP and Port). Similarly, the browser creates an Offer SDP and munges it with the same values. 
 
 Setting the Offer and Answer SDP on the browser triggers the sending of STUN packets to the server.  The server then creates the browser's Offer SDP using the values in the STUN Binding Request. 
 
-The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  Since the server does not know the TLS certificate of the browser, a [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  A total of 6 roundtrips are performed.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.  
+The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  A total of 6 roundtrips are performed.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.  
 
-In contrast to standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.  In fact, many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p.
+In contrast to standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
 #### Message Framing
 
@@ -208,7 +212,7 @@ WebTransport isn't supported [in all browsers](https://caniuse.com/webtransport)
 
 ## Legacy WebRTC implementations in libp2p
 
-The new WebRTC transport was the first of its kind.  These legacy transports proved that WebRTC was a viable solution for libp2p.
+The new WebRTC transport was not the first of its kind.  These legacy transports proved that WebRTC was a viable solution for libp2p.
 
 ### libp2p-webrtc-star
 
