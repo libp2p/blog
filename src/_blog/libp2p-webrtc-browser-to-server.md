@@ -89,16 +89,15 @@ box over Server: Create Browser's Offer SDP
 
 Server->(1)Browser:DTLS Handshake
 Browser->(1)Server:DTLS Handshake
-Server->(1)Browser:DTLS Handshake
-Browser->(1)Server:DTLS Handshake
+box over Browser,Server: Full DTLS Handshake is 3 round trips
 
-Server->(1)Browser:libp2p Noise Handshake
-Browser->(1)Server:libp2p Noise Handshake
+Server->(1)Browser:Libp2p Noise Handshake
+Browser->(1)Server:Libp2p Noise Handshake
 
 
 Browser<->Server:Multiplex Send/Receive Framed Data
 -->
-![](https://i.imgur.com/m7SdrC0.png)
+![](https://i.imgur.com/jF69zwh.png)
 
 Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.
 
