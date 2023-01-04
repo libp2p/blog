@@ -125,14 +125,14 @@ message Message {
     STOP_SENDING = 1;
     RESET_STREAM = 2;
   }
-  optional Flag flag=1;
+  optional Flag flag = 1;
   optional bytes message = 2;
 }
 ```
 
 #### Multiaddress
 
-The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of a WebRTC address begins like a standard UDP address, but adds 3 additional components: `webrtc`, `hash`, and `p2p`.
+The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of a WebRTC address begins like a standard UDP address, but adds three additional components: `webrtc`, `hash`, and `p2p`.
 
 ```shell
 /ip4/1.2.3.4/udp/1234/webrtc/certhash/<hash>/p2p/<peer-id>
@@ -208,7 +208,7 @@ WebTransport requires less roundtrips than WebRTC to establish a connection, mak
 
 You might be asking yourself, why pick WebRTC over WebTransport in libp2p? It's like WebRTC but easier to implement and with less complexity. WebTransport is not without its limitations.
 
-WebTransport isn't supported [in all browsers](https://caniuse.com/webtransport). This lack of support is a big concern as it's unreasonable to expect users to _not_ use Firefox or Safari, or even older versions of Chromium-based browsers.  While both Firefox and Safari plan to implement WebTransport, WebRTC is a great fallback while we wait for universal support.
+The WebTransport protocol itself is still under development, and currently only implemented supported [in Chrome](https://caniuse.com/webtransport), but not yet in Firefox or Safari.  Until WebTransport is implemented by all major browsers, WebRTC is a great fallback.
 
 ## Legacy WebRTC implementations in libp2p
 
