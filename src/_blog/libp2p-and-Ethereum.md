@@ -26,7 +26,7 @@ Today we'd like to highlight [years long effort behind this integration](#how-li
 Let's begin with a brief reflection on libp2p's history.
 
 [Protocol Labs](https://protocol.ai/) first developed [libp2p](https://libp2p.io/) as a networking library inside of [IPFS](https://ipfs.tech/).
-At the outset, their code and repositories were coupled. However, libp2p's potential and utility beyond IPFS was soon realized, and project maintainers split the two codebases apart. This enabled libp2p to truly become a product agnostic, reusable, general purpose networking library.
+At the outset, their code and repositories were coupled. However, Protocol Labs soon realized libp2p's potential and utility beyond IPFS and project maintainers split the two codebases apart. This enabled libp2p to truly become a product agnostic, reusable, general purpose networking library.
 
 As a result, the libp2p project saw tremendous growth and adoption across the ecosystem; what started as a humble part of IPFS has come to power much of the decentralized web today.
 Besides IPFS and [Filecoin](https://filecoin.io/), libp2p is relied on by networks like [Polkadot](https://wiki.polkadot.network/docs/faq#does-polkadot-use-libp2p), [Polygon](https://wiki.polygon.technology/docs/edge/architecture/modules/networking/), [Mina](https://github.com/MinaProtocol/mina/blob/develop/rfcs/0029-libp2p.md), [Celestia](https://docs.celestia.org/concepts/how-celestia-works/transaction-lifecycle/#checking-data-availability), [Flow](https://github.com/onflow/flow/blob/master/specs/access-node-architecture/index.md#access-node), and many more.
@@ -53,7 +53,7 @@ The Merge encompassed major changes for the Ethereum mainnet. Chief among them w
 1. **Reducing network energy consumption by 99.95%** :evergreen_tree: 
 1. **Integrating libp2p** into the mainnet's networking layer :handshake:
 
-Upgrading to proof-of-stake was a multi-year effort. It was executed successfully thanks to diligent planning and a strong foundation laid by the Ethereum Foundation and community. As a result, the network [massively reduced it's energy footprint](https://www.theverge.com/2022/9/6/23339594/ethereum-merge-energy-pollution-proof-of-stake) and eliminated mining (performing power hungry computations to produce blocks) necessitated by proof-of-work.
+Upgrading to proof-of-stake was a multi-year effort. It was executed successfully thanks to diligent planning and a strong foundation laid by the Ethereum Foundation and community. As a result, the network [massively reduced its energy footprint](https://ethereum.org/en/energy-consumption) and eliminated mining (performing power hungry computations to produce blocks) necessitated by proof-of-work.
 Many congratulations on this historic accomplishment! :tada:
 
 While we're excited about these accomplishments, the last point is most salient to us. Just like the consensus upgrade, the Ethereum libp2p integration was also a culmination of many years of hard work.
@@ -256,13 +256,14 @@ Please check it out to see why TCP was chosen (and not QUIC), why Noise, why Gos
 ## Network Statistics 📊
 
 Currently there are over [495,000 validators](https://beaconcha.in/validators) with this [current client diversity](https://clientdiversity.org/#distribution).
+The number of networked Beacon Chain nodes is [around 10,000 at the current count](https://www.nodewatch.io/).
 libp2p is running on all those consensus clients; an amazing testament to 6+ years of hard work!
 
 # What's next? :rocket: 
 
 Now that the Merge is gone smoothly, the main collaboration efforts have resolved successfully.
 At this time, Protocol Labs is supporting the Ethereum community in ensuring the libp2p is running smoothly and reliably.
-Some of the future roadmap items for libp2p and Ethereum have been hinted in the specification (like exploring the usage of QUIC or an updated protocol for negotiation.)
+Some of the future roadmap items for libp2p and Ethereum have been hinted in the specification (like exploring the usage of QUIC).
 We expect that when the time comes for that, collaboration will pick up steam once more!
 
 Thanks for reading!
