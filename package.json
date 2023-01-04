@@ -44,7 +44,7 @@
     "prettier": "^2.8.1",
     "slug": "^8.2.2",
     "standard-version": "^9.3.0",
-    "stylelint": "^14.16.0",
+    "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-prettier": "^2.0.0",
     "svg-sprite-loader": "^6.0.9",
