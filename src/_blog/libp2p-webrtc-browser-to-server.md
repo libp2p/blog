@@ -134,7 +134,11 @@ Chrome has supported WebRTC since 2012.  Other browsers soon followed, achieving
 
 #### Setup and configuration
 
-Because WebRTC represents a collection of technologies, it requires extensive setup and configuration compared to other transports.
+Because WebRTC represents a collection of technologies, it requires extensive setup and configuration compared to other transports.  
+
+#### Extensive Roundtrips
+
+Another limitation is the 6 roundtrips required before data is exchanged.  This makes WebTransport a more compelling transport for the browser to server use case where the browser supports WebTransport.
 
 ### Usage
 
