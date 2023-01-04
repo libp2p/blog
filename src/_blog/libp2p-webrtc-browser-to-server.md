@@ -208,7 +208,7 @@ WebTransport requires less roundtrips than WebRTC to establish a connection, mak
 
 You might be asking yourself, why pick WebRTC over WebTransport in libp2p? It's like WebRTC but easier to implement and with less complexity. WebTransport is not without its limitations.
 
-The WebTransport protocol itself is still under development, and currently only implemented supported [in Chrome](https://caniuse.com/webtransport), but not yet in Firefox or Safari.  Until WebTransport is implemented by all major browsers, WebRTC is a great fallback.
+The WebTransport protocol itself is still under development, and currently [only implemented in Chrome](https://caniuse.com/webtransport), but not yet in Firefox or Safari.  Until WebTransport is implemented by all major browsers, WebRTC is a great fallback.
 
 ## Legacy WebRTC implementations in libp2p
 
