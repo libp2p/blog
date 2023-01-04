@@ -199,6 +199,7 @@ The Eth 2.0 team started hosting dedicated "networking" meetings (started in Dec
 
 ### GossipSub v1.1
 
+
 Updates to GossipSub and its formalization efforts also made significant headway.
 Protocol Labs:
 - Introduced [GossipSub v1.1](https://github.com/libp2p/specs/pull/254), which hardened the protocol to prevent a wide range of attacks against it (see this [blog post](https://blog.ipfs.tech/2020-05-20-gossipsub-v1.1/) to learn more).
@@ -289,6 +290,7 @@ In particular, devp2p specifies:
 - [RLPx protocol] (RLPx): a TCP-based transport protocol that has a notion of ["capability messages"](https://github.com/ethereum/devp2p/blob/master/rlpx.md#capability-messaging) used during connection establishment.
     RLPx is used for authentication, stream multiplexing, and more.
 
+Each component is a requirement of devp2p.
 Together these specifications define devp2p as an ***integrated** networking **system*** for Ethereum.
 
 By contrast, libp2p is a ***modular** networking **framework***, meaning that many different sorts of libp2p networking stacks can be composed by assembling a wide variety general-purpose modules.
