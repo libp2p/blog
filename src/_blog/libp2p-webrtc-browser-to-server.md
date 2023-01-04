@@ -68,7 +68,7 @@ Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers
 
 Once IP addresses are obtained, a peer sends an Offer [SDP](https://datatracker.ietf.org/doc/html/rfc4566) to the other peer. This Offer SDP details how the initiating peer can communicate (IP address, protocols, fingerprints, encryption, etc.). The other peer sends an Answer SDP to the initiating peer. Both peers now have enough information to start the DTLS handshake.
 
-The DTLS handshake is performed using fingerprints contained in the Offer and Answer SDPs. After the handshake is complete, data is sent between peers using the SCTP (Stream Control Transmission Protocol) protocol, encrypting messages with DTLS over UDP or TCP.
+The DTLS handshake is performed using fingerprints contained in the Offer and Answer SDPs. After the handshake is complete, data is sent between peers using the SCTP (Stream Control Transmission Protocol) protocol, encrypting messages with DTLS over UDP or TCP.  A total of 6 roundtrips are performed before data is exchanged.
 
 
 ## WebRTC in libp2p
@@ -125,10 +125,6 @@ The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of 
 #### Self-signed Certificate
 
 WebRTC enables browsers to connect to public libp2p nodes without the nodes requiring a TLS certificate in the browser's [certificate chain](https://en.wikipedia.org/wiki/X.509#Certificate_chains_and_cross-certification). Because the server can use a self-signed TLS certificate, WebRTC removes the need to include additional services like DNS and Let's Encrypt. 
-
-#### Peer-to-Peer
-
-WebRTC allows for peer-to-peer connections, opening up the browser-to-browser use case in libp2p. While this [specification](https://github.com/libp2p/specs/pull/497) is still a work in progress, the potential is very exciting as no other non-WebRTC transport offers this.
 
 #### Broad support
 
