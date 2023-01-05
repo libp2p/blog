@@ -50,7 +50,7 @@ A new libp2p WebRTC solution establishes browser-to-server connectivity in a dec
 
 ## Acknowledgements
 
-Before going further, we'd like to acknowledge the organizations involved in this breakthrough.
+Before going further, we'd like to acknowledge the organizations involved in this effort.
 First, kudos to [Little Bear Labs](https://littlebearlabs.io/), who teamed up with Protocol Labs and the libp2p community to define the WebRTC specification and work on the implementation. Second, thanks to [Parity Technologies](https://www.parity.io/) for helping initiate this effort [many years ago](https://github.com/paritytech/smoldot/issues/1712) and for all the valuable input on the specification and Rust implementation.
 Parity Technologies authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation. Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations. Protocol Labs led the specification work and provided reviews of the implementations.
 
@@ -111,11 +111,11 @@ Setting the Offer and Answer SDP on the browser triggers the sending of STUN pac
 
 The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  A total of 6 roundtrips are performed.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.  
 
-In contrast to standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and the added complexity of creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
+In contrast to standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity no-longer creating signaling. Additionally, in standard WebRTC, where Signal Channels were needed due to router restrictions, latency is lowered on all traffic using direct communication in libp2p.
 
 #### Message Framing
 
-Since WebRTC doesn't support stream resets or half-closing of streams, messaging framing was implemented on the data channels to achieve those goals.  Encoded Protobuf messages are sent in the following format:
+Since WebRTC doesn't support stream resets or half-closing of streams, message framing was implemented on the data channels to achieve those goals.  Encoded Protobuf messages are sent in the following format:
 
 ```proto
 message Message {
@@ -193,7 +193,7 @@ The various upgrades and handshakes add up to six round trips before data can be
 
 ### WebTransport
 
-[WebTransport](https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-overview) is the new kid on the block for real-time communication in the browser.  WebTransport is implemented in [Go](https://github.com/libp2p/go-libp2p/tree/master/p2p/transport/webtransport) and [JavaScript](https://github.com/libp2p/js-libp2p-webtransport) implementations. 
+[WebTransport](https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-overview) is the new kid on the block for communication in the browser.  WebTransport is implemented in [Go](https://github.com/libp2p/go-libp2p/tree/master/p2p/transport/webtransport) and [JavaScript](https://github.com/libp2p/js-libp2p-webtransport) implementations. 
 
 #### Benefits
 
