@@ -68,7 +68,8 @@ What do I mean by that?
 libp2p's source code is open-source and that source code is written by an open community.
 libp2p is not developed by one or 10 people, but much rather >100 (part-time) people across many organizations.
 
-The core rust-libp2p maintainer team grew from two engineers to four, with [Elena](https://github.com/libp2p/rust-libp2p/pull/2656) and [João](https://github.com/libp2p/rust-libp2p/pull/3295) joining the team. Beyond the core maintainers, a total of 70 people contributed to rust-libp2p's `master` branch in 2022.
+The core rust-libp2p maintainer team grew from two engineers ([myself](https://github.com/mxinden) and [Thomas](https://github.com/thomaseizinger)) to four, with [Elena](https://github.com/libp2p/rust-libp2p/pull/2656) and [João](https://github.com/libp2p/rust-libp2p/pull/3295) joining the team.
+Beyond the core maintainers, a total of 70 people contributed to rust-libp2p's `master` branch in 2022.
 
 ### Automation
 One thing that allows us to be productive despite the large number of people contributing to the project is automation.
