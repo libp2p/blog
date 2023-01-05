@@ -265,7 +265,7 @@ Per the specification, nodes use the following libp2p features:
 
 All of the modules above, aside from yamux, are mandatory.
 
-One notable omission is the [libp2p Kademlia DHT](https://github.com/libp2p/specs/tree/master/kad-dht); The networking specification instead specifies the use of discv5.
+One notable omission is the [libp2p Kademlia DHT](https://github.com/libp2p/specs/tree/master/kad-dht). The networking specification instead specifies the use of discv5.
 The rationale is [provided here](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#why-are-we-using-discv5-and-not-libp2p-kademlia-dht).
 
 The specific design details are out of scope for this post but are [described in great detail here](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#design-decision-rationale).
@@ -273,7 +273,7 @@ Please check it out to see why TCP was chosen (and not QUIC), why Noise, why Gos
 
 ### Network Statistics 📊
 
-The number of networked Beacon Chain nodes (i.e. nodes running libp2p) is [around 5,000 at the current count](https://migalabs.es/beaconnodes) with this [client diversity](https://clientdiversity.org/#distribution).
+The number of networked Beacon Chain nodes (i.e., nodes running libp2p) is [around 5,000 at the current count](https://migalabs.es/beaconnodes) with this [client diversity](https://clientdiversity.org/#distribution).
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
@@ -322,7 +322,7 @@ The [devp2p repo](https://github.com/ethereum/devp2p#relationship-with-libp2p) p
 *"devp2p is an integrated system definition that wants to serve Ethereum's needs well (although it may be a good fit for other applications, too) while libp2p is a collection of programming library parts serving no single application in particular.
 That said, both projects are very similar in spirit and devp2p is slowly adopting parts of libp2p as they mature."*
 
-Meaning devp2p was explicitly designed to fulfill requirements for Ethereum (more on how devp2p adopted parts of libp2p [in the next section](#Coverging-devp2p-and-libp2p-)).
+devp2p was explicitly designed to fulfill requirements for Ethereum (more on how devp2p adopted parts of libp2p [in the next section](#Coverging-devp2p-and-libp2p-)).
 In particular, devp2p specifies:
 
 - [Ethereum Node Records] (ENR): a format to share and learn an Ethereum node's IP addresses & ports and its purpose on the network.
