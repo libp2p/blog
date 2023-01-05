@@ -21,7 +21,13 @@ Well, as a result of the Merge, we're excited to share that:
 
 Today we'd like to highlight [years long effort behind this integration](#how-libp2p-was-integrated-into-ethereum), describe [how Ethereum uses libp2p](#how-libp2p-is-used-by-ethereum-validators-🔍), and celebrate this win for Ethereum and libp2p!
 
-# A Brief History of libp2p :hourglass_flowing_sand:
+---
+**Table of Contents:**
+[[toc]]
+
+---
+
+## A Brief History of libp2p :hourglass_flowing_sand:
 
 Let's begin with a brief reflection on libp2p's history.
 
@@ -38,7 +44,7 @@ A notable instance of the latter case, and this article's subject, is, of course
 
 What did the Merge upgrade entail? Let's take a look :point_right: 
 
-# The Merge 🐼 
+## The Merge 🐼
 
 Ethereum's genesis occurred on [July 30, 2015](https://etherscan.io/block/0) as a part of a milestone called [Frontier](https://blog.ethereum.org/2015/07/22/frontier-is-coming-what-to-expect-and-how-to-prepare).
 Naturally, the network and its protocols evolved via [numerous upgrades](https://ethereum.org/en/history/) after Frontier.
@@ -60,7 +66,7 @@ While we're excited about these accomplishments, the last point is most salient 
 
 Let's take a closer look at the collaboration between Protocol Labs and the Ethereum community.
 
-# How libp2p was integrated into Ethereum :handshake:
+## How libp2p was integrated into Ethereum :handshake:
 In the early days of Ethereum and libp2p, some commonly asked questions were: "Does Ethereum use libp2p?" or "Why doesn't Ethereum use libp2p?"
 
 Until recently, the answer to the first question was no. The reason for that was the answer to the second question: libp2p didn't exist when Ethereum was first developed, so it never got a chance to be evaluated and/or adopted.
@@ -78,7 +84,7 @@ The desire to integrate libp2p into the network never fizzled out.
 
 Because both of these projects are open-source (hooray!), much of the collaboration happened in public, and we can see how things evolved over the years.
 
-## Early Days (2016-2017) :baby: 
+### Early Days (2016-2017) :baby:
 [Devcon 2](https://archive.devcon.org/archive/playlists/devcon-2/) was one of the first instances where Protocol Labs presented the possibility of extending Ethereum with libp2p.
 There, [David Dias](https://research.protocol.ai/authors/david-dias/) gave a talk on September 2016 titled "[libp2p ❤ devp2p: IPFS and Ethereum Networking](https://archive.devcon.org/archive/watch/2/libp2p-devp2p-ipfs-and-ethereum-networking/?tab=YouTube)".
 
@@ -106,7 +112,7 @@ Following the event, he published the "[Ethereum ♥ libp2p](https://twurst.com/
 
 This showcased the desire of both communities to leverage the benefits of libp2p.
 
-##  Designing libp2p into the Beacon Chain (2018-2019) :writing_hand: 
+###  Designing libp2p into the Beacon Chain (2018-2019) :writing_hand:
 The above discussions were about integrating libp2p into the Ethereum mainnet, either replacing or augmenting devp2p.
 
 In 2018, the Ethereum community focused significantly on how to scale the network. As the year progressed, the plan became to deliver both scalability and proof-of-stake as a part of "Ethereum 2.0" (for more information, see: [State of the Ethereum Protocol #1](https://media.consensys.net/state-of-ethereum-protocol-1-d3211dd0f6)).
@@ -197,12 +203,11 @@ Collaboration between these communities and the Beacon Chain's use of libp2p yie
     In July 2019, a [study of libp2p and Eth2](https://discuss.libp2p.io/t/report-a-study-of-libp2p-and-eth2/229) was shared.
     The report detailed struggles shared by Ethereum teams in the integration process and provided recommendations on overcoming these issues.
 
-## Full Speed Ahead (2020-present) 🏎️
+### Full Speed Ahead (2020-present) 🏎️
 
 The Eth 2.0 team started hosting dedicated "networking" meetings (started in Dec 2019) in addition to implementer calls. These meetings were dedicated to [discussing progress and unblocking libp2p-related endeavors](https://github.com/ethereum/eth2.0-pm/issues/124#issuecomment-579740557) (GossipSub paper & peer scoring, Noise, etc.) As before, libp2p core team members were key participants.
 
-### GossipSub v1.1
-
+#### GossipSub v1.1
 
 Updates to GossipSub and its formalization efforts also made significant headway.
 Protocol Labs:
@@ -229,10 +234,10 @@ Similarly, the Ethereum 2.0 team:
 Finally, on December 1, 2020, the Beacon Chain genesis occurred!:
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Congratulations on genesis, <a href="https://twitter.com/hashtag/eth2?src=hash&amp;ref_src=twsrc%5Etfw">#eth2</a>, from your gossipy and streamy cousin libp2p! 🚀<br><br>Eth2 has been a driving force in the <a href="https://twitter.com/hashtag/libp2p?src=hash&amp;ref_src=twsrc%5Etfw">#libp2p</a> community:<br><br>* catalysing py-libp2p, nim-libp2p and jvm-libp2p<br>* (co-)funding initiatives<br>* reporting vulnerabilities<br>* contributing R&amp;D<br><br>❤️🙌 <a href="https://twitter.com/ethereum?ref_src=twsrc%5Etfw">@ethereum</a></p>&mdash; libp2p (@libp2p) <a href="https://twitter.com/libp2p/status/1333761655881297921?ref_src=twsrc%5Etfw">December 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-### Beacon Chain Networking Spec 📝
+#### Beacon Chain Networking Spec 📝
 
 Since its inception, the networking specification of the Beacon Chain has seen a steady stream of changes and updates. After mid-2021 (August), the spec mainly had matured, and the libp2p requirements were all locked in (in fact, there were no further updates until January 2022.)
-*(However, the specification is still a living document. Parameters and tweaks are still being made today.)*
+*(However, the specification is still a living document. Updates and tweaks to parameters are still being made today.)*
 
 The most up-to-date networking specification [can be found here](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md).
 
@@ -245,13 +250,13 @@ Some of the key teams involved from the Ethereum community were:
 - [ChainSafe Systems](https://chainsafe.io/) (the team behind [Lodestar](https://lodestar.chainsafe.io/) which uses [js-libp2p](https://github.com/libp2p/js-libp2p))
 - [Ethereum Foundation](https://ethereum.foundation/)
 
-During this long developmental cycle, libp2p was running in the above validators on the Beacon Chain.
+During this long developmental cycle, libp2p was running in the above nodes on the Beacon Chain.
 And once the Beacon Chain was merged with the original execution, libp2p was fully integrated into the Ethereum mainnet!
 
-## How Ethereum validators use libp2p 🔍
+## How Ethereum Beacon Nodes use libp2p 🔍
 
-So which exact libp2p modules are utilized by validators?
-Per the specification, Ethereum validators use the following libp2p features:
+So which exact libp2p modules are utilized by Beacon Chain nodes?
+Per the specification, nodes use the following libp2p features:
 - [Transport](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#transport): TCP
 - [Encryption](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#encryption-and-identification): [Noise](https://github.com/libp2p/specs/tree/master/noise)
 - [Protocol Negotiation](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#protocol-negotiation): [Multistream Select 1.0](https://github.com/multiformats/multistream-select/#protocol)
@@ -266,7 +271,7 @@ The rationale is [provided here](https://github.com/ethereum/consensus-specs/blo
 The specific design details are out of scope for this post but are [described in great detail here](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#design-decision-rationale).
 Please check it out to see why TCP was chosen (and not QUIC), why Noise, why GossipSub, etc.
 
-## Network Statistics 📊
+### Network Statistics 📊
 
 The number of networked Beacon Chain nodes (i.e. nodes running libp2p) is [around 5,000 at the current count](https://migalabs.es/beaconnodes) with this [client diversity](https://clientdiversity.org/#distribution).
 
@@ -283,16 +288,28 @@ libp2p is running on all those consensus clients; a fantastic testament to 6+ ye
 
 Additionally, there are over [495,000 validators](https://beaconcha.in/validators) amongst these nodes (validators are [virtual entities](https://launchpad.ethereum.org/en/faq) that live on the Beacon Chain.)
 
-# What's next? :rocket: 
+## What's next? :rocket:
 
 Now that the Merge has gone smoothly, the primary collaboration efforts have been resolved successfully.
 At this time, Protocol Labs is supporting the Ethereum community in ensuring the libp2p is running smoothly and reliably.
 Some of the future roadmap items for libp2p and Ethereum have been hinted at in the specification (like exploring the usage of QUIC).
 When the time comes for that, the collaboration will pick up steam once more!
 
-Thanks for reading!
+### Resources and how you can help contribute 💪
 
-# Comparing devp2p and libp2p 🤼
+If you would like to learn more about libp2p, please see the libp2p:
+
+- [Docs](https://docs.libp2p.io/)
+- [Connectivity Website](https://connectivity.libp2p.io/)
+    - This describes the various libp2p transport implementations
+- [libp2p Specifications](https://github.com/libp2p/specs/)
+
+If you would like to contribute, please [connect with the libp2p maintainers](https://libp2p.io/#community).
+
+Thanks for reading! :pray:
+
+---
+## Comparing devp2p and libp2p 🤼
 
 This is an optional section that describes the differences between devp2p and libp2p.
 The [devp2p repo](https://github.com/ethereum/devp2p#relationship-with-libp2p) provides an apt contrast of each project's intended scope and design:
