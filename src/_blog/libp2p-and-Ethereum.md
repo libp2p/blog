@@ -96,7 +96,7 @@ Following this presentation, Protocol Labs and Ethereum [continued working toget
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/hfy2O8S.png" width="600"/>
+        <img src="../assets/eth-libp2p-2016.png" width="600"/>
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ipfs/notes/issues/173">[GitHub Link.]</a>
         </figcaption>
@@ -124,7 +124,7 @@ At this time, the Ethereum 2.0 community began evaluating the networking require
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/GiiDbOW.png" width="750">
+        <img src="../assets/eth-libp2p-2018-1.png" width="750">
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ethereum/eth2.0-pm/issues/8">[GitHub Link.]</a>
         </figcaption>
@@ -135,7 +135,7 @@ As the implementer calls and technical designs progressed, it was decided that t
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/knCPz5W.png" width="750">
+        <img src="../assets/eth-libp2p-2018-2.png" width="750">
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ethresearch/p2p/issues/4">[GitHub Link.]</a>
         </figcaption>
@@ -147,7 +147,7 @@ These efforts culminated in libp2p's formal addition to the Beacon Chain consens
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/AlDn3g5.png" width="650">
+        <img src="../assets/eth-libp2p-2018-3.png" width="650">
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ethereum/consensus-specs/pull/935">[GitHub Link.]</a>
         </figcaption>
@@ -222,7 +222,7 @@ Similarly, the Ethereum 2.0 team:
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/tYwvEIA.png" width="750">
+        <img src="../assets/eth-libp2p-2020-1.png" width="750">
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ethereum/consensus-specs/issues/1761">[GitHub Link.]</a>
         </figcaption>
@@ -277,7 +277,7 @@ The number of networked Beacon Chain nodes (i.e. nodes running libp2p) is [aroun
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/Sx4K3cv.png" width="600">
+        <img src="../assets/eth-libp2p-beacon-nodes.png" width="600">
         <figcaption style="font-size:x-small;">
             <a href="https://migalabs.es/beaconnodes">[Miga Labs dashboard.]</a>
         </figcaption>
