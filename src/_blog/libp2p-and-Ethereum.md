@@ -282,6 +282,12 @@ The number of networked Beacon Chain nodes (i.e., nodes running libp2p) is [arou
             <a href="https://migalabs.es/beaconnodes">[Miga Labs dashboard.]</a>
         </figcaption>
     </figure>
+    <figure>
+        <img src="../assets/eth-libp2p-client-diversity.png" width="500">
+        <figcaption style="font-size:x-small;">
+            <a href="https://clientdiversity.org/#distribution">[Consensus client diversity.]</a>
+        </figcaption>
+    </figure>
 </div>
 
 libp2p is running on all those consensus clients; a fantastic testament to 6+ years of hard work!
@@ -294,6 +300,10 @@ Now that the Merge has gone smoothly, the primary collaboration efforts have bee
 At this time, Protocol Labs is supporting the Ethereum community in ensuring the libp2p is running smoothly and reliably.
 Some of the future roadmap items for libp2p and Ethereum have been hinted at in the specification (like exploring the usage of QUIC).
 When the time comes for that, the collaboration will pick up steam once more!
+
+Additionally, in the future we hope to take on work to [integrate libp2p into devp2p itself](https://github.com/ethereum/devp2p/issues/45).
+This would enable libp2p's use in [Ethereum execution clients](https://ethereum.org/en/developers/docs/nodes-and-clients/#execution-clients) in addition to the libp2p's use in [Ethereum consensus clients](https://ethereum.org/en/developers/docs/nodes-and-clients/#consensus-clients) today.
+We also hope there's opportunity to collaborate on enabling [access to Ethereum data from the browser](https://github.com/ethereum/devp2p/issues/166) by using libp2p transport protocols like [WebTransport](https://github.com/libp2p/specs/tree/master/webtransport) and [WebRTC](https://github.com/libp2p/specs/tree/master/webrtc).
 
 In conclusion, the libp2p and Ethereum integration has been a massive effort.
 It could not have been possible without the grit and perseverence of many organizations and invididuals.
@@ -322,8 +332,7 @@ The [devp2p repo](https://github.com/ethereum/devp2p#relationship-with-libp2p) p
 *"devp2p is an integrated system definition that wants to serve Ethereum's needs well (although it may be a good fit for other applications, too) while libp2p is a collection of programming library parts serving no single application in particular.
 That said, both projects are very similar in spirit and devp2p is slowly adopting parts of libp2p as they mature."*
 
-devp2p was explicitly designed to fulfill requirements for Ethereum (more on how devp2p adopted parts of libp2p [in the next section](#Coverging-devp2p-and-libp2p-)).
-In particular, devp2p specifies:
+devp2p was explicitly designed to fulfill requirements for Ethereum. In particular, devp2p specifies:
 
 - [Ethereum Node Records] (ENR): a format to share and learn an Ethereum node's IP addresses & ports and its purpose on the network.
 - [Node Discovery Protocol v5] (discv5): a protocol for the Node Discovery system. The system acts like a database of all live nodes and is used for bootstrapping into & finding peers on the network (using ENRs).
