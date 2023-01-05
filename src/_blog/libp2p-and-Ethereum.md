@@ -295,6 +295,13 @@ At this time, Protocol Labs is supporting the Ethereum community in ensuring the
 Some of the future roadmap items for libp2p and Ethereum have been hinted at in the specification (like exploring the usage of QUIC).
 When the time comes for that, the collaboration will pick up steam once more!
 
+In conclusion, the libp2p and Ethereum integration has been a massive effort.
+It could not have been possible without the grit and perseverence of many organizations and invididuals.
+Thank you to everyone invovled, and onwards to our next goals!
+
+We hope you enjoyed our summary of the journey and hope you learned a few things along the way.
+Thank you for reading! :pray:
+
 ### Resources and how you can help contribute 💪
 
 If you would like to learn more about libp2p, please see the libp2p:
@@ -305,8 +312,6 @@ If you would like to learn more about libp2p, please see the libp2p:
 - [libp2p Specifications](https://github.com/libp2p/specs/)
 
 If you would like to contribute, please [connect with the libp2p maintainers](https://libp2p.io/#community).
-
-Thanks for reading! :pray:
 
 ---
 ## Comparing devp2p and libp2p 🤼
