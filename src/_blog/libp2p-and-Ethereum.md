@@ -64,6 +64,7 @@ Let's take a closer look at the collaboration between Protocol Labs and the Ethe
 In the early days of Ethereum and libp2p, some commonly asked questions were: "Does Ethereum use libp2p?" or "Why doesn't Ethereum use libp2p?"
 
 Until recently, the answer to the first question was no. The reason for that was the answer to the second question: libp2p didn't exist when Ethereum was first developed, so it never got a chance to be evaluated and/or adopted.
+
 [Felix Lange](https://github.com/fjl), developer of [go-ethereum (Geth)](https://geth.ethereum.org/) at the Ethereum Foundation, reflected on this in an article titled ["Ethereum ♥ libp2p"](https://twurst.com/articles/eth-loves-libp2p.html):
 
 *"libp2p didn't exist when we started building the peer-to-peer networking stack for Ethereum. There were discussions about building something together very early on, but in the end we were more set on shipping a working system than to discussing how to make the most flexible and generic framework."*
@@ -89,7 +90,10 @@ Following this presentation, Protocol Labs and Ethereum [continued working toget
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/hfy2O8S.png"/>
+        <img src="https://i.imgur.com/hfy2O8S.png" width="600"/>
+        <figcaption style="font-size:x-small;">
+            <a href="https://github.com/ipfs/notes/issues/173">[GitHub Link.]</a>
+        </figcaption>
     </figure>
 </div>
 
@@ -114,7 +118,7 @@ At this time, the Ethereum 2.0 community began evaluating the networking require
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/GiiDbOW.png">
+        <img src="https://i.imgur.com/GiiDbOW.png" width="750">
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ethereum/eth2.0-pm/issues/8">[GitHub Link.]</a>
         </figcaption>
@@ -125,7 +129,7 @@ As the implementer calls and technical designs progressed, it was decided that t
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/knCPz5W.png">
+        <img src="https://i.imgur.com/knCPz5W.png" width="750">
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ethresearch/p2p/issues/4">[GitHub Link.]</a>
         </figcaption>
@@ -137,7 +141,7 @@ These efforts culminated in libp2p's formal addition to the Beacon Chain consens
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/AlDn3g5.png">
+        <img src="https://i.imgur.com/AlDn3g5.png" width="650">
         <figcaption style="font-size:x-small;">
             <a href="https://github.com/ethereum/consensus-specs/pull/935">[GitHub Link.]</a>
         </figcaption>
@@ -213,7 +217,10 @@ Similarly, the Ethereum 2.0 team:
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
-        <img src="https://i.imgur.com/tYwvEIA.png">
+        <img src="https://i.imgur.com/tYwvEIA.png" width="750">
+        <figcaption style="font-size:x-small;">
+            <a href="https://github.com/ethereum/consensus-specs/issues/1761">[GitHub Link.]</a>
+        </figcaption>
     </figure>
 </div>
 
@@ -261,9 +268,20 @@ Please check it out to see why TCP was chosen (and not QUIC), why Noise, why Gos
 
 ## Network Statistics 📊
 
-Currently, there are over [495,000 validators](https://beaconcha.in/validators) with this [current client diversity](https://clientdiversity.org/#distribution).
-The number of networked Beacon Chain nodes is [around 10,000 at the current count](https://www.nodewatch.io/).
+The number of networked Beacon Chain nodes (i.e. nodes running libp2p) is [around 5,000 at the current count](https://migalabs.es/beaconnodes) with this [client diversity](https://clientdiversity.org/#distribution).
+
+<div class="container" style="display:flex; column-gap:10px;">
+    <figure>
+        <img src="https://i.imgur.com/Sx4K3cv.png" width="600">
+        <figcaption style="font-size:x-small;">
+            <a href="https://migalabs.es/beaconnodes">[Miga Labs dashboard.]</a>
+        </figcaption>
+    </figure>
+</div>
+
 libp2p is running on all those consensus clients; a fantastic testament to 6+ years of hard work!
+
+Additionally, there are over [495,000 validators](https://beaconcha.in/validators) amongst these nodes (validators are [virtual entities](https://launchpad.ethereum.org/en/faq) that live on the Beacon Chain.)
 
 # What's next? :rocket: 
 
@@ -308,7 +326,8 @@ Modularity provides libp2p with a few advantages:
     Additionally, libp2p enables connectivity to the browser thanks to modular transport protocols.
     *To learn more about browser connectivity, visit: [connectivity.libp2p.io](https://connectivity.libp2p.io/)*
 
-A great similarity that both devp2p and libp2p share is interoperability.
+A great similarity that both devp2p and libp2p share is language interoperability.
+For example, go-libp2p and rust-libp2p are written in different programming languages, but are still compatible and interoperabile with each other. The same holds true for devp2p.
 
 [Ethereum Node Records]: https://github.com/ethereum/devp2p/blob/master/enr.md
 [Node Discovery Protocol v4]: https://github.com/ethereum/devp2p/blob/master/discv4.md
