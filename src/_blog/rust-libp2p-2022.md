@@ -15,7 +15,7 @@ author: Max Inden
 
 The [rust-libp2p](https://github.com/libp2p/rust-libp2p) project has made significant strides in 2022, with numerous technical advancements and improvements to the project itself.
 Let's take a closer look at some of the technical highlights and on the meta level developments of the project itself.
-Note that while I (Max Inden) am writing this blog post, this is the work of many across various organizations.
+This is the work of many across various organizations including [Protocol Labs](https://protocol.ai/), [Parity Technologies](https://www.parity.io/), [Sigma Prime](https://sigmaprime.io/), [Iroh](https://iroh.computer/), [Actyx](https://www.actyx.com/) and [Little Bear Labs](https://littlebearlabs.io/).
 
 ## Technical Highlights
 
