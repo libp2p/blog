@@ -11,24 +11,25 @@ header_image:
 author: Max Inden
 ---
 
-# The rust-libp2p Project A Recap of 2022
+# The rust-libp2p Project: A Recap of 2022
 
-The rust-libp2p project has made significant strides in 2022, with numerous technical advancements and improvements to the project itself.
+The [rust-libp2p](https://github.com/libp2p/rust-libp2p) project has made significant strides in 2022, with numerous technical advancements and improvements to the project itself.
 Let's take a closer look at some of the technical highlights and on the meta level developments of the project itself.
 Note that while I (Max Inden) am writing this blog post, this is the work of many across various organizations.
 
 ## Technical Highlights
 
-We started the year with the release of the various components needed for hole punching.
+We started the year with the release of the various components needed for [hole punching](https://blog.ipfs.tech/2022-01-20-libp2p-hole-punching/).
 We added the [Circuit Relay v2 protocol](https://github.com/libp2p/rust-libp2p/pull/2059), [DCUtR protocol](https://github.com/libp2p/rust-libp2p/pull/2438) and [AutoNAT protocol](https://github.com/libp2p/rust-libp2p/pull/2262).
-With that rust-libp2p [v0.43.0](https://github.com/libp2p/rust-libp2p/releases/tag/v0.43.0) in February was the first rust-libp2p release with hole punching capabilities.
+These features were all included together in rust-libp2p [v0.43.0](https://github.com/libp2p/rust-libp2p/releases/tag/v0.43.0) released in February.
+This made `v0.43.0` the first rust-libp2p release with hole punching capabilities.
 
-To improve what we rolled out in the beginning of the year, the libp2p project started the _Hole Punching Measurement Campaign_ aka. _Hole Punching Month_ in collaboration with [ProbeLab](https://research.protocol.ai/groups/probelab/).
+Furthermore, to gain insight into how different variables (environments, transports, etc.) affect libp2p hole punching efficacy, the libp2p project started the [_Hole Punching Measurement Campaign_ aka. _Hole Punching Month_](https://discuss.libp2p.io/t/call-for-participation-nat-hole-punching-measurement-campaign/1690) in collaboration with [ProbeLab](https://research.protocol.ai/groups/probelab/).
 A multitude of [clients using both go-libp2p and rust-libp2p](https://github.com/libp2p/punchr/) are currently punching holes across the globe, providing valuable data that we can later on use to improve the libp2p specification and the two implementations.
 
-Over the year we worked on two new transports, namely [WebRTC](https://github.com/libp2p/rust-libp2p/pull/2622) and [QUIC](https://github.com/libp2p/rust-libp2p/issues/2883), which we both released towards the end of the year as alphas.
+Over the year we worked on two new transports, namely [WebRTC (browser-to-server)](https://github.com/libp2p/rust-libp2p/pull/2622) and [QUIC](https://github.com/libp2p/rust-libp2p/issues/2883), which we both released towards the end of the year as alpha/experimental features.
 
-WebRTC allows browsers to connect to rust-libp2p based servers without those servers having signed TLS certificates.
+Our current implementation of WebRTC enables [browsers to connect to rust-libp2p based servers](https://github.com/libp2p/specs/tree/master/webrtc#browser-to-public-server) without those servers needing to have signed TLS certificates.
 QUIC is the better TCP+Noise+Yamux in every dimension, e.g. faster connection establishment, better multiplexing, higher hole punching success rates.
 Along the way, given that QUIC already requires TLS, [rust-libp2p can now secure TCP connections with TLS as well](https://github.com/libp2p/rust-libp2p/pull/2945) (previously only Noise).
 
@@ -84,4 +85,4 @@ In 2022 we published 9 releases of the main `libp2p` crate and a total of 268 re
 ## What's Next?
 
 To conclude this post, it's worth mentioning the rust-libp2p [project roadmap](https://github.com/libp2p/rust-libp2p/blob/master/ROADMAP.md), which [was added in October](https://github.com/libp2p/rust-libp2p/pull/2997) and outlines the planned developments for the project in the future.
-Some notable features to look forward to in 2023 include improved WASM support, the WebRTC browser-to-browser feature, and the potential implementation of the new WebTransport transport.
+Some notable features to look forward to in 2023 include [improved WASM support](https://github.com/libp2p/rust-libp2p/issues/2617), the [WebRTC browser-to-browser feature](https://github.com/libp2p/specs/pull/497), and the potential implementation of the [new WebTransport transport](https://github.com/libp2p/rust-libp2p/blob/master/ROADMAP.md#webtransport).
