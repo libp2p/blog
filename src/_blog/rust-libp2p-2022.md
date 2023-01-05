@@ -32,8 +32,8 @@ A multitude of [clients using both go-libp2p and rust-libp2p](https://github.com
 Over the year we worked on two new transports, namely [WebRTC (browser-to-server)](https://github.com/libp2p/rust-libp2p/pull/2622) and [QUIC](https://github.com/libp2p/rust-libp2p/issues/2883), which we both released towards the end of the year as alpha/experimental features.
 
 Our current implementation of WebRTC enables [browsers to connect to rust-libp2p based servers](https://github.com/libp2p/specs/tree/master/webrtc#browser-to-public-server) without those servers needing to have signed TLS certificates.
-QUIC is the better TCP+Noise+Yamux in every dimension, e.g. faster connection establishment, better multiplexing, higher hole punching success rates.
-Along the way, given that QUIC already requires TLS, [rust-libp2p can now secure TCP connections with TLS as well](https://github.com/libp2p/rust-libp2p/pull/2945) (previously only Noise).
+QUIC is a better libp2p transport than the combination of TCP+Noise+Yamux in almost every dimension as it provides faster connection establishment, better native multiplexing, native encryption, and higher hole punching success rates.
+.Along the way, given that QUIC already requires TLS, [rust-libp2p can now secure TCP connections with TLS as well](https://github.com/libp2p/rust-libp2p/pull/2945) (previously only Noise).
 
 ### User Experience Improvements
 Along the way we tackled many smaller improvements, as a whole having a big impact on the user experience.
