@@ -248,7 +248,7 @@ Some of the key teams involved from the Ethereum community were:
 During this long developmental cycle, libp2p was running in the above validators on the Beacon Chain.
 And once the Beacon Chain was merged with the original execution, libp2p was fully integrated into the Ethereum mainnet!
 
-# How libp2p is used by Ethereum validators 🔍
+## How Ethereum validators use libp2p 🔍
 
 So which exact libp2p modules are utilized by validators?
 Per the specification, Ethereum validators use the following libp2p features:
