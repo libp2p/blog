@@ -19,7 +19,7 @@ Well, as a result of the Merge, we're excited to share that:
 
 **libp2p is integrated into the Ethereum network! :tada:**
 
-Today we'd like to highlight [years long effort behind this integration](#how-libp2p-was-integrated-into-ethereum), describe [how Ethereum uses libp2p](#how-libp2p-is-used-by-ethereum-validators-🔍), and celebrate this win for Ethereum and libp2p!
+Today we'd like to highlight [years long effort behind this integration](#how-libp2p-was-integrated-into-ethereum-🤝), describe [how Ethereum uses libp2p](#how-ethereum-beacon-nodes-use-libp2p-🔍), and celebrate this win for Ethereum and libp2p!
 
 ---
 **Table of Contents:**
@@ -27,7 +27,7 @@ Today we'd like to highlight [years long effort behind this integration](#how-li
 
 ---
 
-## A Brief History of libp2p :hourglass_flowing_sand:
+## A Brief History of libp2p ⏳
 
 Let's begin with a brief reflection on libp2p's history.
 
@@ -62,7 +62,7 @@ While we're excited about these accomplishments, the last point is most salient 
 
 Let's take a closer look at the collaboration between Protocol Labs and the Ethereum community.
 
-## How libp2p was integrated into Ethereum :handshake:
+## How libp2p was integrated into Ethereum 🤝
 
 In the early days of Ethereum and libp2p, some commonly asked questions were: "Does Ethereum use libp2p?" or "Why doesn't Ethereum use libp2p?"
 
@@ -79,7 +79,7 @@ Thus, prior to the Merge, Ethereum solely used [devp2p](https://github.com/ether
 
 The desire to integrate libp2p into the network never fizzled out. Because both of these projects are open-source (hooray!), much of the collaboration happened in public, and we can see how things evolved over the years.
 
-### Early Days (2016-2017) :baby:
+### Early Days (2016-2017) 👶
 
 [Devcon 2](https://archive.devcon.org/archive/playlists/devcon-2/) was one of the first instances where Protocol Labs presented the possibility of extending Ethereum with libp2p. There, [David Dias](https://research.protocol.ai/authors/david-dias/) gave a talk on September 2016 titled "[libp2p ❤ devp2p: IPFS and Ethereum Networking](https://archive.devcon.org/archive/watch/2/libp2p-devp2p-ipfs-and-ethereum-networking/?tab=YouTube)".
 
@@ -104,7 +104,7 @@ _"I've been thinking about ways to integrate libp2p for quite a while...My initi
 
 This showcased the desire of both communities to leverage the benefits of libp2p.
 
-### Designing libp2p into the Beacon Chain (2018-2019) :writing_hand:
+### Designing libp2p into the Beacon Chain (2018-2019) ✍️
 
 The above discussions were about integrating libp2p into the Ethereum mainnet, either replacing or augmenting devp2p.
 
@@ -301,7 +301,7 @@ Per the specification, nodes use the following libp2p features:
 
 All of the modules above, aside from yamux, are mandatory.
 
-One notable omission is the [libp2p Kademlia DHT](https://github.com/libp2p/specs/tree/master/kad-dht). The networking specification instead specifies the use of discv5. The rationale is [provided here](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#why-are-we-using-discv5-and-not-libp2p-kademlia-dht).
+One notable omission is the [libp2p Kademlia DHT](https://github.com/libp2p/specs/tree/master/kad-dht). The networking specification instead specifies the use of [discv5](https://github.com/ethereum/devp2p/blob/master/discv5/discv5.md). The rationale is [provided here](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#why-are-we-using-discv5-and-not-libp2p-kademlia-dht).
 
 The specific design details are out of scope for this post but are [described in great detail here](https://github.com/ethereum/consensus-specs/blob/dev/specs/phase0/p2p-interface.md#design-decision-rationale). Please check it out to see why TCP was chosen (and not QUIC), why Noise, why GossipSub, etc.
 
@@ -328,7 +328,7 @@ libp2p is running on all those consensus clients; a fantastic testament to 6+ ye
 
 Additionally, there are over [495,000 validators](https://beaconcha.in/validators) amongst these nodes (validators are [virtual entities](https://launchpad.ethereum.org/en/faq) that live on the Beacon Chain.)
 
-## What's next? :rocket:
+## What's next? 🚀
 
 Now that the Merge has gone smoothly, the primary collaboration efforts have been resolved successfully. At this time, Protocol Labs is supporting the Ethereum community in ensuring the libp2p is running smoothly and reliably.
 
