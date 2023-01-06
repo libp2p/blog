@@ -12,6 +12,9 @@ header_image: /_.png
 author: David Di Maria
 ---
 
+
+![](../assets/libp2p_WebRTC_blog_header-1.png)
+
 # WebRTC (Browser-to-Server) in libp2p
 
 <!--
