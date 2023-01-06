@@ -46,9 +46,7 @@ What did the Merge upgrade entail? Let's take a look :point_right:
 
 ## The Merge 🐼
 
-Ethereum's genesis occurred on [July 30, 2015](https://etherscan.io/block/0) as a part of a milestone called [Frontier](https://blog.ethereum.org/2015/07/22/frontier-is-coming-what-to-expect-and-how-to-prepare).
-Naturally, the network and its protocols evolved via [numerous upgrades](https://ethereum.org/en/history/) after Frontier.
-Of those upgrades, the most recent (and arguably the most anticipated) was [Paris](https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/paris.md).
+Ethereum's genesis occurred on [July 30, 2015](https://etherscan.io/block/0) as a part of a milestone called [Frontier](https://blog.ethereum.org/2015/07/22/frontier-is-coming-what-to-expect-and-how-to-prepare). Naturally, the network and its protocols evolved via [numerous upgrades](https://ethereum.org/en/history/) after Frontier. Of those upgrades, the most recent (and arguably the most anticipated) was [Paris](https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/paris.md).
 
 Paris, a.k.a. [The Merge](https://ethereum.org/en/upgrades/merge/), was executed a few months ago [on September 15, 2022](https://etherscan.io/block/15537394).
 
@@ -75,21 +73,17 @@ Until recently, the answer to the first question was no. The reason for that was
 
 *"libp2p didn't exist when we started building the peer-to-peer networking stack for Ethereum. There were discussions about building something together very early on, but in the end we were more set on shipping a working system than to discussing how to make the most flexible and generic framework."*
 
-Thus, prior to the Merge, Ethereum solely used [devp2p](https://github.com/ethereum/devp2p), a dedicated networking stack and set of networking protocols, not unlike libp2p in some manners.
-And though there were talks between the Ethereum and IPFS/libp2p communities to have one solution instead of two, the timing didn't work, and Ethereum shipped with devp2p as its solution.
+Thus, prior to the Merge, Ethereum solely used [devp2p](https://github.com/ethereum/devp2p), a dedicated networking stack and set of networking protocols, not unlike libp2p in some manners. And though there were talks between the Ethereum and IPFS/libp2p communities to have one solution instead of two, the timing didn't work, and Ethereum shipped with devp2p as its solution.
 
-(To learn more about the differences between devp2p and libp2p, please read the [section at the bottom of the page](#comparing-devp2p-and-libp2p-🤼).)
+*To learn more about differences between devp2p and libp2p, please checkout the libp2p documentation:
+[Comparing devp2p and libp2p](https://docs.libp2p.io/concepts/similar-projects/devp2p/#comparing-devp2p-and-libp2p).*
 
-The desire to integrate libp2p into the network never fizzled out.
-
-Because both of these projects are open-source (hooray!), much of the collaboration happened in public, and we can see how things evolved over the years.
+The desire to integrate libp2p into the network never fizzled out. Because both of these projects are open-source (hooray!), much of the collaboration happened in public, and we can see how things evolved over the years.
 
 ### Early Days (2016-2017) :baby:
-[Devcon 2](https://archive.devcon.org/archive/playlists/devcon-2/) was one of the first instances where Protocol Labs presented the possibility of extending Ethereum with libp2p.
-There, [David Dias](https://research.protocol.ai/authors/david-dias/) gave a talk on September 2016 titled "[libp2p ❤ devp2p: IPFS and Ethereum Networking](https://archive.devcon.org/archive/watch/2/libp2p-devp2p-ipfs-and-ethereum-networking/?tab=YouTube)".
+[Devcon 2](https://archive.devcon.org/archive/playlists/devcon-2/) was one of the first instances where Protocol Labs presented the possibility of extending Ethereum with libp2p. There, [David Dias](https://research.protocol.ai/authors/david-dias/) gave a talk on September 2016 titled "[libp2p ❤ devp2p: IPFS and Ethereum Networking](https://archive.devcon.org/archive/watch/2/libp2p-devp2p-ipfs-and-ethereum-networking/?tab=YouTube)".
 
 In this talk David, gave an overview of libp2p and gave a demo. He ran the EVM in a browser and modified a go-ethereum/Geth node to use libp2p. The Geth node running libp2p connected to the Ethereum mainnet, and the EVM nodes in the browsers (also running libp2p) were able to fetch blocks from the Geth node.
-
 At the time, this was a big breakthrough and a sign of things to come.
 
 Following this presentation, Protocol Labs and Ethereum [continued working together](https://github.com/ipfs/notes/issues/173) to see how it would be possible to integrate libp2p.
@@ -104,7 +98,6 @@ Following this presentation, Protocol Labs and Ethereum [continued working toget
 </div>
 
 Conversations continued into Devcon 3 in 2017.
-
 There, Felix gave a [talk on devp2p](https://archive.devcon.org/archive/watch/3/evolving-devp2p/?tab=YouTube) which mentioned integration options with libp2p.
 Following the event, he published the "[Ethereum ♥ libp2p](https://twurst.com/articles/eth-loves-libp2p.html)" article that expanded on what a libp2p integration could look like:
 
@@ -296,10 +289,9 @@ Additionally, there are over [495,000 validators](https://beaconcha.in/validator
 
 ## What's next? :rocket:
 
-Now that the Merge has gone smoothly, the primary collaboration efforts have been resolved successfully.
-At this time, Protocol Labs is supporting the Ethereum community in ensuring the libp2p is running smoothly and reliably.
-Some of the future roadmap items for libp2p and Ethereum have been hinted at in the specification (like exploring the usage of QUIC).
-When the time comes for that, the collaboration will pick up steam once more!
+Now that the Merge has gone smoothly, the primary collaboration efforts have been resolved successfully. At this time, Protocol Labs is supporting the Ethereum community in ensuring the libp2p is running smoothly and reliably.
+
+Some of the future roadmap items for libp2p and Ethereum have been hinted at in the specification (like exploring the usage of QUIC). When the time comes for that, the collaboration will pick up steam once more!
 
 Additionally, in the future we hope to take on work to [integrate libp2p into devp2p itself](https://github.com/ethereum/devp2p/issues/45).
 This would enable libp2p's use in [Ethereum execution clients](https://ethereum.org/en/developers/docs/nodes-and-clients/#execution-clients) in addition to the libp2p's use in [Ethereum consensus clients](https://ethereum.org/en/developers/docs/nodes-and-clients/#consensus-clients) today.
@@ -317,50 +309,9 @@ Thank you for reading! :pray:
 If you would like to learn more about libp2p, please see the libp2p:
 
 - [Docs](https://docs.libp2p.io/)
+    - Docs on [devp2p](https://docs.libp2p.io/concepts/similar-projects/devp2p/)
 - [Connectivity Website](https://connectivity.libp2p.io/)
     - This describes the various libp2p transport implementations
 - [libp2p Specifications](https://github.com/libp2p/specs/)
 
 If you would like to contribute, please [connect with the libp2p maintainers](https://libp2p.io/#community).
-
----
-## Comparing devp2p and libp2p 🤼
-
-This is an optional section that describes the differences between devp2p and libp2p.
-The [devp2p repo](https://github.com/ethereum/devp2p#relationship-with-libp2p) provides an apt contrast of each project's intended scope and design:
-
-*"devp2p is an integrated system definition that wants to serve Ethereum's needs well (although it may be a good fit for other applications, too) while libp2p is a collection of programming library parts serving no single application in particular.
-That said, both projects are very similar in spirit and devp2p is slowly adopting parts of libp2p as they mature."*
-
-devp2p was explicitly designed to fulfill requirements for Ethereum. In particular, devp2p specifies:
-
-- [Ethereum Node Records] (ENR): a format to share and learn an Ethereum node's IP addresses & ports and its purpose on the network.
-- [Node Discovery Protocol v5] (discv5): a protocol for the Node Discovery system. The system acts like a database of all live nodes and is used for bootstrapping into & finding peers on the network (using ENRs).
-- [RLPx protocol] (RLPx): a TCP-based transport protocol that has a notion of ["capability messages"](https://github.com/ethereum/devp2p/blob/master/rlpx.md#capability-messaging) used during connection establishment.
-    RLPx is used for authentication, stream multiplexing, and more.
-
-Each component is a requirement of devp2p.
-Together these specifications define devp2p as an ***integrated** networking **system*** for Ethereum.
-
-By contrast, libp2p is a ***modular** networking **framework***, meaning that many different sorts of libp2p networking stacks can be composed by assembling a wide variety general-purpose modules.
-
-libp2p provides the necessary modules to create a distributed peer-to-peer network, including modules for transport protocols, stream multiplexers, secure channels and authentication, peer discovery, messaging, NAT traversal, and more.
-They are specified in the [libp2p specification repo](https://github.com/libp2p/specs/).
-
-Modularity provides libp2p with a few advantages:
-- Flexibility
-  - An application can pick and choose a combination of modules and assemble a networking stack suited to its needs.
-- Extensibility
-  - New modules can be added seamlessly thanks to well-defined interfaces and specifications
-- Reach
-    - Thanks to a wealth of plug-and-play options, new applications can be built with libp2p.
-    Additionally, libp2p enables connectivity to the browser thanks to modular transport protocols.
-    *To learn more about browser connectivity, visit: [connectivity.libp2p.io](https://connectivity.libp2p.io/)*
-
-A great similarity that both devp2p and libp2p share is language interoperability.
-For example, go-libp2p and rust-libp2p are written in different programming languages, but are still compatible and interoperabile with each other. The same holds true for devp2p.
-
-[Ethereum Node Records]: https://github.com/ethereum/devp2p/blob/master/enr.md
-[Node Discovery Protocol v4]: https://github.com/ethereum/devp2p/blob/master/discv4.md
-[Node Discovery Protocol v5]: https://github.com/ethereum/devp2p/blob/master/discv5/discv5.md
-[RLPx protocol]: https://github.com/ethereum/devp2p/blob/master/rlpx.md
