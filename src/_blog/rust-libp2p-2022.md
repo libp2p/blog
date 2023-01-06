@@ -28,12 +28,12 @@ This made `v0.43.0` the first rust-libp2p release with hole punching capabilitie
 Furthermore, to gain insight into how different variables (environments, transports, etc.) affect libp2p hole punching efficacy, the libp2p project started the [_Hole Punching Measurement Campaign_ aka. _Hole Punching Month_](https://discuss.libp2p.io/t/call-for-participation-nat-hole-punching-measurement-campaign/1690) in collaboration with [ProbeLab](https://research.protocol.ai/groups/probelab/).
 A multitude of [clients using both go-libp2p and rust-libp2p](https://github.com/libp2p/punchr/) are currently punching holes across the globe, providing valuable data that we can later on use to improve the libp2p specification and the two implementations.
 
-## New Transports
-Over the year we worked on two new transports, namely [WebRTC (browser-to-server)](https://github.com/libp2p/rust-libp2p/pull/2622) and [QUIC](https://github.com/libp2p/rust-libp2p/issues/2883), which we both released towards the end of the year as alpha/experimental features.
+### New Transports
+Over the year we worked on two new transports, namely [WebRTC (browser-to-server)](https://github.com/libp2p/rust-libp2p/pull/2622) and [QUIC](https://github.com/libp2p/rust-libp2p/issues/2883), which we both released towards the end of the year as alpha/ experimental features.
 
-Our current implementation of WebRTC enables [browsers to connect to rust-libp2p based servers](https://github.com/libp2p/specs/tree/master/webrtc#browser-to-public-server) without those servers needing to have signed TLS certificates.
+Our implementation of WebRTC enables [browsers to connect to rust-libp2p based servers](https://github.com/libp2p/specs/tree/master/webrtc#browser-to-public-server) without those servers needing to have signed TLS certificates.
 QUIC is a better libp2p transport than the combination of TCP+Noise+Yamux in almost every dimension as it provides faster connection establishment, better native multiplexing, native encryption, and higher hole punching success rates.
-.Along the way, given that QUIC already requires TLS, [rust-libp2p can now secure TCP connections with TLS as well](https://github.com/libp2p/rust-libp2p/pull/2945) (previously only Noise).
+Along the way, given that QUIC already requires TLS, [rust-libp2p can now secure TCP connections with TLS as well](https://github.com/libp2p/rust-libp2p/pull/2945) (previously only Noise).
 
 ### User Experience Improvements
 Along the way we tackled many smaller improvements, as a whole having a big impact on the user experience.
@@ -77,13 +77,13 @@ We invested heavily into rust-libp2p's automation.
 
 Big quality of life improvement was the [introduction of mergify](https://github.com/libp2p/rust-libp2p/pull/3026).
 We enforce semver compliance via [`cargo-semver-checks`](https://github.com/libp2p/rust-libp2p/pull/2647).
-We adopted [conventional commit](https://github.com/libp2p/rust-libp2p/pull/3204) convention.
+We adopted the [conventional commit](https://github.com/libp2p/rust-libp2p/pull/3204) specification.
 We did a [large refactoring of the CI job structure](https://github.com/libp2p/rust-libp2p/pull/3090), testing crates individually, thus increasing parallelism, improving caching and catching interdependency issues.
 
 ### Interoperability
 rust-libp2p is one implementation of many of the libp2p specification.
 How do we ensure we are compatible across implementations?
-In 2022 we started the libp2p interoperability project and as of [September 2022 we continuously test](https://github.com/libp2p/rust-libp2p/pull/2835) that the various versions of go-libp2p and rust-libp2p can connect. In December we added nim-libp2p, in 2023 we will ad js-libp2p.
+In 2022 we started the libp2p interoperability project and, as of [September 2022, we continuously test](https://github.com/libp2p/rust-libp2p/pull/2835) that the various versions of go-libp2p and rust-libp2p can connect. In December we added nim-libp2p, in 2023 we will add js-libp2p.
 
 At this point, rust-libp2p is a large complex codebase.
 In August we added a [coding guideline](https://github.com/libp2p/rust-libp2p/pull/2780) to the project, allowing us to agree on a set of rules to enforce consistency across the project and enable newcomers to hit the ground running.
