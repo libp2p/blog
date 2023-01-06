@@ -37,7 +37,7 @@ Along the way, given that QUIC already requires TLS, [rust-libp2p can now secure
 
 ### User Experience Improvements
 Along the way we tackled many smaller improvements, as a whole having a big impact on the user experience.
-To mention a couple: [naming consistency across crates](https://github.com/libp2p/rust-libp2p/issues/2217), [refactoing of the many `inject_*` into a single `enum` event handler in both `NetworkBehaviour` and `ConnectionHandler`](https://github.com/libp2p/rust-libp2p/issues/2832), [deprecation of event-based `PollParameters`](https://github.com/libp2p/rust-libp2p/pull/3153), and the [rework of our Rust feature flags](https://github.com/libp2p/rust-libp2p/pull/2918).
+To mention a couple: [naming consistency across crates](https://github.com/libp2p/rust-libp2p/issues/2217), [refactoing of the many `inject_*` into a single `enum` event handler in both `NetworkBehaviour` and `ConnectionHandler`](https://github.com/libp2p/rust-libp2p/issues/2832), [deprecation of event-based `PollParameters`](https://github.com/libp2p/rust-libp2p/pull/3153), the [rework of our Rust feature flags](https://github.com/libp2p/rust-libp2p/pull/2918), and [removal of listener streams in favor of polling transports directly](https://github.com/libp2p/rust-libp2p/pull/2652).
 Still remember the old days with the `NetworkBehaviourEventProcess` trait?
 [All gone](https://github.com/libp2p/rust-libp2p/pull/2784) in favor of the much simpler (generated) `OutEvent` mechanism.
 The `StreamMuxer` trait received numerous significant simplifications, [basically rewriting](https://github.com/libp2p/rust-libp2p/issues/2722) the trait as well as the trait implementation in yamux, mplex and now QUIC and WebRTC.
