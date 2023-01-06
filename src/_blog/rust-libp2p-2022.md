@@ -56,7 +56,7 @@ We made understanding large libp2p networks a bit easier in 2022 introducing a m
 ### Housekeeping & Quality of Life Changes
 Since January the rust-libp2p monorepo has a [handy CLI tool for libp2p key management](https://github.com/libp2p/rust-libp2p/pull/2453).
 
-In general, we keep up with [recent developments of the Rust language], and incorporate some of its new shiny features.
+In general, we keep up with recent developments of the Rust language, and incorporate some of its new shiny features.
 We make use of [Cargo's weak dependencies](https://github.com/libp2p/rust-libp2p/pull/2646). 
 In November we introduced [a patch using const generics](https://github.com/libp2p/rust-libp2p/pull/2712) (in tests).
 In December we merged our [first pull request using GATs](https://github.com/libp2p/rust-libp2p/pull/3239).
