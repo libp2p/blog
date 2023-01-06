@@ -61,6 +61,10 @@ We make use of [Cargo's weak dependencies](https://github.com/libp2p/rust-libp2p
 In November we introduced [a patch using const generics](https://github.com/libp2p/rust-libp2p/pull/2712) (in tests).
 In December we merged our [first pull request using GATs](https://github.com/libp2p/rust-libp2p/pull/3239).
 
+At this point, rust-libp2p is a large complex codebase.
+In August we added a [coding guideline](https://github.com/libp2p/rust-libp2p/pull/2780) to the project, allowing us to agree on a set of rules to enforce consistency across the project and enable newcomers to hit the ground running.
+Projects outside of the libp2p realm might find this guideline useful, as it documents an opinionated way of doing asynchronous networking in Rust.
+
 ## Meta - Improvements to the Project
 
 libp2p is an open-community open-source project.
@@ -84,10 +88,6 @@ We did a [large refactoring of the CI job structure](https://github.com/libp2p/r
 rust-libp2p is one implementation of many of the libp2p specification.
 How do we ensure we are compatible across implementations?
 In 2022 we started the libp2p interoperability project and, as of [September 2022, we continuously test](https://github.com/libp2p/rust-libp2p/pull/2835) that the various versions of go-libp2p and rust-libp2p can connect. In December we added nim-libp2p, in 2023 we will add js-libp2p.
-
-At this point, rust-libp2p is a large complex codebase.
-In August we added a [coding guideline](https://github.com/libp2p/rust-libp2p/pull/2780) to the project, allowing us to agree on a set of rules to enforce consistency across the project and enable newcomers to hit the ground running.
-Projects outside of the libp2p realm might find this guideline useful, as it documents an opinionated way of doing asynchronous networking in Rust.
 
 In 2022 we published 9 releases of the main `libp2p` crate and a total of 268 releases across the workspace including sub-crates and patch releases.
 
