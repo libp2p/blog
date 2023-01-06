@@ -167,8 +167,9 @@ The "initial" standardization shown above was not static, and the networking spe
 Collaboration between these communities and the Beacon Chain's use of libp2p yielded many desirable outcomes.
 
 1. **Several new libp2p implementations:**
-
+    </br>
     In order to achieve a [high degree of client diversity](https://ethereum.org/en/developers/docs/nodes-and-clients/client-diversity/), numerous clients existed in the Eth 2.0 ecosystem. They consisted of the following:
+
     * [Prysm](https://docs.prylabs.network/docs/getting-started) (Go)
     * [Lighthouse](https://lighthouse.sigmaprime.io/) (Rust)
     * [Lodestar](https://lodestar.chainsafe.io/) (TypeScript)
@@ -176,34 +177,32 @@ Collaboration between these communities and the Beacon Chain's use of libp2p yie
     * [Nimbus](https://nimbus.team/) (Nim)
     * [Trinity](https://trinity.ethereum.org/) (Python)
     * [Cortex](https://github.com/NethermindEth/cortex) (.NET)
+    </br>
 
-    libp2p implementations didn't exist for JVM, Python, Nim, and .NET, so clients in those languages had nothing to use. This resulted in the **birth of new libp2p implementations**!
-
-    Protocol Labs and the Ethereum Foundation co-funded some of these implementations: [py-libp2p](https://blog.ethereum.org/2019/02/21/ethereum-foundation-grants-program-wave-5), [nim-libp2p](https://our.status.im/nimbus-team-awarded-grant-for-a-native-implementation-of-libp2p/), [jvm-libp2p](https://blog.web3labs.com/introducing-web3-labs).
+    libp2p implementations didn't exist for JVM, Python, Nim, and .NET, so clients in those languages had nothing to use. This resulted in the **birth of new libp2p implementations**! Protocol Labs and the Ethereum Foundation co-funded some of these implementations: [py-libp2p](https://blog.ethereum.org/2019/02/21/ethereum-foundation-grants-program-wave-5), [nim-libp2p](https://our.status.im/nimbus-team-awarded-grant-for-a-native-implementation-of-libp2p/), [jvm-libp2p](https://blog.web3labs.com/introducing-web3-labs).
 
 1. **New libp2p specifications (and standardization of spec documents):**
-
+    </br>
     Because libp2p was to be used in the Beacon Chain, the project specifications were given a lot more scrutiny.
     This empowered libp2p maintainers to invest a lot of time into making the specs the best possible.
     One example of this was **adding a new Noise encryption spec**.
-
-    An [open question posited in an early wire protocol draft](https://github.com/ethereum/consensus-specs/issues/692) considered whether to use Noise (not yet standardized in libp2p) in lieu of Secio or TLS 1.3 (both supported in libp2p).
-    This created the motivation to [create a spec for and standardize the Noise handshake in libp2p](https://github.com/libp2p/specs/issues/195).
-
-    Many [key developers of Ethereum 2.0 were also formally added](https://github.com/libp2p/specs/issues/232) as interest group members of the Noise spec per the [libp2p spec process](https://github.com/libp2p/specs/blob/master/00-framework-02-document-header.md#authors-and-interest-group).
-    Noise was eventually [added as a formal requirement](https://github.com/ethereum/eth2.0-pm/issues/106) of the networking spec, and teams started building new implementations (like [js-libp2p-noise](https://github.com/ethereum/eth2.0-pm/issues/106#issuecomment-558805339).)
+    </br>
+    An [open question posited in an early wire protocol draft](https://github.com/ethereum/consensus-specs/issues/692) considered whether to use Noise (not yet standardized in libp2p) in lieu of Secio or TLS 1.3 (both supported in libp2p). This created the motivation to [create a spec for and standardize the Noise handshake in libp2p](https://github.com/libp2p/specs/issues/195).
+    </br>
+    Many [key developers of Ethereum 2.0 were also formally added](https://github.com/libp2p/specs/issues/232) as interest group members of the Noise spec per the [libp2p spec process](https://github.com/libp2p/specs/blob/master/00-framework-02-document-header.md#authors-and-interest-group). Noise was eventually [added as a formal requirement](https://github.com/ethereum/eth2.0-pm/issues/106) of the networking spec, and teams started building new implementations (like [js-libp2p-noise](https://github.com/ethereum/eth2.0-pm/issues/106#issuecomment-558805339).)
 
 1. **Hardening & formalization of existing libp2p implementations:**
-
+    </br>
     GossipSub was selected for use, resulting in efforts to test it extensively.
     The [Ethereum Foundation and ConsenSys co-funded a grant](https://blog.ethereum.org/2019/08/26/announcing-ethereum-foundation-and-co-funded-grants) to _"analyze the libp2p gossipsub implementation, ...help refine the networking stack and specification, and advance interoperability efforts."_
-
+    </br>
     This effort was led by [Whiteblock](https://medium.com/whiteblock/ethereum-2-0-networking-grant-update-1-6f988dac4c7b) who published their tests and results as a part of their [gossipsub-tests](https://github.com/Whiteblock/gossipsub-tests) and [p2p-tests](https://github.com/whiteblock/p2p-tests).
+    </br>
     Here's a presentation given by Whiteblock on their efforts at Devcon V: [Networking in ETH2.0](https://archive.devcon.org/archive/watch/5/networking-in-eth20/?tab=YouTube)
     Around this time, Protocol Labs also started to formalize the GossipSub implementation.
 
 1. **libp2p presence at Web3 events and increased community growth:**
-
+    </br>
     In this period, libp2p technology was in the spotlight by virtue of its use in Eth 2.0.
     * libp2p became the focus of [EthBerlinZwei](https://ethberlinzwei.github.io/KnowledgeBase/resources/libp2p.html) with talks on [GossipSub profiling](https://devpost.com/software/go-libp2p-gossip-berlin), [GossipSub visualization](https://devpost.com/software/libp2p-gossip-pubsub-visualisation), and the [Noise Protocol Framework in libp2p](https://devpost.com/software/go-libp2p-noise-the-new-security-transport-for-eth2-0)
 
@@ -221,10 +220,10 @@ Collaboration between these communities and the Beacon Chain's use of libp2p yie
     * A new [libp2p devgrants program](https://github.com/libp2p/devgrants) kicked off at EthBerlinZwei with bounties for projects like [a Lua Wireshark dissector](https://github.com/ethberlinzwei/Bounties/issues/20) and [Noise handshakes in Go](https://github.com/libp2p/devgrants/blob/master/004-noise-handshake-implementations.md)
 
 1. **Analysis of the collaboration:**
-
+    </br>
     The effort of integrating libp2p in Eth 2.0 also presented a valuable opportunity to reflect on what was going well in the collaboration and areas that Protocol Labs could improve on.
     In July 2019, a [study of libp2p and Eth2](https://discuss.libp2p.io/t/report-a-study-of-libp2p-and-eth2/229) was shared.
-
+    </br>
     The report detailed struggles shared by Ethereum teams in the integration process and provided recommendations on overcoming these issues.
 
 ### Full speed ahead (2020-present) 🏎️
@@ -259,11 +258,17 @@ Similarly, the Ethereum 2.0 team:
 <!-- ![](https://i.imgur.com/tYwvEIA.png) -->
 
 Finally, on December 1, 2020, the Beacon Chain genesis occurred!:
-<div class="container" style="display:flex; column-gap:10px; justify-content: center; align-items: center;">
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Congratulations on genesis, <a href="https://twitter.com/hashtag/eth2?src=hash&amp;ref_src=twsrc%5Etfw">#eth2</a>, from your gossipy and streamy cousin libp2p! 🚀<br><br>Eth2 has been a driving force in the <a href="https://twitter.com/hashtag/libp2p?src=hash&amp;ref_src=twsrc%5Etfw">#libp2p</a> community:<br><br>*catalysing py-libp2p, nim-libp2p and jvm-libp2p<br>* (co-)funding initiatives<br>*reporting vulnerabilities<br>* contributing R&amp;D<br><br>❤️🙌 <a href="https://twitter.com/ethereum?ref_src=twsrc%5Etfw">@ethereum</a></p>&mdash; libp2p (@libp2p) <a href="https://twitter.com/libp2p/status/1333761655881297921?ref_src=twsrc%5Etfw">December 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<div class="container" style="display: flex; column-gap: 10px; justify-content: center; align-items: center;">
+    <blockquote class="twitter-tweet">
+        <p lang="en" dir="ltr">Congratulations on genesis, <a href="https://twitter.com/hashtag/eth2?src=hash&amp;ref_src=twsrc%5Etfw">#eth2</a>, from your gossipy and streamy cousin libp2p! 🚀<br><br>Eth2 has been a driving force in the <a href="https://twitter.com/hashtag/libp2p?src=hash&amp;ref_src=twsrc%5Etfw">#libp2p</a> community:<br><br>*catalysing py-libp2p, nim-libp2p and jvm-libp2p<br>* (co-)funding initiatives<br>*reporting vulnerabilities<br>* contributing R&amp;D<br><br>❤️🙌 <a href="https://twitter.com/ethereum?ref_src=twsrc%5Etfw">@ethereum</a>
+        </p>
+        &mdash; libp2p (@libp2p) <a href="https://twitter.com/libp2p/status/1333761655881297921?ref_src=twsrc%5Etfw">December 1, 2020</a>
+    </blockquote>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-#### Beacon Chain networking spec 📝
+#### Beacon Chain Networking Spec 📝
 
 Since its inception, the networking specification of the Beacon Chain has seen a steady stream of changes and updates. After mid-2021 (August), the spec mainly had matured, and the libp2p requirements were all locked in (in fact, there were no further updates until January 2022.)
 _(However, the specification is still a living document. Updates and tweaks to parameters are still being made today.)_
