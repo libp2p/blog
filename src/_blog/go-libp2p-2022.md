@@ -11,7 +11,7 @@ header_image: /
 author: Prithvi Shahi
 ---
 
-2022 has been a year full of accomplishments for the libp2p project. Today we'd like to catch you up on advancements made within [go-libp2p](https://github.com/libp2p/go-libp2p). From exciting developments like shipping new features to necessary work like organizing code, 2022 had it all. Overall we had six releases ranging from [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) to [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0) with a number of patch releases in between.
+2022 has been a year full of accomplishments for the libp2p project. Today we'd like to catch you up on advancements made within [go-libp2p](https://github.com/libp2p/go-libp2p). From exciting developments like shipping new features, to necessary work like organizing code, 2022 had it all. Overall we had six releases ranging from [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) to [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), with a number of patch releases in between.
 
 The go-libp2p engineering team also doubled in size when [Marco](https://github.com/MarcoPolo) joined early in the year. Alongside [Marten](https://github.com/marten-seemann) that made us a team of two 😀! Overall, we had [21 contributors](https://github.com/libp2p/go-libp2p/graphs/contributors?from=2022-01-01&to=2022-12-31&type=c) to the project.
 
@@ -45,7 +45,7 @@ Support for QUIC has been in go-libp2p for some time. However, we were only supp
 
 ### More Efficient Handshakes 🤝
 
-In the second half of 2022, the go-libp2p team began working to decrease time to first byte and  increase the speed of connection establishment (for transports that don't have native stream multiplexing i.e., TCP and WebSocket). The first part of this effort was the [Early Muxer Negotiation feature](https://github.com/libp2p/specs/blob/master/connections/inlined-muxer-negotiation.md).
+In the second half of 2022, the go-libp2p team began working to decrease time to first byte and increase the speed of connection establishment (for transports that don't have native stream multiplexing i.e., TCP and WebSocket). The first part of this effort was the [Early Muxer Negotiation feature](https://github.com/libp2p/specs/blob/master/connections/inlined-muxer-negotiation.md).
 
 In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), go-libp2p added optimized muxer selection via [TLS' ALPN extension](https://github.com/libp2p/specs/blob/master/connections/inlined-muxer-negotiation.md#multiplexer-negotiation-over-tls) and [Noise extensions](https://github.com/libp2p/specs/blob/master/connections/inlined-muxer-negotiation.md#multiplexer-negotiation-over-noise).
 This resulted in a net saving one round trip, which may seem minimal but is big waste during connection establishment!
@@ -95,11 +95,12 @@ Our plans for the next year can be found in [our go-libp2p Roadmap](https://gith
 If you have suggestions, please feel free to create a PR or make a suggestion [in this tracking issue](https://github.com/libp2p/go-libp2p/issues/1806).
 
 Key areas go-libp2p of focus are:
-* Interoperability and end-to-end testing
-* Expanding seamless browser connectivity
-* Adding support for libp2p + HTTP
-* Optimizing performance
-* Better observability with metrics
+
+- Interoperability and end-to-end testing
+- Expanding seamless browser connectivity
+- Adding support for libp2p + HTTP
+- Optimizing performance
+- Better observability with metrics
 
 ## Resources and how you can help contribute 💪
 
@@ -108,10 +109,9 @@ If want to start pushing code immediately, feel free to ping the maintainers in 
 
 If you would like to learn more about libp2p, please see the libp2p:
 
-* [Docs](https://docs.libp2p.io/)
-  * Docs on [devp2p](https://docs.libp2p.io/concepts/similar-projects/devp2p/)
-* [Connectivity Website](https://connectivity.libp2p.io/)
-  * This describes the various libp2p transport implementations
-* [libp2p Specifications](https://github.com/libp2p/specs/)
+- [Docs](https://docs.libp2p.io/)
+- [Connectivity Website](https://connectivity.libp2p.io/)
+  - This describes the various libp2p transport implementations
+- [libp2p Specifications](https://github.com/libp2p/specs/)
 
 Thank you for reading! 🙏
