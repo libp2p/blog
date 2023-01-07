@@ -11,7 +11,7 @@ header_image: /
 author: Prithvi Shahi
 ---
 
-2022 has been a year full of accomplishments for the libp2p project. Today we'd like to catch you up on advancements made within [go-libp2p](https://github.com/libp2p/go-libp2p). From exciting developments like shipping new features, to necessary work like organizing code, 2022 had it all. Overall we had six releases ranging from [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) to [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), with a number of patch releases in between.
+2022 has been a year full of accomplishments for the libp2p project. Today we'd like to catch you up on advancements made within [go-libp2p](https://github.com/libp2p/go-libp2p). From exciting developments like shipping new features, to necessary work like organizing code, 2022 had it all. Overall we had seven releases ranging from [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) to [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), with a number of patch releases in between.
 
 The go-libp2p engineering team also doubled in size when [Marco](https://github.com/MarcoPolo) joined early in the year. Alongside [Marten](https://github.com/marten-seemann) that made us a team of two 😀! Overall, we had [21 contributors](https://github.com/libp2p/go-libp2p/graphs/contributors?from=2022-01-01&to=2022-12-31&type=c) to the project.
 
