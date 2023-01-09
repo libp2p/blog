@@ -61,11 +61,11 @@ Before diving into the details of the WebRTC implementation in libp2p, let's fir
 
 ## WebRTC in the browser
 
-`Web Real-Time Communication`, commonly referred to as `WebRTC`, is a [set of standards](https://w3c.github.io/webrtc-pc/) that allows browsers, clients, and servers to connect to other peers to exchange audio, video, and data. In most cases, peers directly connect to other peers, improving privacy and requiring fewer hops than on a relay.
+WebRTC, or Web Real-Time Communication, is a [set of standards](https://w3c.github.io/webrtc-pc/) that enables peer-to-peer connections between browsers, clients, and servers and the exchange of audio, video, and data in real-time. It is built directly into modern browsers and is straightforward to use via its API.
 
 While WebRTC handles audio, video, and data traffic, we're just going to focus on the data aspect because that's the API leveraged in libp2p-webrtc.
 
-WebRTC is built directly into browsers, so using the API is straightforward. Peers connect via an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) interface. Once connected, [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel) can be added to the connection to send and receive binary data.
+In most cases, peers directly connect to other peers, improving privacy and requiring fewer hops than on a relay. Peers connect via an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) interface. Once connected, [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel) can be added to the connection to send and receive binary data.
 
 Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers to determine their public address and any router restrictions that prohibit peer-to-peer communications. In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers relay data between peers using a Signaling Channel.
 
@@ -148,27 +148,27 @@ The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of 
 
 #### Self-signed Certificate
 
-WebRTC enables browsers to connect to public libp2p nodes without the nodes requiring a TLS certificate in the browser's [certificate chain](https://en.wikipedia.org/wiki/X.509#Certificate_chains_and_cross-certification). Because the server can use a self-signed TLS certificate, WebRTC removes the need to include additional services like DNS and Let's Encrypt. 
+WebRTC enables browsers to connect to public libp2p nodes without the nodes requiring a TLS certificate in the browser's [certificate chain](https://en.wikipedia.org/wiki/X.509#Certificate_chains_and_cross-certification). WebRTC allows the server to use a self-signed TLS certificate, eliminating the need for additional services like DNS and Let's Encrypt.
 
 #### Broad support
 
-Chrome has supported WebRTC since 2012.  Other browsers soon followed, achieving support [on all evergreen browsers](https://caniuse.com/?search=webrtc).  WebRTC is literally everywhere.
+WebRTC has been supported in Chrome since 2012, and support has since been added to all [evergreen browsers](https://caniuse.com/?search=webrtc). This makes WebRTC widely available and easy to implement in libp2p.
 
 ### Limitations
 
+While WebRTC has several advantages, it also has some limitations to consider:
+
 #### Setup and configuration
 
-Because WebRTC represents a collection of technologies, it requires extensive setup and configuration compared to other transports.  
+WebRTC is a complex set of technologies that requires extensive setup and configuration. This can be a drawback for some users.
 
 #### Extensive Roundtrips
 
-Another limitation is the 6 roundtrips required before data is exchanged.  This makes WebTransport a more compelling transport for the browser to server use case where the browser supports WebTransport.
+Another limitation is the 6 roundtrips required before data is exchanged. This may make other transports, such as [WebTransport](https://docs.libp2p.io/concepts/transports/webtransport/), more appealing for certain use cases where the browser supports it.
 
 ### Usage
 
-The complexity of WebRTC is abstracted in the implementations, making it seamless to swap your existing transport with WebRTC.
-
-Let's look at the JavaScript implementation as an example:
+The complexity of WebRTC is abstracted in the libp2p implementations, making it easy to swap in WebRTC as the transport. In the JavaScript implementation, for example, all you need to do is initialize with: 
 
 ```javascript
 import { webRTC } from 'js-libp2p-webrtc'
@@ -181,26 +181,27 @@ const node = await createLibp2p({
 
 The only difference from other transports is initializing with `webRTC()`.  That's all you need to do to implement WebRTC in the browser.  Easy, right?
 
-
 ## Alternative transports
 
 WebRTC is one of many ways to connect browsers to a libp2p node. [Choosing the transport](https://connectivity.libp2p.io/) that fits your use case is one of the many unique strengths of libp2p.
 
+WebRTC is just one option for connecting browsers to libp2p nodes. libp2p supports a variety of transports, and choosing the right one for your use case is an important consideration. The [libp2p connectivity site](https://connectivity.libp2p.io/) was designed to help developers to consider the available options.
+
 ### WebSocket
 
-The [WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc6455) dates back to 2011 and specifies the opening of a two-way socket from a browser to a server over TCP. WebSocket is implemented in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/websocket), [Go](https://github.com/libp2p/go-libp2p/tree/master/p2p/transport/websocket), and [JavaScript](https://github.com/libp2p/js-libp2p-websockets) libp2p implementations. 
+The WebSocket protocol, defined in the [WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc6455), allows for the opening of a two-way socket between a browser and a server over TCP. It is supported in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/websocket), [Go](https://github.com/libp2p/go-libp2p/tree/master/p2p/transport/websocket), and [JavaScript](https://github.com/libp2p/js-libp2p-websockets) libp2p implementations.
 
 #### Limitations
 
-The various upgrades and handshakes add up to six round trips before data can be exchanged. Additionally, while WebRTC can leverage self-signed certificates, WebSockets cannot, as they require the server to have a trusted TLS certificate using TCP.
+One limitation of WebSocket is the number of roundtrips required to establish a connection. Handshakes and other upgrades add up to six roundtrips, which can be slower than other transports. Additionally, WebSocket requires the server to have a trusted TLS certificate using TCP, unlike WebRTC which can use a self-signed certificate.
 
 ### WebTransport
 
-[WebTransport](https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-overview) is the new kid on the block for communication in the browser.  WebTransport is implemented in [Go](https://github.com/libp2p/go-libp2p/tree/master/p2p/transport/webtransport) and [JavaScript](https://github.com/libp2p/js-libp2p-webtransport) implementations. 
+[WebTransport](https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-overview) is the new kid on the block for communication in the browser. WebTransport is implemented in [Go](https://github.com/libp2p/go-libp2p/tree/master/p2p/transport/webtransport) and [JavaScript](https://github.com/libp2p/js-libp2p-webtransport) implementations. 
 
 #### Benefits
 
-WebTransport has many of the enhanced features of WebRTC (fast, secure, multiplexed) without requiring servers to implement the stack while also getting around the valid TLS certificate requirement.
+WebTransport has many of the same benefits as WebRTC, such as fast, secure, and multiplexed connections, without requiring servers to implement the stack. It also allows libp2p to use raw WebTransport streams and avoid double encryption. Additionally, WebTransport requires fewer roundtrips to establish a connection than WebRTC, making it the preferred choice when supported.
 
 As opposed to WebSockets, libp2p can use raw WebTransport streams and avoid the need for double encryption.  
 
