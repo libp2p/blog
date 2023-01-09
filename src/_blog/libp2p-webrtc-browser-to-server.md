@@ -104,13 +104,30 @@ Browser<->Server:Multiplex Send/Receive Framed Data
 
 Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p.  The primary WebRTC component that libp2p leverages is the [RTCDataChannels(https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
-The server first generates a self-signed TLS certificate and listens on a UDP port for incoming STUN packets.  Whether known upfront or discovered, the assembled multiaddress of the server is an input into the browser.
+### Server Setup
+To establish a connection with the browser, the server performs the following steps:
 
-The browser creates a [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection). The browser creates the server's Answer SDP using the components in the multiaddress. The SDP is edited, or `munged`, to include an auto-generated ufrag and password and the server's components (IP and Port). Similarly, the browser creates an Offer SDP and munges it with the same values. 
+1. Generates a self-signed TLS certificate.
+1. Listens on a UDP port for incoming STUN packets.
+1. Assembles the multiaddress of the server, which is either known upfront or discovered.
 
-Setting the Offer and Answer SDP on the browser triggers the sending of STUN packets to the server.  The server then creates the browser's Offer SDP using the values in the STUN Binding Request. 
+### Browser Connection
+The browser initiates the connection by performing the following actions:
 
-The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  A total of 6 roundtrips are performed.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.  
+1. Creates an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection).
+1. Generates the server's Answer SDP using the components in the multiaddress.
+1. Modifies the SDP, or "munges" it, to include an auto-generated ufrag and password, as well as the server's IP and port.
+1. Creates an Offer SDP and modifies it with the same values.
+1. Sets the Offer and Answer SDP on the browser, which triggers the sending of STUN packets to the server.
+
+
+### Server Response
+The server responds by creating the browser's Offer SDP using the values in the STUN Binding Request.
+
+### DTLS Handshake
+The browser and server then engage in a DTLS handshake to open a DTLS connection that WebRTC can run SCTP on top of. A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as input to the [prologue data](https://noiseprotocol.org/noise.html#prologue), and completed by the browser over the Data Channel. This handshake authenticates the browser, although Noise is not used for the encryption of data. A total of six roundtrips are performed.
+
+Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is ready to be exchanged over the UDP socket
 
 > :bulb: Unlike standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and Signal Channels are not needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity by eliminating the need for signaling.
 
