@@ -208,13 +208,13 @@ WebTransport requires less roundtrips than WebRTC to establish a connection, mak
 
 #### Limitations
 
-You might be asking yourself, why pick WebRTC over WebTransport in libp2p? It's like WebRTC but easier to implement and with less complexity. WebTransport is not without its limitations.
+You might be asking yourself, why pick WebRTC over WebTransport in libp2p? It's like WebRTC but easier to implement and with less complexity. Still, WebTransport is not without its limitations.
 
-The WebTransport protocol itself is still under development, and currently [only implemented in Chrome](https://caniuse.com/webtransport), but not yet in Firefox or Safari.  Until WebTransport is implemented by all major browsers, WebRTC is a great fallback.
+Currently, it is only implemented in Chrome and is still under development. Until WebTransport is supported by all major browsers, WebRTC can serve as a good fallback option.
 
 ## Legacy WebRTC implementations in libp2p
 
-The new WebRTC transport was not the first of its kind.  These legacy transports proved that WebRTC was a viable solution for libp2p.
+This new implementation of WebRTC in libp2p is a departure from previous, less effective solutions that were previously used to establish connectivity.
 
 ### libp2p-webrtc-star
 
@@ -226,13 +226,14 @@ libp2p-webrtc-direct utilizes WebSockets to exchange SDPs, removing the need for
 
 ## Can I use WebRTC now?
 
-Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to complete.  Follow the [PR](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when merged.
+Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to completion.  Follow the [development in go-libp2p](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when it gets shipped.
 
-In fact, the Parity team has already began using the Rust WebRTC implementation!
-The transport has been enabled as an experimental feature and [added to Smoldot](https://github.com/paritytech/smoldot/issues/1712) (a lightweight [Substrate](https://substrate.io/) and [Polkadot](https://polkadot.network/) client!
-There is also ongoing work to [enable it directly in Substrate](https://github.com/paritytech/substrate/pull/12529).
+In fact, the Rust implementation of WebRTC has already been put into use by the Parity team!
+It has been enabled as an experimental feature and added to [Smoldot](https://github.com/paritytech/smoldot/issues/1712) (a lightweight client for [Substrate](https://substrate.io/) and [Polkadot](https://polkadot.network/).
+There is also [ongoing work to enable it directly in Substrate](https://github.com/paritytech/substrate/pull/12529).
 
 This is exciting news as WebRTC is already contributing to Parity's [roadmap to enable browser to server connectivity](https://github.com/paritytech/substrate/issues/7467) on their network!
+
 ## What's next?
 
 WebRTC offers the capability for browsers to connect to browsers 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
