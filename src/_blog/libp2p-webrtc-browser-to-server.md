@@ -102,9 +102,7 @@ Browser<->Server:Multiplex Send/Receive Framed Data
 -->
 ![](https://i.imgur.com/jF69zwh.png)
 
-Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.
-
-Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p.  The primary WebRTC component that libp2p leverages is the [RTCDataChannels(https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
+Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p.  The primary WebRTC component that libp2p leverages is the [RTCDataChannels(https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
 The server first generates a self-signed TLS certificate and listens on a UDP port for incoming STUN packets.  Whether known upfront or discovered, the assembled multiaddress of the server is an input into the browser.
 
@@ -114,7 +112,7 @@ Setting the Offer and Answer SDP on the browser triggers the sending of STUN pac
 
 The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  A total of 6 roundtrips are performed.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.  
 
-Unlike standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and Signal Channels are not needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity by eliminating the need for signaling.
+> :bulb: Unlike standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and Signal Channels are not needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity by eliminating the need for signaling.
 
 #### Message Framing
 
