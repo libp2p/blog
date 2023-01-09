@@ -114,7 +114,7 @@ Setting the Offer and Answer SDP on the browser triggers the sending of STUN pac
 
 The browser and server then engage in a DTLS handshake, opening a DTLS connection that WebRTC can run SCTP on top of.  A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as inputs to the [prologue data](https://noiseprotocol.org/noise.html#prologue) and completed by the browser over the Data Channel. This handshake authenticates the browser, though Noise is not utilized for the encryption of data.  A total of 6 roundtrips are performed.  DTLS-encrypted SCTP data is now ready to be exchanged over the UDP socket.  
 
-In contrast to standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and that Signal Channels aren't needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity no-longer creating signaling.
+Unlike standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and Signal Channels are not needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity by eliminating the need for signaling.
 
 #### Message Framing
 
@@ -180,7 +180,6 @@ const node = await createLibp2p({
 ```
 
 The only difference from other transports is initializing with `webRTC()`.  That's all you need to do to implement WebRTC in the browser.  Easy, right?
-
 ## Alternative transports
 
 WebRTC is one of many ways to connect browsers to a libp2p node. [Choosing the transport](https://connectivity.libp2p.io/) that fits your use case is one of the many unique strengths of libp2p.
