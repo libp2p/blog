@@ -39,7 +39,7 @@ We expect to release this feature in Q1 2023.
 
 #### QUIC 🐰
 
-We also made developments to the existing QUIC implementation in go-libp2p. While go-libp2p has supported QUIC for some time, we upgraded to the latest version, [RFC 9000](https://datatracker.ietf.org/doc/), from the [draft-29 version](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-29) (in [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0)), inspired by the [alpha release of the QUIC implementation in rust-libp2p](https://github.com/libp2p/rust-libp2p/releases/tag/v0.50.0).
+We also made developments to the existing QUIC implementation in go-libp2p. In go-libp2p, we mainted support for two versions of QUIC, [RFC 9000](https://datatracker.ietf.org/doc/) and the [draft-29 version](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-29). In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0)), did two things. The first was properly distinguish between these two QUIC versions in their multiaddress and second change the default dial behavior. Previously, go-libp2p nodes would dial draft-29 by default but now prefer the new QUIC version. This was partly inspired by the [alpha release of the QUIC implementation in rust-libp2p](https://github.com/libp2p/rust-libp2p/releases/tag/v0.50.0).
 
 <!-- To learn more about how different versions of QUIC work please read: https://github.com/libp2p/docs/pull/238 -->
 <!-- above docs is a blocker for merge -->
