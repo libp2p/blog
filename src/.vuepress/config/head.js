@@ -39,4 +39,13 @@ module.exports = [
       src: 'https://proxy.daas.workers.dev/js/script.js',
     },
   ],
+  [
+    'script',
+    {
+      defer: true,
+      'data-domain': "blog.libp2p.io",
+      src: "https://plausible.io/js/plausible.js"
+    },
+    ``
+  ],
 ].concat(favicons)
