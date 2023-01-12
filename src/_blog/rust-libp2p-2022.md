@@ -4,10 +4,10 @@ tags:
 - rust
 title: rust-libp2p in 2022
 description: Recapitulating the year 2022 for the rust-libp2p project
-date: 2022-12-30
-permalink: "/2022-12-30-rust-libp2p-in-2022"
+date: 2023-01-12
+permalink: "/2023-01-12-rust-libp2p-in-2022"
 translationKey: ''
-header_image:
+header_image: /rust-libp2p-2022-header.png
 author: Max Inden
 ---
 
