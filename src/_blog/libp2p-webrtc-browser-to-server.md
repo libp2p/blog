@@ -67,7 +67,7 @@ While WebRTC handles audio, video, and data traffic, we're just going to focus o
 
 In most cases, peers directly connect to other peers, improving privacy and requiring fewer hops than on a relay. Peers connect via an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) interface. Once connected, [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel) can be added to the connection to send and receive binary data.
 
-Peers use external [STUN](https://datatracker.ietf.org/doc/html/rfc3489) servers to determine their public address and any router restrictions that prohibit peer-to-peer communications. In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers relay data between peers using a Signaling Channel.
+To connect to each other, peers need to learn their public IP address and any router restrictions along the path that would prohibit peer-to-peer communication. WebRTC specifies the [STUN](https://datatracker.ietf.org/doc/html/rfc3489) protocol for that. In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers relay data between peers using a Signaling Channel. In libp2p, we don't use these protocols.
 
 Once IP addresses are obtained, a peer sends an Offer [SDP](https://datatracker.ietf.org/doc/html/rfc4566) to the other peer. This Offer SDP details how the initiating peer can communicate (IP address, protocols, fingerprints, encryption, etc.). The other peer sends an Answer SDP to the initiating peer. Both peers now have enough information to start the DTLS handshake.
 
@@ -102,7 +102,7 @@ Browser<->Server:Multiplex Send/Receive Framed Data
 -->
 ![](https://i.imgur.com/jF69zwh.png)
 
-Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p.  The primary WebRTC component that libp2p leverages is the [RTCDataChannels(https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
+Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels(https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
 ### Server Setup
 To establish a connection with the browser, the server performs the following steps:
@@ -127,7 +127,7 @@ The server responds by creating the browser's Offer SDP using the values in the 
 ### DTLS Handshake
 The browser and server then engage in a DTLS handshake to open a DTLS connection that WebRTC can run SCTP on top of. A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as input to the [prologue data](https://noiseprotocol.org/noise.html#prologue), and completed by the browser over the Data Channel. This handshake authenticates the browser, although Noise is not used for the encryption of data. A total of six roundtrips are performed.
 
-Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is ready to be exchanged over the UDP socket
+Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is ready to be exchanged over the UDP socket.
 
 > :bulb: Unlike standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and Signal Channels are not needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity by eliminating the need for signaling.
 
@@ -149,7 +149,7 @@ message Message {
 
 #### Multiaddress
 
-The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of a WebRTC address begins like a standard UDP address, but adds three additional components: `webrtc`, `hash`, and `p2p`.
+The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of a WebRTC address begins like a standard UDP address, but adds three additional protocols: `webrtc`, `hash`, and `p2p`.
 
 ```shell
 /ip4/1.2.3.4/udp/1234/webrtc/certhash/<hash>/p2p/<peer-id>
@@ -253,7 +253,7 @@ This is exciting news as WebRTC is already contributing to Parity's [roadmap to 
 
 WebRTC offers the capability for browsers to connect to browsers 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
 
-The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start.  Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information.
+The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start. Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information.
 
 ## Resources and how you can help contribute
 
