@@ -72,9 +72,6 @@ module.exports = {
   dest: './dist',
   markdown: {
     extendMarkdown: (md) => {
-      md.set({
-        breaks: true,
-      })
       md.use(require('markdown-it-video'))
       md.use(require('markdown-it-footnote'))
       md.use(require('markdown-it-task-lists'))
