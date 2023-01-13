@@ -55,7 +55,6 @@ We would like to recognize and express our gratitude to [Little Bear Labs](https
 
 Little Bear Labs worked in collaboration with Protocol Labs and the libp2p community to define the WebRTC specification, and also focused on the Go and JavaScript implementations. Meanwhile, Parity Technologies focused on the Rust implementation and initiated this effort [several years ago](https://github.com/paritytech/smoldot/issues/1712). We appreciate the time and effort that both of these organizations have put into this project, and their invaluable input has been instrumental in its success.
 First, kudos to [Little Bear Labs](https://littlebearlabs.io/), who teamed up with Protocol Labs and the libp2p community to define the WebRTC specification and work on the implementation. Second, thanks to [Parity Technologies](https://www.parity.io/) for helping initiate this effort [many years ago](https://github.com/paritytech/smoldot/issues/1712) and for all the valuable input on the specification and Rust implementation.
-Parity Technologies authored the [Rust](https://github.com/libp2p/rust-libp2p) implementation. Little Bear Labs focused on the [Go](https://github.com/libp2p/go-libp2p) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations. Protocol Labs led the specification work and provided reviews of the implementations.
 
 Before diving into the details of the WebRTC implementation in libp2p, let's first understand what WebRTC is and how it is used in the context of browser-based use cases.
 
@@ -109,11 +108,11 @@ To establish a connection with the browser, the server performs the following st
 
 1. Generates a self-signed TLS certificate.
 1. Listens on a UDP port for incoming STUN packets.
-1. Assembles the multiaddress of the server, which is either known upfront or discovered.
 
 ### Browser Connection
 The browser initiates the connection by performing the following actions:
 
+1. Assembles the multiaddress of the server, which is either known upfront or discovered.
 1. Creates an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection).
 1. Generates the server's Answer SDP using the components in the multiaddress.
 1. Modifies the SDP, or "munges" it, to include an auto-generated ufrag and password, as well as the server's IP and port.
@@ -125,7 +124,7 @@ The browser initiates the connection by performing the following actions:
 The server responds by creating the browser's Offer SDP using the values in the STUN Binding Request.
 
 ### DTLS Handshake
-The browser and server then engage in a DTLS handshake to open a DTLS connection that WebRTC can run SCTP on top of. A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as input to the [prologue data](https://noiseprotocol.org/noise.html#prologue), and completed by the browser over the Data Channel. This handshake authenticates the browser, although Noise is not used for the encryption of data. A total of six roundtrips are performed.
+The browser and server then engage in a DTLS handshake to open a DTLS connection that WebRTC can run SCTP on top of. A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as input to the [prologue data](https://noiseprotocol.org/noise.html#prologue), and completed by the browser over the Data Channel. This handshake authenticates the browser and the server, although Noise is not used for the encryption of data. A total of six roundtrips are performed.
 
 Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is ready to be exchanged over the UDP socket.
 
@@ -133,19 +132,7 @@ Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is rea
 
 #### Message Framing
 
-Since WebRTC doesn't support stream resets or half-closing of streams, message framing was implemented on the data channels to achieve those goals.  Encoded Protobuf messages are sent in the following format:
-
-```proto
-message Message {
-  enum Flag {
-    FIN = 0;
-    STOP_SENDING = 1;
-    RESET_STREAM = 2;
-  }
-  optional Flag flag = 1;
-  optional bytes message = 2;
-}
-```
+Since the browser's implementation of WebRTC doesn't support stream resets or half-closing of streams, message framing was implemented on the data channels to achieve those goals.
 
 #### Multiaddress
 
@@ -197,8 +184,6 @@ const node = await createLibp2p({
 The only difference from other transports is initializing with `webRTC()`.  That's all you need to do to implement WebRTC in the browser.  Easy, right?
 ## Alternative transports
 
-WebRTC is one of many ways to connect browsers to a libp2p node. [Choosing the transport](https://connectivity.libp2p.io/) that fits your use case is one of the many unique strengths of libp2p.
-
 WebRTC is just one option for connecting browsers to libp2p nodes. libp2p supports a variety of transports, and choosing the right one for your use case is an important consideration. The [libp2p connectivity site](https://connectivity.libp2p.io/) was designed to help developers to consider the available options.
 
 ### WebSocket
@@ -217,9 +202,7 @@ One limitation of WebSocket is the number of roundtrips required to establish a 
 
 WebTransport has many of the same benefits as WebRTC, such as fast, secure, and multiplexed connections, without requiring servers to implement the stack. It also allows libp2p to use raw WebTransport streams and avoid double encryption. Additionally, WebTransport requires fewer roundtrips to establish a connection than WebRTC, making it the preferred choice when supported.
 
-As opposed to WebSockets, libp2p can use raw WebTransport streams and avoid the need for double encryption.  
-
-WebTransport requires less roundtrips than WebRTC to establish a connection, making it the preferred choice when supported.
+As opposed to WebSockets, libp2p can use raw WebTransport streams and avoid the need for double encryption.
 
 #### Limitations
 
