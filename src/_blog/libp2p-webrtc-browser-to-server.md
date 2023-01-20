@@ -9,7 +9,7 @@ date:
 permalink: ""
 translationKey: ''
 header_image: /libp2p_WebRTC_blog_header-1.png
-author: David Di Maria
+author: David DiMaria
 ---
 
 
