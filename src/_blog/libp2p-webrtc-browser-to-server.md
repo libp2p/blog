@@ -35,14 +35,14 @@ These transport protocols enable applications using libp2p to run as server node
 
 Historically, libp2p has bridged these runtime environments with different node connectivity options to varying degrees:
 - server node to server node via TCP and QUIC;
-- browser node to server node via WebSockets and, more recently, [WebTransport](https://blog.libp2p.io/2022-12-19-libp2p-webtransport);
-- browser node to browser node (via [less than ideal solutions](#prior-webrtc-implementations).
+- browser node to public server node via WebSockets and, more recently, [WebTransport](https://blog.libp2p.io/2022-12-19-libp2p-webtransport);
+- browser node to browser node (via [less than ideal solutions](#prior-webrtc-implementations)).
 
-Today our focus is on advancements in the **browser to server** use case...🥁*drumroll*
+Today our focus is on advancements in the **browser to public server** use case...🥁*drumroll*
 
 We're excited to present a new paradigm for browser-to-server connectivity and announce,
 
-**native support for WebRTC now exists in libp2p!**
+**native support for WebRTC now exists in libp2p across three implementations!**
 
 Browser to server offerings, old and new, came with their own set of shortcomings.
 A new libp2p WebRTC solution establishes browser-to-server connectivity in a decentralized way across a broad spectrum of browsers and in multiple libp2p implementations.
@@ -68,7 +68,7 @@ In most cases, peers directly connect to other peers, improving privacy and requ
 
 To connect to each other, peers need to learn their public IP address and any router restrictions along the path that would prohibit peer-to-peer communication. WebRTC specifies the [STUN](https://datatracker.ietf.org/doc/html/rfc3489) protocol for that. In the case of a restriction, [TURN](https://datatracker.ietf.org/doc/html/rfc8656) servers relay data between peers using a Signaling Channel. In libp2p, we don't use these protocols.
 
-Once IP addresses are obtained, a peer sends an Offer [SDP](https://datatracker.ietf.org/doc/html/rfc4566) to the other peer. This Offer SDP details how the initiating peer can communicate (IP address, protocols, fingerprints, encryption, etc.). The other peer sends an Answer SDP to the initiating peer. Both peers now have enough information to start the DTLS handshake.
+Once public IP addresses are obtained, a peer sends an Offer [SDP](https://datatracker.ietf.org/doc/html/rfc4566) to the other peer. This Offer SDP details how the initiating peer can communicate (IP address, protocols, fingerprints, encryption, etc.). The other peer sends an Answer SDP to the initiating peer. Both peers now have enough information to start the DTLS handshake.
 
 The DTLS handshake is performed using fingerprints contained in the Offer and Answer SDPs. After the handshake is complete, data is sent between peers using the SCTP (Stream Control Transmission Protocol) protocol, encrypting messages with DTLS over UDP or TCP.
 
@@ -101,16 +101,16 @@ Browser<->Server:Multiplex Send/Receive Framed Data
 -->
 ![](https://i.imgur.com/jF69zwh.png)
 
-Connecting to a server from a browser in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
+Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
 ### Server Setup
-To establish a connection with the browser, the server performs the following steps:
+To prepare for a connection from the browser, the server:
 
 1. Generates a self-signed TLS certificate.
 1. Listens on a UDP port for incoming STUN packets.
 
 ### Browser Connection
-The browser initiates the connection by performing the following actions:
+To initiate a connection, the browser:
 
 1. Assembles the multiaddress of the server, which is either known upfront or discovered.
 1. Creates an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection).
@@ -166,7 +166,7 @@ WebRTC is a complex set of technologies that requires extensive setup and config
 
 #### Extensive Roundtrips
 
-Another limitation is the 6 roundtrips required before data is exchanged. This may make other transports, such as [WebTransport](https://docs.libp2p.io/concepts/transports/webtransport/), more appealing for certain use cases where the browser supports it.
+Another limitation is the 6 roundtrips required before data is exchanged. This may make other transports, such as [WebTransport](https://docs.libp2p.io/concepts/transports/webtransport/), more appealing where the browser supports it.
 
 ### Usage
 
@@ -216,18 +216,18 @@ This new implementation of WebRTC in libp2p is a departure from previous, less e
 
 ### libp2p-webrtc-star
 
-libp2p-webrtc-star was [released]( https://github.com/libp2p/js-libp2p-webrtc-star/releases/tag/v0.5.0) in 2016. This transport utilizes centralized STUN and TURN servers to handle signaling and was [never intended](https://github.com/libp2p/js-libp2p/issues/385) to be a long-term solution. The repository was archived in November in favor of the new js-libp2p-webrtc transport due to the dependence on centralized servers. 
+libp2p-webrtc-star was [released]( https://github.com/libp2p/js-libp2p-webrtc-star/releases/tag/v0.5.0) in 2016. This transport utilizes centralized STUN and TURN servers to handle signaling and was [never intended](https://github.com/libp2p/js-libp2p/issues/385) to be a long-term solution. The repository was archived in November 2022 in favor of the new js-libp2p-webrtc transport due to libp2p-webrtc-star's dependence on centralized servers. 
 
 ### libp2p-webrtc-direct
 
-libp2p-webrtc-direct utilizes WebSockets to exchange SDPs, removing the need for centralized dependency in libp2p-webrtc-star. While libp2p-webrtc-direct solved the centralized problem, the servers must have valid TLS certificates for WebSocket connectivity. The repository was archived in November.
+libp2p-webrtc-direct utilizes WebSockets to exchange SDPs, removing the need for centralized dependency in libp2p-webrtc-star. While libp2p-webrtc-direct solved the centralized problem, the servers must have valid TLS certificates for WebSocket connectivity. The repository was also archived in November 2022.
 
 ## Can I use WebRTC now?
 
 Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to completion.  Follow the [development in go-libp2p](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when it gets shipped.
 
 In fact, the Rust implementation of WebRTC has already been put into use by the Parity team!
-It has been enabled as an experimental feature and added to [Smoldot](https://github.com/paritytech/smoldot/issues/1712) (a lightweight client for [Substrate](https://substrate.io/) and [Polkadot](https://polkadot.network/).
+It has been enabled as an experimental feature and added to [Smoldot](https://github.com/paritytech/smoldot/issues/1712) (a lightweight client for [Substrate](https://substrate.io/) and [Polkadot](https://polkadot.network/)).
 There is also [ongoing work to enable it directly in Substrate](https://github.com/paritytech/substrate/pull/12529).
 
 This is exciting news as WebRTC is already contributing to Parity's [roadmap to enable browser to server connectivity](https://github.com/paritytech/substrate/issues/7467) on their network!
