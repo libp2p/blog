@@ -6,7 +6,7 @@ tags:
 title: WebRTC in libp2p
 description:
 date:
-permalink: ""
+permalink: "/libp2p-webrtc-browser-to-server"
 translationKey: ''
 header_image: /libp2p_WebRTC_blog_header-1.png
 author: David DiMaria
@@ -101,7 +101,7 @@ Browser<->Server:Multiplex Send/Receive Framed Data
 -->
 ![](https://i.imgur.com/jF69zwh.png)
 
-Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
+Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and centralized STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
 ### Server Setup
 To prepare for a connection from the browser, the server:
