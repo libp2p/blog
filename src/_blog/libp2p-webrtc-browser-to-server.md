@@ -123,7 +123,7 @@ To initiate a connection, the browser:
 The server responds by creating the browser's Offer SDP using the values in the STUN Binding Request.
 
 ### DTLS Handshake
-The browser and server then engage in a DTLS handshake to open a DTLS connection that WebRTC can run SCTP on top of. A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as input to the [prologue data](https://noiseprotocol.org/noise.html#prologue), and completed by the browser over the Data Channel. This handshake authenticates the browser and the server, although Noise is not used for the encryption of data. A total of six roundtrips are performed.
+The browser and server then engage in a DTLS handshake to open a DTLS connection that WebRTC can run SCTP on top of. A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as input to the [prologue data](https://noiseprotocol.org/noise.html#prologue), and completed by the browser over the Data Channel. This handshake authenticates the browser and the server, although Noise is not used for the encryption of data. A total of six roundtrips (five without `HelloVerifyRequest` DTLS DOS prottection) are performed.
 
 Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is ready to be exchanged over the UDP socket.
 
