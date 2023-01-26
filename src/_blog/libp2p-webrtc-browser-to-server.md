@@ -162,7 +162,7 @@ While WebRTC has several advantages, it also has some limitations to consider:
 
 #### Setup and configuration
 
-WebRTC is a complex set of technologies that requires extensive setup and configuration. This can be a drawback for some users.
+WebRTC is a complex set of technologies that requires extensive server setup and configuration. While libraries like Pion and webrtc-rs abstract away this functionality, the additional complexity introduced and the configuration fine-tuning required can be a drawback for some users.
 
 #### Extensive Roundtrips
 
