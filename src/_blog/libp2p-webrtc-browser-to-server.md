@@ -86,6 +86,7 @@ box over Browser: Create RTCPeerConnection
 box over Browser: Create Server's Answer SDP
 box over Browser: Create Offer SDP
 Browser->Server:STUN Binding Request
+Server->Browser:STUN Binding Response
 box over Server: Create Browser's Offer SDP
 
 Server->(1)Browser:DTLS Handshake
@@ -98,7 +99,7 @@ Browser->(1)Server:Libp2p Noise Handshake
 
 Browser<->Server:Multiplex Send/Receive Framed Data
 -->
-![](https://i.imgur.com/jF69zwh.png)
+![](https://i.imgur.com/Tle95QF.png)
 
 Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and centralized STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
