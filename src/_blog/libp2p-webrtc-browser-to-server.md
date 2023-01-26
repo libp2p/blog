@@ -91,7 +91,7 @@ box over Server: Create Browser's Offer SDP
 
 Browser->(1)Server:DTLS Handshake
 Server->(1)Browser:DTLS Handshake
-box over Browser,Server: Full DTLS Handshake is 3 round trips
+box over Browser,Server: Full DTLS Handshake is 3 round trips (2 without `HelloVerifyRequest` DOS prottection)
 
 Server->(1)Browser:Libp2p Noise Handshake
 Browser->(1)Server:Libp2p Noise Handshake
@@ -99,7 +99,7 @@ Browser->(1)Server:Libp2p Noise Handshake
 
 Browser<->Server:Multiplex Send/Receive Framed Data
 -->
-![](https://i.imgur.com/LufMXrO.png)
+![](https://i.imgur.com/Kzxp3pK.png)
 
 Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and centralized STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
