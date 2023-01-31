@@ -224,7 +224,7 @@ libp2p-webrtc-direct utilizes WebSockets to exchange SDPs, removing the need for
 
 ## Can I use WebRTC now?
 
-Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to completion.  Follow the [development in go-libp2p](https://github.com/libp2p/go-libp2p/pull/1655) to get notified when it gets shipped.
+Yes, you can use libp2p-webrtc in the [Rust](https://github.com/libp2p/rust-libp2p/tree/master/transports/webrtc) and [JavaScript](https://github.com/libp2p/js-libp2p-webrtc) implementations!  The [Go](https://github.com/libp2p/go-libp2p) implementation is close to completion.  Follow the [development in go-libp2p](https://github.com/libp2p/go-libp2p/issues/2030) to get notified when it gets shipped.
 
 In fact, the Rust implementation of WebRTC has already been put into use by the Parity team!
 It has been enabled as an experimental feature and added to [Smoldot](https://github.com/paritytech/smoldot/issues/1712) (a lightweight client for [Substrate](https://substrate.io/) and [Polkadot](https://polkadot.network/)).
