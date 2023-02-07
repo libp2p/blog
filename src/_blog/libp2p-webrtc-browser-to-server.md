@@ -5,10 +5,10 @@ tags:
 - webrtc
 title: WebRTC in libp2p
 description:
-date:
+date: 2023-02-06
 permalink: "/libp2p-webrtc-browser-to-server"
 translationKey: ''
-header_image: /libp2p_WebRTC_blog_header-1.png
+header_image: /libp2p_WebRTC_blog_header.png
 author: David DiMaria
 ---
 
@@ -25,33 +25,28 @@ Read about WebTransport in the [first post](https://blog.libp2p.io/2022-12-19-li
 
 **Table of Contents**
 
-
 [[toc]]
 
 ## Overview
 
-The [libp2p project](https://libp2p.io) supports many [transport protocols](https://libp2p.io/implementations/#transports) across a variety of implementations.
-These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser).
+The [libp2p project](https://libp2p.io) supports many [transport protocols](https://libp2p.io/implementations/#transports) across a variety of implementations. These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser).
 
-Historically, libp2p has bridged these runtime environments with different node connectivity options to varying degrees:
-- server node to server node via TCP and QUIC;
-- browser node to public server node via WebSockets and, more recently, [WebTransport](https://blog.libp2p.io/2022-12-19-libp2p-webtransport);
-- browser node to browser node (via [less than ideal solutions](#prior-webrtc-implementations)).
+Historically, libp2p has bridged these runtime environments with different node connectivity options in varying degrees:
+- server node to server node via TCP and QUIC
+- browser node to public server node via WebSockets and, more recently, [WebTransport](https://blog.libp2p.io/2022-12-19-libp2p-webtransport)
+- browser node to browser node (via [less than ideal solutions](#legacy-webrtc-implementations-in-libp2p))
 
-Today our focus is on advancements in the **browser to public server** use case...🥁*drumroll*
-
-We're excited to present a new paradigm for browser-to-server connectivity and announce,
-
-**native support for WebRTC now exists in libp2p across three implementations!**
+Today our focus is on advancements in the **browser to public server** use case... * drumroll please * 🥁
+We're excited to present a new paradigm for browser-to-server connectivity and announce, **native support for WebRTC now exists in libp2p across three implementations!**
 
 Browser to server offerings, old and new, came with their own set of shortcomings.
-A new libp2p WebRTC solution establishes browser-to-server connectivity in a decentralized way across a broad spectrum of browsers and in multiple libp2p implementations.
+This new libp2p WebRTC solution establishes browser-to-server connectivity in a decentralized way across a broad spectrum of browsers and in multiple libp2p implementations.
 
 > If you're familiar with the libp2p ecosystem, you may wonder, is this new? Hasn't there already been support for WebRTC in libp2p? The answer to both questions is **yes** - although support has existed, this new WebRTC solution is a fresh departure from older uses for WebRTC in libp2p. We describe more below.
 
-## Acknowledgements
+### Acknowledgements
 
-We would like to recognize and express our gratitude to [Little Bear Labs](https://littlebearlabs.io/) and [Parity Technologies](https://www.parity.io/) for their contributions to the development of the WebRTC specification and implementation in libp2p.
+We would like to recognize and express our gratitude to [Little Bear Labs](https://littlebearlabs.io/) and [Parity Technologies](https://www.parity.io/) for their contributions to the development of the [WebRTC specification](https://github.com/libp2p/specs/tree/master/webrtc) and implementation in libp2p.
 
 Little Bear Labs worked in collaboration with Protocol Labs and the libp2p community to define the WebRTC specification, and also focused on the Go and JavaScript implementations. Parity Technologies focused on the Rust implementation and initiated this effort [several years ago](https://github.com/libp2p/rust-libp2p/issues/1066). We appreciate the time and effort that both of these organizations have put into this project, and their invaluable input has been instrumental in its success.
 
@@ -61,7 +56,7 @@ Before diving into the details of the WebRTC implementation in libp2p, let's fir
 
 WebRTC, or Web Real-Time Communication, is a [set of standards](https://w3c.github.io/webrtc-pc/) that enables peer-to-peer connections between browsers, clients, and servers and the exchange of audio, video, and data in real-time. It is built directly into modern browsers and is straightforward to use via its API.
 
-While WebRTC handles audio, video, and data traffic, we're just going to focus on the data aspect because that's the API leveraged in libp2p-webrtc.
+While WebRTC handles audio, video, and data traffic, we're just going to focus on the data aspect because that's the API leveraged in libp2p WebRTC.
 
 In most cases, peers directly connect to other peers, improving privacy and requiring fewer hops than on a relay. Peers connect via an [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) interface. Once connected, [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel) can be added to the connection to send and receive binary data.
 
@@ -109,13 +104,13 @@ Browser<->Server:Multiplex Send/Receive Framed Data
 
 Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and centralized STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
-### Server Setup
+#### Server Setup
 To prepare for a connection from the browser, the server:
 
 1. Generates a self-signed TLS certificate.
 1. Listens on a UDP port for incoming STUN packets.
 
-### Browser Connection
+#### Browser Connection
 To initiate a connection, the browser:
 
 1. Assembles the multiaddress of the server, which is either known upfront or discovered.
@@ -126,21 +121,21 @@ To initiate a connection, the browser:
 1. Sets the Offer and Answer SDP on the browser, which triggers the sending of STUN packets to the server.
 
 
-### Server Response
+#### Server Response
 The server responds by creating the browser's Offer SDP using the values in the STUN Binding Request.
 
-### DTLS Handshake
+#### DTLS Handshake
 The browser and server then engage in a DTLS handshake to open a DTLS connection that WebRTC can run SCTP on top of. A [Noise handshake](https://github.com/libp2p/specs/blob/master/noise/README.md) is initiated by the server using the fingerprints in the SDP as input to the [prologue data](https://noiseprotocol.org/noise.html#prologue), and completed by the browser over the Data Channel. This handshake authenticates the browser and the server, although Noise is not used for the encryption of data. A total of six roundtrips (five without `HelloVerifyRequest` DTLS DOS prottection) are performed.
 
 Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is ready to be exchanged over the UDP socket.
 
 > :bulb: Unlike standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and Signal Channels are not needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity by eliminating the need for signaling.
 
-#### Message Framing
+##### Message Framing
 
 Since the browser's implementation of WebRTC doesn't support stream resets or half-closing of streams, message framing was implemented on the data channels to achieve those goals.
 
-#### Multiaddress
+##### Multiaddress
 
 The [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) of a WebRTC address begins like a standard UDP address, but adds three additional protocols: `webrtc`, `hash`, and `p2p`.
 
@@ -242,13 +237,13 @@ This is exciting news as WebRTC is already contributing to Parity's [roadmap to 
 
 WebRTC offers the capability for browsers to connect to browsers 🎉. This isn't currently possible in any of the active libp2p transports and represents a significant achievement in libp2p.
 
-The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start. Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information.
+The [WebRTC browser-to-browser connectivity spec](https://github.com/libp2p/specs/pull/497) is currently being authored and development will soon start. Follow the [PR](https://github.com/libp2p/specs/pull/497) for up-to-date information as well as the [overall tracking issue](https://github.com/libp2p/specs/issues/475).
 
 ## Resources and how you can help contribute
 
 If you would like to read further about WebRTC. Please see the libp2p:
 
-- [WebRTC Docs](https://github.com/libp2p/docs/pull/264)
+- [WebRTC Docs](https://docs.libp2p.io/concepts/transports/webrtc/)
 - [WebRTC Connectivity](https://connectivity.libp2p.io/#webrtc)
     - This describes WebRTC along with other transport implementations
 - [WebRTC Spec](https://github.com/libp2p/specs/tree/master/webrtc)
