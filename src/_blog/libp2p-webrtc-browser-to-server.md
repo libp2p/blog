@@ -99,7 +99,13 @@ Browser->(1)Server:Libp2p Noise Handshake
 
 Browser<->Server:Multiplex Send/Receive Framed Data
 -->
-![](https://i.imgur.com/Kzxp3pK.png)
+<div class="container" style="display:flex; column-gap:10px;">
+    <figure>
+        <img src="../assets/webrtc_browser_to_server_diagram.png" >
+        <figcaption style="font-size:x-small;">
+        </figcaption>
+    </figure>
+</div>
 
 Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways.  Many of the features supported in the WebRTC standard, such as video, audio, and centralized STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the [RTCDataChannels](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel).
 
