@@ -23,10 +23,6 @@ WebRTC (Browser to Browser): Part 3 of Universal Browser Connectivity
 This is the second entry in the Universal Browser Connectivity series on how libp2p achieves browser connectivity.
 Read about WebTransport in the [first post](https://blog.libp2p.io/2022-12-19-libp2p-webtransport/).
 
-**Table of Contents**
-
-[[toc]]
-
 ## Overview
 
 The [libp2p project](https://libp2p.io) supports many [transport protocols](https://libp2p.io/implementations/#transports) across a variety of implementations. These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser).
@@ -42,7 +38,12 @@ We're excited to present a new paradigm for browser-to-server connectivity and a
 Browser to server offerings, old and new, came with their own set of shortcomings.
 This new libp2p WebRTC solution establishes browser-to-server connectivity in a decentralized way across a broad spectrum of browsers and in multiple libp2p implementations.
 
-> If you're familiar with the libp2p ecosystem, you may wonder, is this new? Hasn't there already been support for WebRTC in libp2p? The answer to both questions is **yes** - although support has existed, this new WebRTC solution is a fresh departure from older uses for WebRTC in libp2p. We describe more below.
+> If you're familiar with the libp2p ecosystem, you may wonder, is this new? Hasn't there already been support for WebRTC in libp2p? The answer to both questions is **yes** - although support has existed, this new WebRTC solution is a fresh departure from older uses for WebRTC in libp2p.
+
+In this post we go over:
+* [WebRTC in libp2p](#webrtc-in-libp2p)
+* [detail a short history of legacy WebRTC implementations](#legacy-webrtc-implementations-in-libp2p)
+* and [show how you can use it in your applications today!](#can-i-use-webrtc-now)
 
 ### Acknowledgements
 
@@ -232,6 +233,9 @@ It has been enabled as an experimental feature and added to [Smoldot](https://gi
 There is also [ongoing work to enable it directly in Substrate](https://github.com/paritytech/substrate/pull/12529).
 
 This is exciting news as WebRTC is already contributing to Parity's [roadmap to enable browser to server connectivity](https://github.com/paritytech/substrate/issues/7467) on their network!
+
+For how to use WebRTC browser-to-server, you can take a look at [the examples in the js-libp2p-webrtc repo](https://github.com/libp2p/js-libp2p-webrtc/tree/main/examples/browser-to-server).
+Lastly, you can also take a look at this [WebRTC demo given on libp2p Day](https://blog.libp2p.io/2022-11-22-libp2p-day-2022-recap/#why-webrtc).
 
 ## What's next?
 
