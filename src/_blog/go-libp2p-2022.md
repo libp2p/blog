@@ -5,10 +5,10 @@ tags:
   - Go
 title: go-libp2p in 2022
 description:
-date: 2023-01-11
+date: 2023-02-13
 permalink: ''
 translationKey: ''
-header_image: /
+header_image: /go-2022.png
 author: Prithvi Shahi
 ---
 
@@ -75,6 +75,7 @@ The details of our interoperability testing efforts can be seen in the shared [l
 
 In attempt to address the go-libp2p repo sprawl and consolidate various modules, a monorepo was created that resulted in a big quality of life improvement for the project. The go-libp2p maintainers always wanted to address the sprawl but it wasn’t possible until [lazy module loading was added to Go 1.17](https://go.dev/ref/mod#lazy-loading).
 The consolidation started in [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) and finished in [v0.22.0 release](https://github.com/libp2p/go-libp2p/releases/tag/v0.22.0) (where go-libp2p-core was finally migrated.)
+This improvment makes changes and improvements across go-libp2p much easier.
 
 ### Simplify libp2p Setup Logic with Fx 🦄
 
@@ -85,10 +86,16 @@ This enabled simplyfying the logic necessary to [construct libp2p](https://githu
 
 In [v0.19.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.19.0), we enabled AutoRelay to discover nodes running Circuit Relay v2. Support for relay v2 was first added in [late 2021 in v0.16.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.16.0) (which also removed support for relay v1 and added the [Direct Connection Upgrade through Relay](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md) protocol). This improvement allows go-libp2p nodes to discover and connect to other nodes running Circuit Relay v2, improving the overall performance and reliability of the network.
 
+Notably, running Circuit Relay v1 was expensive and resulted in only a small number of nodes in the network. Users had to either manually configure these nodes as static relays, or discover them from the DHT.
+With Circuit Relay v2 it became cheap to run (limited) relays. Public nodes also started the relay service by default.
+There's now a massive number of v2 relays on the IPFS network, and they don't advertise their service to the DHT any more.
+Because there's now so many of these nodes, connecting to just a small number of nodes (e.g. by joining the DHT), a node is statistically guaranteed to connect to some relays. Furthermore, a node can use these relays if it discovers that it's behind a NAT.
+
 ### Contributions to other projects 🧑‍💻
 
 In addition to the improvements made directly to go-libp2p, we also made a number of contributions to other projects in 2022.
 Chief among them were [quic-go](https://github.com/lucas-clemente/quic-go), [webtransport-go](https://github.com/quic-go/webtransport-go), along with [pion/sctp](https://github.com/pion/sctp) and [pion/datachannel](https://github.com/pion/datachannel). These contributions helped progress network protocol development in go and improve the overall ecosystem.
+Some of these libraries (like quic-go and webtransport-go are authored by maintainers of go-libp2p.)
 
 ## Plans for 2023 📅
 
