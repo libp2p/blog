@@ -41,8 +41,7 @@ We expect to release this feature in Q1 2023.
 
 We also made developments to the existing QUIC implementation in go-libp2p. In go-libp2p, we maintained support for two versions of QUIC, [RFC 9000](https://datatracker.ietf.org/doc/) and the [draft-29 version](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-29). In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), go-libp2p changed two things. The first was to properly distinguish between these two QUIC versions (in their multiaddresses) and second was to change the default dial behavior. Previously, go-libp2p nodes would dial draft-29 by default but after v0.24.0, nodes prefer the new QUIC version. This was partly inspired by the [alpha release of the QUIC implementation in rust-libp2p](https://github.com/libp2p/rust-libp2p/releases/tag/v0.50.0).
 
-<!-- To learn more about how different versions of QUIC work please read: https://github.com/libp2p/docs/pull/238 -->
-<!-- above docs is a blocker for merge -->
+To learn more about how different versions of QUIC work [please read our docs](https://docs.libp2p.io/concepts/transports/quic/#distinguishing-multiple-quic-versions-in-libp2p).
 
 ### Faster Handshakes 🤝
 
@@ -51,9 +50,8 @@ In the second half of 2022, the go-libp2p team began working to decrease the TTF
 In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), go-libp2p added optimized muxer selection via [TLS' ALPN extension](https://github.com/libp2p/specs/blob/master/connections/inlined-muxer-negotiation.md#multiplexer-negotiation-over-tls) and [Noise extensions](https://github.com/libp2p/specs/blob/master/connections/inlined-muxer-negotiation.md#multiplexer-negotiation-over-noise).
 This resulted in a net saving one round trip, which may seem minimal but is big waste during connection establishment!
 
-<!-- To learn more about how early muxer negotiation works, please read: https://github.com/libp2p/docs/pull/274 -->
-<!-- above docs is a blocker for merge -->
-
+To learn more about how early muxer negotiation works, [please read our docs](https://docs.libp2p.io/concepts/multiplex/early-negotiation/).
+ 
 ## Project Improvements 🏡
 
 ### DoS Protection 🏰 & Resource Management 📦
