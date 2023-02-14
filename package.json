@@ -32,7 +32,7 @@
     "eslint-plugin-vue": "^9.9.0",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
+    "lint-staged": "^13.1.2",
     "lodash": "^4.17.21",
     "markdown-it-deflist": "^2.1.0",
     "markdown-it-footnote": "^3.0.3",
