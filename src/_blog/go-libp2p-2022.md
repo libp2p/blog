@@ -73,12 +73,12 @@ The details of our interoperability testing efforts can be seen in the shared [l
 
 In attempt to address the go-libp2p repo sprawl and consolidate various modules, a monorepo was created that resulted in a big quality of life improvement for the project. The go-libp2p maintainers always wanted to address the sprawl but it wasn’t possible until [lazy module loading was added to Go 1.17](https://go.dev/ref/mod#lazy-loading).
 The consolidation started in [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) and finished in [v0.22.0 release](https://github.com/libp2p/go-libp2p/releases/tag/v0.22.0) (where go-libp2p-core was finally migrated.)
-This improvment makes changes and improvements across go-libp2p much easier.
+This improvement makes changes and improvements across go-libp2p much easier.
 
 ### Simplify libp2p Setup Logic with Fx 🦄
 
 In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0) go-libp2p included a change to use [Fx](https://github.com/uber-go/fx), a Go dependency injection library.
-This enabled simplyfying the logic necessary to [construct libp2p](https://github.com/libp2p/go-libp2p/pull/1858).
+This enabled simplifying the logic necessary to [construct libp2p](https://github.com/libp2p/go-libp2p/pull/1858).
 
 ### AutoRelay discovers Circuit Relay v2 🔭
 
@@ -86,7 +86,7 @@ In [v0.19.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.19.0), we enabl
 
 Notably, running Circuit Relay v1 was expensive and resulted in only a small number of nodes in the network. Users had to either manually configure these nodes as static relays, or discover them from the DHT.
 With Circuit Relay v2 it became cheap to run (limited) relays. Public nodes also started the relay service by default.
-There's now a massive number of v2 relays on the IPFS network, and they don't advertise their service to the DHT any more.
+There's now a massive number of v2 relays on the IPFS network, and they don't advertise their service to the DHT anymore.
 Because there's now so many of these nodes, connecting to just a small number of nodes (e.g. by joining the DHT), a node is statistically guaranteed to connect to some relays. Furthermore, a node can use these relays if it discovers that it's behind a NAT.
 
 ### Contributions to other projects 🧑‍💻
