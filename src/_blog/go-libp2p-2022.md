@@ -14,7 +14,7 @@ author: Prithvi Shahi
 
 We are excited to share with you all the progress that has been made on [go-libp2p](https://github.com/libp2p/go-libp2p) in 2022. It has been a year full of exciting new features, code organization, and a growing team of talented contributors.
 
-Throughout the year, we released seven updates to go-libp2p ranging from [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) to [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), with a number of patch releases in between. We also welcomed [Marco](https://github.com/MarcoPolo) to the go-libp2p engineering team, bringing the total number of team members to two (alongside [Marten](https://github.com/marten-seemann))😀. In total, we had [21 contributors](https://github.com/libp2p/go-libp2p/graphs/contributors?from=2022-01-01&to=2022-12-31&type=c) to the project in 2022.
+Throughout the year, we released seven updates to go-libp2p ranging from [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0) to [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), with a number of patch releases in between. We also welcomed [Marco](https://github.com/MarcoPolo) to the [PL EngRes go-libp2p engineering team](https://pl-strflt.notion.site/libp2p-a27f9e5cb69648538e444163ce3f7309), bringing the total number of team members to two (alongside [Marten](https://github.com/marten-seemann))😀. In total, we had [21 contributors](https://github.com/libp2p/go-libp2p/graphs/contributors?from=2022-01-01&to=2022-12-31&type=c) to the project in 2022.
 
 Without further ado, let's take a look at notable accomplishments in the last year:
 
@@ -34,14 +34,20 @@ In addition to WebTransport, the go-libp2p team also began work on enabling the 
 
 While this feature is still under development and testing, you can check out a proof-of-concept demo of it in action on our [libp2p Day 2022 Recap blog post](https://blog.libp2p.io/2022-11-22-libp2p-day-2022-recap/#why-webrtc). 
 
-We expect to release this feature in Q1 2023.
+We expect to release this feature in Q1 2023 ([tracking issue](https://github.com/libp2p/go-libp2p/issues/2030)).
 
-
-#### QUIC 🐰
+#### QUIC Versions 🐰
 
 We also made developments to the existing QUIC implementation in go-libp2p. In go-libp2p, we maintained support for two versions of QUIC, [RFC 9000](https://datatracker.ietf.org/doc/) and the [draft-29 version](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-29). In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), go-libp2p changed two things. The first was to properly distinguish between these two QUIC versions (in their multiaddresses) and second was to change the default dial behavior. Previously, go-libp2p nodes would dial draft-29 by default but after v0.24.0, nodes prefer the new QUIC version. This was partly inspired by the [alpha release of the QUIC implementation in rust-libp2p](https://github.com/libp2p/rust-libp2p/releases/tag/v0.50.0).
 
 To learn more about how different versions of QUIC work [please read our docs](https://docs.libp2p.io/concepts/transports/quic/#distinguishing-multiple-quic-versions-in-libp2p).
+
+### DoS Protection 🏰 & Resource Management 📦
+
+We added the [Resource Manager component](https://github.com/libp2p/go-libp2p/tree/master/p2p/host/resource-manager#readme) in [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0). This feature allows developers to configure limits on the number of incoming and outgoing connections and streams, the number of streams per protocol and service, as well as configure libp2p memory usage.
+
+These controls are key for DoS mitigation, which is why we also added autoscaling limits and canonical log lines in [v0.21.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.21.0). 
+To learn more about how to incorporate DoS mitigation into your libp2p projects, check out our documentation on the topic [here](https://docs.libp2p.io/concepts/security/dos-mitigation/).
 
 ### Faster Handshakes 🤝
 
@@ -51,15 +57,17 @@ In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0), go-libp2
 This resulted in a net saving one round trip, which may seem minimal but is big waste during connection establishment!
 
 To learn more about how early muxer negotiation works, [please read our docs](https://docs.libp2p.io/concepts/multiplex/early-negotiation/).
- 
+
+### AutoRelay discovers Circuit Relay v2 🔭
+
+In [v0.19.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.19.0), we enabled AutoRelay to discover nodes running Circuit Relay v2. Support for relay v2 was first added in [late 2021 in v0.16.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.16.0) (which also removed support for relay v1 and added the [Direct Connection Upgrade through Relay](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md) protocol). This improvement allows go-libp2p nodes to discover and connect to other nodes running Circuit Relay v2, improving the overall performance and reliability of the network.
+
+Notably, running Circuit Relay v1 was expensive and resulted in only a small number of nodes in the network. Users had to either manually configure these nodes as static relays, or discover them from the DHT.
+With Circuit Relay v2 it became cheap to run (limited) relays. Public nodes also started the relay service by default.
+There's now a massive number of v2 relays on the IPFS network, and they don't advertise their service to the DHT any more.
+Because there's now so many of these nodes, connecting to just a small number of nodes (e.g. by joining the DHT), a node is statistically guaranteed to connect to some relays. Furthermore, a node can use these relays if it discovers that it's behind a NAT.
+
 ## Project Improvements 🏡
-
-### DoS Protection 🏰 & Resource Management 📦
-
-We added the [Resource Manager component](https://github.com/libp2p/go-libp2p/tree/master/p2p/host/resource-manager#readme) in [v0.18.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.18.0). This feature allows developers to configure limits on the number of incoming and outgoing connections and streams, the number of streams per protocol and service, as well as configure libp2p memory usage.
-
-These controls are key for DoS mitigation, which is why we also added autoscaling limits and canonical log lines in [v0.21.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.21.0). 
-To learn more about how to incorporate DoS mitigation into your libp2p projects, check out our documentation on the topic [here](https://docs.libp2p.io/concepts/security/dos-mitigation/).
 
 ### Interoperability Testing ⚙️
 
@@ -79,15 +87,6 @@ This improvement makes changes and improvements across go-libp2p much easier.
 
 In [v0.24.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.24.0) go-libp2p included a change to use [Fx](https://github.com/uber-go/fx), a Go dependency injection library.
 This enabled simplifying the logic necessary to [construct libp2p](https://github.com/libp2p/go-libp2p/pull/1858).
-
-### AutoRelay discovers Circuit Relay v2 🔭
-
-In [v0.19.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.19.0), we enabled AutoRelay to discover nodes running Circuit Relay v2. Support for relay v2 was first added in [late 2021 in v0.16.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.16.0) (which also removed support for relay v1 and added the [Direct Connection Upgrade through Relay](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md) protocol). This improvement allows go-libp2p nodes to discover and connect to other nodes running Circuit Relay v2, improving the overall performance and reliability of the network.
-
-Notably, running Circuit Relay v1 was expensive and resulted in only a small number of nodes in the network. Users had to either manually configure these nodes as static relays, or discover them from the DHT.
-With Circuit Relay v2 it became cheap to run (limited) relays. Public nodes also started the relay service by default.
-There's now a massive number of v2 relays on the IPFS network, and they don't advertise their service to the DHT anymore.
-Because there's now so many of these nodes, connecting to just a small number of nodes (e.g. by joining the DHT), a node is statistically guaranteed to connect to some relays. Furthermore, a node can use these relays if it discovers that it's behind a NAT.
 
 ### Contributions to other projects 🧑‍💻
 
@@ -115,9 +114,8 @@ To start, you can [connect with the libp2p maintainers](https://libp2p.io/#commu
 If you're ready to start pushing code immediately, you can also check out [any of these help wanted/good first issues](https://github.com/libp2p/go-libp2p/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) and start contributing right away. The libp2p maintainers are always happy to provide guidance and support to new contributors.
 
 If you would like to learn more about libp2p, there are a number of resources available for you:
-
-The [libp2p documentation](https://docs.libp2p.io/) provides a comprehensive overview of the libp2p project and its core components.
-- The [Connectivity website](https://connectivity.libp2p.io/) describes the various libp2p transport implementations.
-The [libp2p Specifications](https://github.com/libp2p/specs/) provide in-depth technical information about the various protocols and standards that underpin libp2p.
+1. The [libp2p documentation](https://docs.libp2p.io/) provides a comprehensive overview of the libp2p project and its core components.
+2. The [Connectivity website](https://connectivity.libp2p.io/) describes the various libp2p transport implementations.
+3. The [libp2p Specifications](https://github.com/libp2p/specs/) provide in-depth technical information about the various protocols and standards that underpin libp2p.
 
 Thank you for reading! 🙏
