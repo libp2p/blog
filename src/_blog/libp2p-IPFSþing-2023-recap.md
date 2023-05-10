@@ -33,7 +33,7 @@ Over the course of five days the the libp2p community gave 4 different talks on 
 The goals of the libp2p contributors attending IPFSþing were:
 
 1. Build excitement by demonstrating the [Universal Connectivity application](https://github.com/libp2p/universal-connectivity).
-2. Give updates on the continually improving performace, dealing with non-uniform network topoligy with hole punching, and lowering the barriers to libp2p compatibility.
+2. Give updates on the continually improving performance, dealing with non-uniform network topology with hole punching, and lowering the barriers to libp2p compatibility.
 3. Reconnect with community contributors and building up the greater libp2p community.
 
 ## Recap of Talks
