@@ -16,7 +16,7 @@ author: Dave Huseby
 
 ## Introduction
 
-Last month, April 15th - 19th 2023, the IPFS community came together in Brussels, Beligium for [IPFSþing 2023](https://blog.ipfs.tech/2023-ipfs-thing-recap/). The libp2p users and contributors community came out to meet up once again to interface with the broader IFPS community as well as share all of the great accomplishements and new work going on in the libp2p project. It was great to reconnect with people from organizations supporting and contributing to libp2p such as [Peergos](https://peergos.org/), [Source Network](https://source.network/), 
+Last month, April 15th - 19th 2023, the IPFS community came together in Brussels, Belgium for [IPFS þing 2023](https://blog.ipfs.tech/2023-ipfs-thing-recap/). The libp2p users and contributors community came out to meet up once again to interface with the broader IFPS community as well as share all of the great accomplishments and new work going on in the libp2p project. It was great to reconnect with people from organizations supporting and contributing to libp2p such as [Peergos](https://peergos.org/), [Source Network](https://source.network/), 
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
