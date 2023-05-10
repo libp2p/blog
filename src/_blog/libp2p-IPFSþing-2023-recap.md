@@ -81,7 +81,7 @@ Marco Munizaga (go-libp2p and zig-libp2p maintainer, Software Engineer at Protoc
 
 @[youtube](aDHymXQJ4bs)
 
-Don't miss this presentation by Marten and Marco. They start off showing how libp2p is evolving and improving with the addition of the QUIC transport followed by an explanation of simple it is to create a compatible libp2p stack out of a QUIC library, the libp2p TLS extension and some code for doing peer ID encoding and sending multistream headers. To prove how simple it is, Marco showed of his zig-libp2p implementation sending a pig to a go-libp2p node.
+Don't miss this presentation by Marten and Marco. They start off showing how libp2p is evolving and improving with the addition of the QUIC transport followed by an explanation of how simple it is to create a compatible libp2p stack out of a QUIC library, the libp2p TLS extension and some code for doing peer ID encoding and sending multistream headers. To prove how simple it is, Marco showed of his zig-libp2p implementation sending a ping to a go-libp2p node.
 
 ### Connecting everthing, everywhere, all at once with libp2p
 
