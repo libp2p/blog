@@ -1,7 +1,7 @@
 ---
 tags:
 - libp2p
-title: libp2p at IPFSþing 2023 Recap
+title: libp2p at IPFS þing 2023 Recap
 description: Recap of libp2p presentations and workshops at IPFSþing 2023
 date: 2023-05-05
 permalink: "/2023-05-05-libp2p-IPFS%C3%BEing-recap/"
