@@ -4,7 +4,7 @@ tags:
 title: libp2p at IPFS þing 2023 Recap
 description: Recap of libp2p presentations and workshops at IPFS þing 2023
 date: 2023-05-11
-permalink: "/2023-libp2p-IPFS%C3%BEing-recap/"
+permalink: "/2023-libp2p-IPFS-Thing-recap/"
 translationKey: ''
 header_image: /ipfs-thing-2023-logo.png
 author: Dave Huseby
@@ -21,7 +21,7 @@ Last month, April 15th - 19th 2023, the IPFS community came together in Brussels
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
         <img src="../assets/ipfs-thing-2023-03.jpg"  width="100%">
-        <figcaption style="font-size:x-small;">Group shot of the IPFSþing 2023</a>
+        <figcaption style="font-size:x-small;">Group shot of the IPFS þing 2023</a>
         </figcaption>
     </figure>
 </div>
@@ -30,7 +30,7 @@ Over the course of five days the the libp2p community gave 6 different talks on 
 
 ## Goals
 
-The goals of the libp2p contributors attending IPFS þing were:
+The goals of the libp2p contributors attending IPFS þing 2023 were to:
 
 1. Build excitement by demonstrating the [Universal Connectivity application](https://github.com/libp2p/universal-connectivity).
 2. Give updates on the continually improving performance, dealing with non-uniform network topology, interoperability improvements, and lowering the barriers to libp2p compatibility.
@@ -42,7 +42,7 @@ The goals of the libp2p contributors attending IPFS þing were:
 
 [Max Inden](https://github.com/mxinden) (rust-libp2p maintainer, Software Engineer at Protocol Labs)
 
-Max's talk about the [Universal Connectivity demonstrator app](https://github.com/libp2p/universal-connectivity) broke the record for the most people involved: [@2color / Daniel](https://github.com/2color), [@TheDiscordian](https://github.com/TheDiscordian), [@jochasinga / Pan](https://github.com/jochasinga), [@achingbrain / Alex](https://github.com/achingbrain), [@maschad / Chad](https://github.com/maschad), [@p-shahi / Prithvi](https://github.com/p-shahi), [@marcopolo / Marco](https://github.com/marcopolo), [@thomaseizinger / Thomas](https://github.com/thomaseizinger), and [@mxinden / Max](https://github.com/mxinden) all collaborated to make it happen. The live demo showed a go-libp2p server talking to a rust-libp2p server talking to go-libp2p laptop talking to js-libp2p browsers using a variety of transports including [QUIC](https://github.com/libp2p/specs/tree/master/quic), [WebRTC Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md), [WebRTC](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md), and [WebTransport](https://github.com/libp2p/specs/tree/master/webtransport). The work on the Universal Connectivity demonstrator app turned out to be an excellent driver for [interop testing and the need for further work there](https://github.com/libp2p/test-plans).
+Max's talk about the [Universal Connectivity demonstrator app](https://github.com/libp2p/universal-connectivity) broke the record for the most people involved: [@2color / Daniel](https://github.com/2color), [@TheDiscordian](https://github.com/TheDiscordian), [@jochasinga / Pan](https://github.com/jochasinga), [@achingbrain / Alex](https://github.com/achingbrain), [@maschad / Chad](https://github.com/maschad), [@p-shahi / Prithvi](https://github.com/p-shahi), [@marcopolo / Marco](https://github.com/marcopolo), [@thomaseizinger / Thomas](https://github.com/thomaseizinger), and [@mxinden / Max](https://github.com/mxinden) all collaborated to make it happen. The live demo showed a go-libp2p node talking to a rust-libp2p node talking to go-libp2p laptop talking to js-libp2p browsers using a variety of transports including [QUIC](https://github.com/libp2p/specs/tree/master/quic), [WebRTC Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md), [WebRTC](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md), and [WebTransport](https://github.com/libp2p/specs/tree/master/webtransport). The work on the Universal Connectivity demonstrator app turned out to be an excellent driver for [interop testing and the need for further work there](https://github.com/libp2p/test-plans).
 
 @[youtube](2h9jth3nvJw)
 [Max Inden](https://github.com/mxinden) (rust-libp2p maintainer, Software Engineer at Protocol Labs)<br>
@@ -64,7 +64,7 @@ Don't miss this presentation by Marten and Marco. They start off showing how lib
 
 @[youtube](OHrtv1jz2Jc)
 
-[Gui Michel](https://github.com/guillaumemichel) (Research Enginer at Protocol Labs)
+[Gui Michel](https://github.com/guillaumemichel) (Research Engineer at Protocol Labs)
 
 Gui presents on a proposal to clarify the the boundary between libp2p and the IPFS DHT and implementation features. This approach to doing "composable" DHTs is designed to build global DHTs for many more libp2p applications that speak protocols and support features that aren't IPFS related all without harming the existing IPFS network. This presentation is a medium level of technical detail and certainly offers some exciting possibilities.
 
@@ -72,7 +72,7 @@ Gui presents on a proposal to clarify the the boundary between libp2p and the IP
 
 [Max Inden](https://github.com/mxinden) (rust-libp2p maintainer, Software Engineer at Protocol Labs)
 
-In a reprise of Max's popular talk from FOSDEM, learn how libp2p's hole punching mechanism works and what we've learned from the [measurement campaign run last year](https://discuss.libp2p.io/t/decentralized-nat-hole-punching-measurement-campaign/1616).
+In a reprise of Max's [popular talk from FOSDEM](https://fosdem.org/2023/schedule/event/network_hole_punching_in_the_wild/), learn how libp2p's hole punching mechanism works and what we've learned from the [measurement campaign run last year](https://discuss.libp2p.io/t/decentralized-nat-hole-punching-measurement-campaign/1616).
 
 ### libp2p Workshop
 [Thomas Eizinger](https://github.com/thomaseizinger) (rust-libp2p maintainer, Software Engineer at Protocol Labs)
