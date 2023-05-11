@@ -62,7 +62,7 @@ Watch Max and Marco describe how libp2p maintainers think about and measure perf
 
 @[youtube](Ixyo1G2tJZE)
 
-Marten, with the help of Marco, presented on advancements in using [HTTP(S) over libp2p](https://github.com/libp2p/specs/pull/508). HTTP(S) is a universally supported protocol with lots of established infrastructure but it has some key limitations that libp2p solves. In this talk Marco and Marten demonstrate the use of js-libp2p and service workers to intercept normal HTTP(S) calls in the browser and re-route them over the libp2p connection to a peer that handles the HTTP(S) request and serves the content back over the libp2p connection. This approach solves the problem of making web apps able to use both normal HTTP(S) to access regular web servers and libp2p connections to access HTTP(S) servers running as libp2p peers.
+Marten, with the help of Marco, presented on advancements in using [HTTP over libp2p](https://github.com/libp2p/specs/pull/508). HTTP is a universally supported protocol with lots of established infrastructure but it has some key limitations that libp2p solves. In this talk Marco and Marten demonstrate the use of js-libp2p and service workers to intercept normal HTTP calls in the browser and re-route them over the libp2p connection to a peer that handles the HTTP request and serves the content back over the libp2p connection. This approach solves the problem of making web apps able to use both normal HTTP to access regular web servers and libp2p connections to access HTTP servers running as libp2p peers.
 
 ### How to Build Your Own Compatible libp2p Stack from Scratch in an Afternoon
 
