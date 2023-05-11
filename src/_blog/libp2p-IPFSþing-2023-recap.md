@@ -124,7 +124,7 @@ Cheers!
     </figure>
     <figure>
         <img src="../assets/ipfs-thing-2023-05.jpg"  width="500">
-        <figcaption style="font-size:x-small;">Marco and Marten</figcaption>
+        <figcaption style="font-size:x-small;">Max and Marco</figcaption>
     </figure>
 </div>
 <div class="container" style="display:flex; column-gap:10px;">
