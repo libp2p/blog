@@ -123,7 +123,7 @@ Cheers!
         <figcaption style="font-size:x-small;">Max and Marco</figcaption>
     </figure>
     <figure>
-        <img src="../assets/ipfs-thing-2023-01.jpg"  width="500">
+        <img src="../assets/ipfs-thing-2023-05.jpg"  width="500">
         <figcaption style="font-size:x-small;">Marco and Marten</figcaption>
     </figure>
 </div>
