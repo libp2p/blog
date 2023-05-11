@@ -39,6 +39,7 @@ The goals of the libp2p contributors attending IPFSþing were:
 ## Recap of Talks
 
 @[youtube](4v-iIB0C9_8)
+
 [Max Inden](https://github.com/mxinden) (rust-libp2p maintainer, Software Engineer at Protocol Labs)
 
 Max's talk about the [Universal Connectivity demonstrator app](https://github.com/libp2p/universal-connectivity) broke the record for the most people involved: [@2color / Daniel](https://github.com/2color), [@TheDiscordian](https://github.com/TheDiscordian), [@jochasinga / Pan](https://github.com/jochasinga), [@achingbrain / Alex](https://github.com/achingbrain), [@maschad / Chad](https://github.com/maschad), [@p-shahi / Prithvi](https://github.com/p-shahi), [@marcopolo / Marco](https://github.com/marcopolo), [@thomaseizinger / Thomas](https://github.com/thomaseizinger), and [@mxinden / Max](https://github.com/mxinden) all collaborated to make it happen. The work on the Universal Connectivity demonstrator app turned out to be an excellent driver for [interop testing and the need for further work there](https://github.com/libp2p/test-plans). The live demo showed a go-libp2p server talking to a rust-libp2p server talking to go-libp2p laptop talking to js-libp2p browsers using a variety of transports including [QUIC](https://github.com/libp2p/specs/tree/master/quic), [WebRTC Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md), [WebRTC](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md), and [WebTransport](https://github.com/libp2p/specs/tree/master/webtransport).
@@ -62,11 +63,13 @@ Marten, with the help of Marco, presented on advancements in using HTTP(S) over 
 Don't miss this presentation by Marten and Marco. They start off showing how libp2p is evolving and improving with the addition of the QUIC transport followed by an explanation of how simple it is to create a compatible libp2p stack out of a QUIC library, the libp2p TLS extension and some code for doing peer ID encoding and sending multistream headers. To prove how simple it is, Marco showed of his zig-libp2p implementation sending a ping to a go-libp2p node.
 
 @[youtube](OHrtv1jz2Jc)
+
 [Gui Michel](https://github.com/guillaumemichel) (Research Enginer at Protocol Labs)
 
 Gui presents on a proposal to clarify the the boundary between libp2p and the IPFS DHT and implementation features. This approach to doing "composable" DHTs is designed to build global DHTs for many more libp2p applications that speak protocols and support features that aren't IPFS related all without harming the existing IPFS network. This presentation is a medium level of technical detail and certainly offers some exciting possibilities.
 
 @[youtube](R-ToBsdlEk4)
+
 [Max Inden](https://github.com/mxinden) (rust-libp2p maintainer, Software Engineer at Protocol Labs)
 
 In a reprise of Max's popular talk from FOSDEM, learn how libp2p's hole punching mechanism works and what we've learned from the [measurement campaign run last year](https://discuss.libp2p.io/t/decentralized-nat-hole-punching-measurement-campaign/1616).
