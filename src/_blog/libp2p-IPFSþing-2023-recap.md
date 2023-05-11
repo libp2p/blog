@@ -122,6 +122,8 @@ Cheers!
         <img src="../assets/ipfs-thing-2023-01.jpg"  width="500">
         <figcaption style="font-size:x-small;">Marco and Marten</figcaption>
     </figure>
+</div>
+<div class="container" style="display:flex; column-gap:10px;">
     <figure>
         <img src="../assets/ipfs-thing-2023-04.jpg"  width="500">
         <figcaption style="font-size:x-small;">Max and Marco</figcaption>
