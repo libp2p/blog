@@ -63,7 +63,7 @@ Marco Munizaga (go-libp2p and zig-libp2p maintainer, Software Engineer at Protoc
 
 @[youtube](2h9jth3nvJw)
 
-Watch Max and Marco talk about all of the performance related aspects of libp2p and what optimizations are in the latest versions. They give a great overview of how the Protocol Labs libp2p team does automated performance testing using terraform and two AWS servers on opposite ends of the United States.
+Watch Max and Marco talk about how libp2p maintainers think about and measure performance, plus learn about some of the optimizations that are in the latest versions.  This talk captures the in-progress work by libp2p maintainers to have automated, realistic, and easily reproducible benchmarks for the implementations. 
 
 ### The Incredible Benefits of libp2p + HTTP: A Match Made in Decentralized Heaven
 
