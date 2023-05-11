@@ -3,8 +3,8 @@ tags:
 - libp2p
 title: libp2p at IPFS þing 2023 Recap
 description: Recap of libp2p presentations and workshops at IPFS þing 2023
-date: 2023-05-05
-permalink: "/2023-05-05-libp2p-IPFS%C3%BEing-recap/"
+date: 2023-05-11
+permalink: "/2023-libp2p-IPFS%C3%BEing-recap/"
 translationKey: ''
 header_image: /ipfs-thing-2023-logo.png
 author: Dave Huseby
@@ -16,7 +16,7 @@ author: Dave Huseby
 
 ## Introduction
 
-Last month, April 15th - 19th 2023, the IPFS community came together in Brussels, Belgium for [IPFS þing 2023](https://blog.ipfs.tech/2023-ipfs-thing-recap/). The libp2p users and contributors community came out to meet up once again to interface with the broader IFPS community as well as share all of the great accomplishments and new work going on in the libp2p project. It was great to reconnect with people from organizations supporting and contributing to libp2p such as [Peergos](https://peergos.org/), [Source Network](https://source.network/), 
+Last month, April 15th - 19th 2023, the IPFS community came together in Brussels, Belgium for [IPFS þing 2023](https://blog.ipfs.tech/2023-ipfs-thing-recap/). The libp2p users and contributors community came out to meet up once again to interface with the broader IFPS community as well as share all of the great accomplishments and new work going on in the libp2p project. It was great to reconnect with people from organizations supporting and contributing to libp2p such as [Peergos](https://peergos.org/) and [Source Network](https://source.network/).
 
 <div class="container" style="display:flex; column-gap:10px;">
     <figure>
@@ -30,11 +30,11 @@ Over the course of five days the the libp2p community gave 6 different talks on 
 
 ## Goals
 
-The goals of the libp2p contributors attending IPFSþing were:
+The goals of the libp2p contributors attending IPFS þing were:
 
 1. Build excitement by demonstrating the [Universal Connectivity application](https://github.com/libp2p/universal-connectivity).
 2. Give updates on the continually improving performance, dealing with non-uniform network topology, interoperability improvements, and lowering the barriers to libp2p compatibility.
-3. Reconnect with community contributors and building up the greater libp2p community.
+3. Reconnect with community contributors and build up the greater libp2p community.
 
 ## Recap of Talks
 
@@ -42,7 +42,7 @@ The goals of the libp2p contributors attending IPFSþing were:
 
 [Max Inden](https://github.com/mxinden) (rust-libp2p maintainer, Software Engineer at Protocol Labs)
 
-Max's talk about the [Universal Connectivity demonstrator app](https://github.com/libp2p/universal-connectivity) broke the record for the most people involved: [@2color / Daniel](https://github.com/2color), [@TheDiscordian](https://github.com/TheDiscordian), [@jochasinga / Pan](https://github.com/jochasinga), [@achingbrain / Alex](https://github.com/achingbrain), [@maschad / Chad](https://github.com/maschad), [@p-shahi / Prithvi](https://github.com/p-shahi), [@marcopolo / Marco](https://github.com/marcopolo), [@thomaseizinger / Thomas](https://github.com/thomaseizinger), and [@mxinden / Max](https://github.com/mxinden) all collaborated to make it happen. The work on the Universal Connectivity demonstrator app turned out to be an excellent driver for [interop testing and the need for further work there](https://github.com/libp2p/test-plans). The live demo showed a go-libp2p server talking to a rust-libp2p server talking to go-libp2p laptop talking to js-libp2p browsers using a variety of transports including [QUIC](https://github.com/libp2p/specs/tree/master/quic), [WebRTC Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md), [WebRTC](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md), and [WebTransport](https://github.com/libp2p/specs/tree/master/webtransport).
+Max's talk about the [Universal Connectivity demonstrator app](https://github.com/libp2p/universal-connectivity) broke the record for the most people involved: [@2color / Daniel](https://github.com/2color), [@TheDiscordian](https://github.com/TheDiscordian), [@jochasinga / Pan](https://github.com/jochasinga), [@achingbrain / Alex](https://github.com/achingbrain), [@maschad / Chad](https://github.com/maschad), [@p-shahi / Prithvi](https://github.com/p-shahi), [@marcopolo / Marco](https://github.com/marcopolo), [@thomaseizinger / Thomas](https://github.com/thomaseizinger), and [@mxinden / Max](https://github.com/mxinden) all collaborated to make it happen. The live demo showed a go-libp2p server talking to a rust-libp2p server talking to go-libp2p laptop talking to js-libp2p browsers using a variety of transports including [QUIC](https://github.com/libp2p/specs/tree/master/quic), [WebRTC Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md), [WebRTC](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md), and [WebTransport](https://github.com/libp2p/specs/tree/master/webtransport). The work on the Universal Connectivity demonstrator app turned out to be an excellent driver for [interop testing and the need for further work there](https://github.com/libp2p/test-plans).
 
 @[youtube](2h9jth3nvJw)
 [Max Inden](https://github.com/mxinden) (rust-libp2p maintainer, Software Engineer at Protocol Labs)<br>
@@ -54,13 +54,13 @@ Watch Max and Marco describe how libp2p maintainers think about and measure perf
 [Marten Seemann](https://github.com/marten-seemann) (go-libp2p maintainer, Software Engineer at Protocol Labs)<br>
 [Marco Munizaga](https://github.com/marcopolo) (go-libp2p and zig-libp2p maintainer, Software Engineer at Protocol Labs)
 
-Marten, with the help of Marco, presented on advancements in using HTTP(S) over libp2p. HTTP(S) is a universally supported protocol with lots of established infrastructure but it has some key limitations that libp2p solves. In this talk Marco and Marten demonstrate the use of js-libp2p and service workers to intercept normal HTTP(S) calls in the browser and re-route them over the libp2p connection to a peer that handles the HTTP(S) request and serves the content back over the libp2p connection. This approach solves the problem of making web apps able to use both normal HTTP(S) to access regular web servers and libp2p connections to access HTTP(S) servers running as libp2p peers.
+Marten, with the help of Marco, presented on advancements in using [HTTP(S) over libp2p](https://github.com/libp2p/specs/pull/508). HTTP(S) is a universally supported protocol with lots of established infrastructure but it has some key limitations that libp2p solves. In this talk Marco and Marten demonstrate the use of js-libp2p and service workers to intercept normal HTTP(S) calls in the browser and re-route them over the libp2p connection to a peer that handles the HTTP(S) request and serves the content back over the libp2p connection. This approach solves the problem of making web apps able to use both normal HTTP(S) to access regular web servers and libp2p connections to access HTTP(S) servers running as libp2p peers.
 
 @[youtube](aDHymXQJ4bs)
 [Marten Seemann](https://github.com/marten-seemann) (go-libp2p maintainer, Software Engineer at Protocol Labs)<br>
 [Marco Munizaga](https://github.com/marcopolo) (go-libp2p and zig-libp2p maintainer, Software Engineer at Protocol Labs)
 
-Don't miss this presentation by Marten and Marco. They start off showing how libp2p is evolving and improving with the addition of the QUIC transport followed by an explanation of how simple it is to create a compatible libp2p stack out of a QUIC library, the libp2p TLS extension and some code for doing peer ID encoding and sending multistream headers. To prove how simple it is, Marco showed of his zig-libp2p implementation sending a ping to a go-libp2p node.
+Don't miss this presentation by Marten and Marco. They start off showing how libp2p is evolving and improving with the addition of the QUIC transport followed by an explanation of how simple it is to create a compatible libp2p stack out of a QUIC library, the libp2p TLS extension and some code for doing peer ID encoding and sending multistream headers. To prove how simple it is, Marco showed off his zig-libp2p implementation sending a ping to a go-libp2p node.
 
 @[youtube](OHrtv1jz2Jc)
 
