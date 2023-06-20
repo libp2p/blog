@@ -22,6 +22,7 @@ To give you a taste of the `v0.52` release, this post highlights its most exciti
 - Improve ergonomics around stream-upgrade errors
 - Simpler noise interface
 - Request-response protocols using serde
+- Hole-punching for QUIC
 
 ## Automatic kademlia client/server mode
 
@@ -44,6 +45,11 @@ We can now do the following:
 
 To implement this, several other features/issues had to be fixed.
 If you are interested in the details, read on:
+
+- Simplify the scoring mechanism of external addresses: [#3954](https://github.com/libp2p/rust-libp2p/pull/3954)
+
+  As a consequence, the observed address reported by identify is no longer considered an _external_ address but just an address candidate.
+  Checkout the [changelog-entry](https://github.com/libp2p/rust-libp2p/blob/master/protocols/identify/CHANGELOG.md#0430) for a way of restoring the old behaviour.
 
 - Changes to the supported protocols are now detected at runtime and communicated to all protocols: [#3651](https://github.com/libp2p/rust-libp2p/pull/3651).
   
@@ -72,7 +78,6 @@ If you are interested in the details, read on:
 
   This was always the case in the specs but the `rust-libp2p` implementation was lagging behind here and improperly represented them as bytes internally.
 - Local changes to our protocols (i.e. a node going from Kademlia server to client mode) are now immediately pushed to the remote via the [`/ipfs/id/push/1.0.0`](https://github.com/libp2p/specs/tree/master/identify#identifypush) protocol: [#3980](https://github.com/libp2p/rust-libp2p/pull/3980).
-- Simplify the scoring mechanism of external addresses: [#3954](https://github.com/libp2p/rust-libp2p/pull/3954)
 
 Not only does this work out-of-the-box and thus improves the developer experience of `rust-libp2p`, it should also result in a much more useful and up-to-date routing table for all nodes on a Kademlia DHT.
 
@@ -231,6 +236,14 @@ The only requirement is that the types implement `serde::{Serialize,Deserialize}
 Defining a request-response protocol has never been easier in `rust-libp2p`!
 
 As with any code that serializes data structures, be aware that any changes to it can easily be breaking and thus not backwards-compatible with older versions.
+
+## Hole-punching for QUIC
+
+Despite still being in alpha, our QUIC implementation can now establish direct connections across certain NATs, i.e. hole-punching!
+This was contributed by [@arpankapoor](https://github.com/arpankapoor) in [#3964](https://github.com/libp2p/rust-libp2p/pull/3964).
+
+You don't need to configure anything special besides the `dcutr` behaviour.
+See the [dcutr-example](https://github.com/libp2p/rust-libp2p/tree/libp2p-v0.52.0/examples/dcutr) in our repository for details.
 
 ## Thanks!
 
