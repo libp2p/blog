@@ -78,7 +78,7 @@ If you are interested in the details, read on:
 - Local changes to our protocols (i.e. a node going from Kademlia server to client mode) are now immediately pushed to the remote via the [`/ipfs/id/push/1.0.0`](https://github.com/libp2p/specs/tree/master/identify#identifypush) protocol: [#3980](https://github.com/libp2p/rust-libp2p/pull/3980).
 - Simplify the scoring mechanism of external addresses: [#3954](https://github.com/libp2p/rust-libp2p/pull/3954)
 
-Not only does this work out-of-the-box and thus improves the developer experience of `rust-libp2p`, it should also result in a much more useful and up-to-date routing table for all users of the Kademlia DHT.
+Not only does this work out-of-the-box and thus improves the developer experience of `rust-libp2p`, it should also result in a much more useful and up-to-date routing table for all nodes on a Kademlia DHT.
 
 ## Type-safe `/p2p` multiaddresses
 
