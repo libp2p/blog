@@ -232,6 +232,48 @@ Defining a request-response protocol has never been easier in `rust-libp2p`!
 
 As with any code that serializes data structures, be aware that any changes to it can easily be breaking and thus not backwards-compatible with older versions.
 
+## Thanks!
+
+A big thanks to all people that contributed to this release.
+In alphabetical order:
+
+- [@AgeManning](https://github.com/AgeManning)
+- [@arpankapoor](https://github.com/arpankapoor)
+- [@b0xtch](https://github.com/b0xtch)
+- [@b-zee](https://github.com/b-zee)
+- [@creativcoder](https://github.com/creativcoder)
+- [@dariusc93](https://github.com/dariusc93)
+- [@dgarus](https://github.com/dgarus)
+- [@DougAnderson444](https://github.com/DougAnderson444)
+- [@drHuangMHT](https://github.com/drHuangMHT)
+- [@elenaf9](https://github.com/elenaf9)
+- [@felinira](https://github.com/felinira)
+- [@galargh](https://github.com/galargh)
+- [@hanabi1224](https://github.com/hanabi1224)
+- [@helloimalemur](https://github.com/helloimalemur)
+- [@jsantell](https://github.com/jsantell)
+- [@kckeiks](https://github.com/kckeiks)
+- [@leviathanbeak](https://github.com/leviathanbeak)
+- [@linoscope](https://github.com/linoscope)
+- [@melekes](https://github.com/melekes)
+- [@nathanielc](https://github.com/nathanielc)
+- [@obi1kenobi](https://github.com/obi1kenobi)
+- [@oblique](https://github.com/oblique)
+- [@ozkanonur](https://github.com/ozkanonur)
+- [@ozwaldorf](https://github.com/ozwaldorf)
+- [@PopBogdan97](https://github.com/PopBogdan97)
+- [@shamil-gadelshin](https://github.com/shamil-gadelshin)
+- [@StemCll](https://github.com/StemCll)
+- [@stonecharioteer](https://github.com/stonecharioteer)
+- [@stormshield-pj50](https://github.com/stormshield-pj50)
+- [@tcoratger](https://github.com/tcoratger)
+- [@tthebst](https://github.com/tthebst)
+- [@umgefahren](https://github.com/umgefahren)
+- [@uwejan](https://github.com/uwejan)
+- [@vnermolaev](https://github.com/vnermolaev)
+- [@wizeguyy](https://github.com/wizeguyy)
+- [@yellowred](https://github.com/yellowred)
+
 ## Closing
 
 Well done for making it to the end!
