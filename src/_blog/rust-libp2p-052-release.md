@@ -19,7 +19,7 @@ They easily trigger a cascade of breaking changes for downstream users.
 
 Coming up to the `v0.52` release, we consciously held back and batched up breaking changes and released several features as patch releases instead.
 As a result, `v0.52` is unfortunately quite large.
-This blogpost aims to highlight some of the more exciting changes:
+This blogpost highlights the most exciting changes:
 
 - Automatic kademlia client/server mode
 - Type-safe `/p2p` multiaddresses
