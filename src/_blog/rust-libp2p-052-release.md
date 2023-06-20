@@ -26,6 +26,7 @@ This blogpost highlights the most exciting changes:
 - More consistent event/command naming
 - Improve ergonomics around stream-upgrade errors
 - Simpler noise interface
+- Request-response protocols using serde
 
 ## Automatic kademlia client/server mode
 
@@ -222,6 +223,19 @@ Using the noise handshake is now as simple as:
 ```rust
 let config = libp2p::noise::Config::new(&keypair).unwrap();
 ```
+
+## Request-response protocols using serde
+
+A simple, yet impactful contribution was made by [@dgarus](https://github.com/dgarus) in [#3952](https://github.com/libp2p/rust-libp2p/pull/3952):
+
+- `libp2p::request_response::cbor::Behaviour<Req, Res>`
+- `libp2p::request_response::json::Behaviour<Req, Res>`
+
+These two, new type-aliases come with a pre-configured CBOR/JSON codec and only need to be parameterised by the `Req` and `Res` types.
+The only requirement is that the types implement `serde::{Serialize,Deserialize}`.
+Defining a request-response protocol has never been easier in `rust-libp2p`!
+
+As with any code that serializes data structures, be aware that any changes to it can easily be breaking and thus not backwards-compatible with older versions.
 
 ## Closing
 
