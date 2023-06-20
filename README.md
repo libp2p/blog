@@ -17,7 +17,7 @@ The steps are as follows:
 2. Add any images or assets in `src/assets`
 3. Add the path to your Markdown file in a new line in the file `.forestry/front_matter/templates/blog-post.yml`
 
-When writing a new post, you'll also need to fill in the header information
+When writing a new post, you'll also need to fill in the header information:
 ```
 ---
 tags:
@@ -30,6 +30,7 @@ permalink: <set as '' unless you want a specific permalink>
 translationKey: <set as ''>
 header_image: <the header image for the blog post. The file should be in src/assets and it should be added here as /filename.jpg>
 author: <Your Name>
+---
 ```
 
 Here is an example pull request that adds a new blog entry for reference: https://github.com/libp2p/blog/pull/33/files
