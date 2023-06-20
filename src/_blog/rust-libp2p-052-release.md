@@ -13,13 +13,8 @@ author: Thomas Eizinger
 
 # rust-libp2p v0.52 release spotlight
 
-With the `v0.52` release, the `rust-libp2p` maintainer team tried something new.
-Breaking changes - even in the presence of an obvious or easy upgrade path - are a burden for our users.
-They easily trigger a cascade of breaking changes for downstream users.
-
-Coming up to the `v0.52` release, we consciously held back and batched up breaking changes and released several features as patch releases instead.
-As a result, `v0.52` is unfortunately quite large.
-This blogpost highlights the most exciting changes:
+We are continuously working to make `rust-libp2p` better and easier to use.
+To give you a taste of the `v0.52` release, this post highlights its most exciting changes:
 
 - Automatic kademlia client/server mode
 - Type-safe `/p2p` multiaddresses
