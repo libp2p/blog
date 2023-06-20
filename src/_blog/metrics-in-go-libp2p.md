@@ -23,11 +23,12 @@ Today, we'd like to share some of the choices we made, our learnings, and point 
 
 We were first faced with the question of choosing a metrics collection and monitoring system. Among our choices were Prometheus, OpenCensus, and OpenTelemetry. The details of the discussion can be found [here](https://github.com/libp2p/go-libp2p/issues/1356).
 
-To summarise the discussion, we'd observed [performance problems with OpenCensus](https://github.com/libp2p/go-libp2p/issues/1955) due to large amounts of garbage generated and OpenTelemetry's metrics api is still unstable as of writing this blog. In contrast, Prometheus was performant and ubiquitious. This allowed us to add metrics without worrying too much about performance. We also ensured that tracking metrics wasn't putting too much pressure on the garbage collector by [testing allocations](https://github.com/libp2p/go-libp2p/issues/2060) for all metrics that we introduced. In addition, we knew a lot of our users would prefer using Grafana as their visualisation tool and Grafana has excellent support for visualising prometheus metrics.
+We noticed that [OpenCensus creates a lot of allocations](https://github.com/libp2p/go-libp2p/issues/1955), which would lead to increased GC pressure. OpenTelemetry's metrics API is still unstable as of writing this blog. In contrast, Prometheus is performant (zero-alloc) andubiquitous. This allows us to add metrics without worrying too much about performance, even for frequently exercised code paths. 
+We also added ready-to-use Grafana dashboards, since we knew that Grafana is the preferred visualization tool of a lot of our users.
 
-## How users can enable metrics
+## How Users can enable Metrics
 
-Metrics have been enabled by default from go-libp2p [v0.26.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.26.0). All you need to do is setup a Prometheus exporter for the collected metrics. 
+Metrics are enabled by default from go-libp2p [v0.26.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.26.0). All you need to do is setup a Prometheus exporter for the collected metrics. 
 
 ```go
 
@@ -42,9 +43,9 @@ func main() {
         ...
 }
 ```
-Now just point your prometheus instance to scrape from `:2122/metrics`
+Now just point your Prometheus instance to scrape from `:2122/metrics`
 
-By default, metrics are sent to the default prometheus Registerer. To use a different Registerer from the default prometheus registerer, use the option `libp2p.PrometheusRegisterer`. 
+By default, metrics are sent to the default Prometheus Registerer. To use a different Registerer from the default Prometheus registerer, use the option `libp2p.PrometheusRegisterer`. 
 
 ```go
 
@@ -62,12 +63,10 @@ func main() {
         ...
 }
 ```
+ 
+### Discovering which Metrics are available
 
-<!-- TODO: incorporate this PR: https://github.com/libp2p/go-libp2p/pull/2232 -->
-
-### Discovering what metrics are available
-
-go-libp2p provides metrics and grafana dashboards for all its major subsystems out of the box. You can check https://github.com/libp2p/go-libp2p/tree/master/dashboards for the grafana dashboards available. Another great way to discover available metrics is to open prometheus ui and type `libp2p_(libp2p-package-name)_` and find available metrics from autocomplete. For Ex: `libp2p_autonat_` gives you the list of all metrics exported from [AutoNAT](https://github.com/libp2p/specs/tree/master/autonat).
+go-libp2p provides metrics and Grafana dashboards for all its major subsystems out of the box. You can check https://github.com/libp2p/go-libp2p/tree/master/dashboards for the Grafana dashboards available. Another great way to discover available metrics is to open Prometheus ui and type `libp2p_(libp2p-package-name)_` and find available metrics from autocomplete. For Ex: `libp2p_autonat_` gives you the list of all metrics exported from [AutoNAT](https://github.com/libp2p/specs/tree/master/autonat).
 
 <div class="container" style="display:flex; column-gap:10px; justify-content: center; align-items: center;">
     <figure>
@@ -78,14 +77,17 @@ go-libp2p provides metrics and grafana dashboards for all its major subsystems o
     </figure>
 </div>
 
+To see the dashboards in action check the [Metrics and Dashboards](https://github.com/libp2p/go-libp2p/tree/master/examples/metrics-and-dashboards) example in the go-libp2p repo. This example sets up a dummy libp2p app configured with a Prometheus and Grafana instance. You can check all the dashboards available at [http://localhost:3000/dashboards](http://localhost:3000/dashboards).
 
-## How are metrics useful?  
+## How are Metrics useful?  
 
 I'll share two cases where having metrics were extremely helpful for us in go-libp2p. One case deals with being able to debug a memory leak and one where adding two new metrics helped us with development of a new feature. 
 
-### Debugging with metrics
+### Debugging with Metrics
 
-We were excited about adding metrics because it gave us the opportunity to observe exactly what was happening within the system. One of the first system we added metrics to was the Event Bus. When we added event bus metrics, we were immediately able to see discrepancy between two of our metrics, `EvtLocalReachabilityChanged` and `EvtLocalAddressesUpdated`. You can see the details on the [github issue](https://github.com/libp2p/go-libp2p/issues/2046)
+We were excited about adding metrics because it gave us the opportunity to observe exactly what was happening within the system. One of the first systems we added metrics to was the Event Bus. 
+The event bus is used to pass event notifications between different libp2p components.
+When we added event bus metrics, we were immediately able to see discrepancy between two of our metrics, `EvtLocalReachabilityChanged` and `EvtLocalAddressesUpdated`. You can see the details on the [GitHub issue](https://github.com/libp2p/go-libp2p/issues/2046)
 
 <div class="container" style="display:flex; column-gap:10px; justify-content: center; align-items: center;">
     <figure>
@@ -120,7 +122,7 @@ The graph for event `EvtLocalProtocolsUpdated` pointed us to another problem.
 
 A node's supported protocols shouldn't change if its reachability has not changed. Once we became aware of the issue, finding the root cause was simple enough. There was a problem with cleaning up the relay service used in relay manager. The details of the issue and the subsequent solution can be found [here](https://github.com/libp2p/go-libp2p/issues/2091)
 
-### Development using metrics
+### Development using Metrics
 
 In go-libp2p [v0.28.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.28.0) we introduced smart dialing. When connecting with a peer instead of dialing all the addresses of the peer in parallel, we now prioritise QUIC dials. This significantly reduces dial cancellations and reduces unnecessary load on the network. Check the smart dialing [PR](https://github.com/libp2p/go-libp2p/pull/2260) for more information on the algorithm used and the impact of smart dialing.
 
@@ -142,9 +144,9 @@ Dials per connection measured the benefit of introducing smart dialing mechanism
 
 ## Resources
 
-Check out our grafana dashboards: [https://github.com/libp2p/go-libp2p/tree/master/dashboards](https://github.com/libp2p/go-libp2p/tree/master/dashboards)
+Check out our Grafana dashboards: [https://github.com/libp2p/go-libp2p/tree/master/dashboards](https://github.com/libp2p/go-libp2p/tree/master/dashboards)
 
-To create custom dashboards, the [prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) and [grafana docs](https://grafana.com/docs/grafana/latest/panels-visualizations/) are great resources.
+To create custom dashboards, [Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) and [Grafana docs](https://grafana.com/docs/grafana/latest/panels-visualizations/) are great resources.
 
 
 ## Get Involved
