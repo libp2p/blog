@@ -23,7 +23,7 @@ Today, we'd like to share some of the choices we made, our learnings, and point 
 
 We were first faced with the question of choosing a metrics collection and monitoring system. Among our choices were Prometheus, OpenCensus, and OpenTelemetry. The details of the discussion can be found [here](https://github.com/libp2p/go-libp2p/issues/1356).
 
-We noticed that [OpenCensus creates a lot of allocations](https://github.com/libp2p/go-libp2p/issues/1955), which would lead to increased GC pressure. OpenTelemetry's metrics API is still unstable as of writing this blog. In contrast, Prometheus is performant (zero-alloc) andubiquitous. This allows us to add metrics without worrying too much about performance, even for frequently exercised code paths. 
+We noticed that [OpenCensus creates a lot of allocations](https://github.com/libp2p/go-libp2p/issues/1955), which would lead to increased GC pressure. OpenTelemetry's metrics API is still unstable as of writing this blog. In contrast, Prometheus is performant (zero-alloc) and ubiquitous. This allows us to add metrics without worrying too much about performance, even for frequently exercised code paths. 
 We also added ready-to-use Grafana dashboards, since we knew that Grafana is the preferred visualization tool of a lot of our users.
 
 ## How Users can enable Metrics
@@ -66,7 +66,7 @@ func main() {
  
 ### Discovering which Metrics are available
 
-go-libp2p provides metrics and Grafana dashboards for all its major subsystems out of the box. You can check https://github.com/libp2p/go-libp2p/tree/master/dashboards for the Grafana dashboards available. Another great way to discover available metrics is to open Prometheus ui and type `libp2p_(libp2p-package-name)_` and find available metrics from autocomplete. For Ex: `libp2p_autonat_` gives you the list of all metrics exported from [AutoNAT](https://github.com/libp2p/specs/tree/master/autonat).
+go-libp2p provides metrics and Grafana dashboards for all its major subsystems out of the box. You can check <https://github.com/libp2p/go-libp2p/tree/master/dashboards> for the Grafana dashboards available. Another great way to discover available metrics is to open Prometheus ui and type `libp2p_(libp2p-package-name)_` and find available metrics from autocomplete. For Ex: `libp2p_autonat_` gives you the list of all metrics exported from [AutoNAT](https://github.com/libp2p/specs/tree/master/autonat).
 
 <div class="container" style="display:flex; column-gap:10px; justify-content: center; align-items: center;">
     <figure>
@@ -77,7 +77,25 @@ go-libp2p provides metrics and Grafana dashboards for all its major subsystems o
     </figure>
 </div>
 
-To see the dashboards in action check the [Metrics and Dashboards](https://github.com/libp2p/go-libp2p/tree/master/examples/metrics-and-dashboards) example in the go-libp2p repo. This example sets up a dummy libp2p app configured with a Prometheus and Grafana instance. You can check all the dashboards available at [http://localhost:3000/dashboards](http://localhost:3000/dashboards).
+To see the dashboards in action check the [Metrics and Dashboards](https://github.com/libp2p/go-libp2p/tree/master/examples/metrics-and-dashboards) example in the go-libp2p repo. This example sets up a dummy libp2p app configured with a Prometheus and Grafana instance. You can check all the dashboards available at <http://localhost:3000/dashboards>.
+
+### Local development and debugging setup
+
+We've made it extremely easy to get started with metrics for local development. You can use the docker setup provided in <https://github.com/libp2p/go-libp2p/tree/master/dashboards> to spin up a Grafana and Prometheus instance configured with all the available dashboards.
+
+First add these lines to your code. This exposes a metrics collection endpoint at <http://localhost:5001/debug/metrics/prometheus>
+
+```
+import "github.com/prometheus/client_golang/prometheus/promhttp"
+
+go func() {
+    http.Handle("/debug/metrics/prometheus", promhttp.Handler())
+    log.Fatal(http.ListenAndServe(":5001", nil))
+}()
+```
+
+Now run `docker compose up` and access your application's metrics at <http://localhost:3000>
+
 
 ## How are Metrics useful?  
 
@@ -144,7 +162,7 @@ Dials per connection measured the benefit of introducing smart dialing mechanism
 
 ## Resources
 
-Check out our Grafana dashboards: [https://github.com/libp2p/go-libp2p/tree/master/dashboards](https://github.com/libp2p/go-libp2p/tree/master/dashboards)
+Check out our Grafana dashboards: <https://github.com/libp2p/go-libp2p/tree/master/dashboards>
 
 To create custom dashboards, [Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) and [Grafana docs](https://grafana.com/docs/grafana/latest/panels-visualizations/) are great resources.
 
