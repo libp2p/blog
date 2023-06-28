@@ -2,6 +2,7 @@
 tags:
 - metrics
 - prometheus
+- grafana
 title: Metrics in go-libp2p
 description:
 date: 2023-06-15
@@ -23,12 +24,12 @@ Today, we'd like to share some of the choices we made, our learnings, and point 
 
 We were first faced with the question of choosing a metrics collection and monitoring system. Among our choices were Prometheus, OpenCensus, and OpenTelemetry. The details of the discussion can be found [here](https://github.com/libp2p/go-libp2p/issues/1356).
 
-We noticed that [OpenCensus creates a lot of allocations](https://github.com/libp2p/go-libp2p/issues/1955), which would lead to increased GC pressure. OpenTelemetry's metrics API is still unstable as of writing this blog. In contrast, Prometheus is performant (zero-alloc) and ubiquitous. This allows us to add metrics without worrying too much about performance, even for frequently exercised code paths. 
-We also added ready-to-use Grafana dashboards, since we knew that Grafana is the preferred visualization tool of a lot of our users.
+We noticed that [OpenCensus creates a lot of allocations](https://github.com/libp2p/go-libp2p/issues/1955), which would lead to increased GC pressure. OpenTelemetry's metrics API is still unstable as of writing this blog. In contrast, Prometheus is performant (zero-alloc) and ubiquitous. This allows us to add metrics without sacrificing performance, even for frequently exercised code paths.
+We also added ready-to-use Grafana dashboards, since Grafana is the preferred visualization tool for a lot of our users.
 
 ## How Users can enable Metrics
 
-Metrics are enabled by default from go-libp2p [v0.26.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.26.0). All you need to do is setup a Prometheus exporter for the collected metrics. 
+Metrics are enabled by default since go-libp2p [v0.26.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.26.0). All you need to do is setup a Prometheus exporter for the collected metrics. 
 
 ```go
 
@@ -81,7 +82,7 @@ To see the dashboards in action check the [Metrics and Dashboards](https://githu
 
 ### Local development and debugging setup
 
-We've made it extremely easy to get started with metrics for local development. You can use the docker setup provided in <https://github.com/libp2p/go-libp2p/tree/master/dashboards> to spin up a Grafana and Prometheus instance configured with all the available dashboards.
+We've made it extremely easy to get started with metrics for local development. You can use the Docker setup provided in <https://github.com/libp2p/go-libp2p/tree/master/dashboards> to spin up a Grafana and Prometheus instance configured with all the available dashboards.
 
 First add these lines to your code. This exposes a metrics collection endpoint at <http://localhost:5001/debug/metrics/prometheus>
 
@@ -171,7 +172,7 @@ To create custom dashboards, [Prometheus](https://prometheus.io/docs/prometheus/
 
 - If you’d like to get involved and contribute to libp2p, you can reach out to us using these means: [https://libp2p.io/#community](https://libp2p.io/#community)
 - If you’re a self-starter and want to start pushing code immediately, feel free to ping the maintainers in any of these help wanted/good first issues: [go-libp2p](https://github.com/libp2p/go-libp2p/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22), [js-libp2p](https://github.com/libp2p/js-libp2p/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22), and [rust-libp2p](https://github.com/libp2p/rust-libp2p/issues?q=is%3Aopen+is%3Aissue+label%3Agetting-started).
-- If you want to work in and around libp2p full-time, there are various teams hiring including the implementation teams.  See [https://jobs.protocol.ai/jobs?q=libp2p](https://jobs.protocol.ai/jobs?q=libp2p) for opportunities across the [Protocol Labs Network](https://plnetwork.io/).
+- If you want to work building p2p systems full-time, there are various teams hiring.  See [https://jobs.protocol.ai/jobs](https://jobs.protocol.ai/jobs) for opportunities across the [Protocol Labs Network](https://plnetwork.io/).
 
 To learn more about libp2p generally, checkout:
 
