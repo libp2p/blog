@@ -8,6 +8,7 @@ description:
 date: 2023-06-15
 permalink: "/2023-06-15-metrics-in-go-libp2p/"
 author: Sukun Tarachandani
+header_image: "/metrics-in-go-libp2p-header.png"
 ---
 
 # Metrics in go-libp2p
