@@ -41,7 +41,7 @@ Adding support for 0-RTT was a fairly large endeavor. This is because the TLS an
 
 This means that crypto/tls needed to support adding data to session tickets, both the client and server sides. It turned out that the API required for this would also solve a large number of other longstanding [issues related to session tickets](https://github.com/golang/go/issues/60105).
 
-This is only one of the problems we had to solve to make 0-RTT work. Another complication arises from the fact that the server can reject 0-RTT for any reason (typically DoS protection or because it doesn’t consider the QUIC transport parameters acceptable anymore). In that case, 0-RTT packets are discarded and a regular QUIC handshake. This necessitated a new [API for deciding about 0-RTT rejection](https://github.com/golang/go/issues/60107) and for clients to be informed of it.
+This is only one of the problems we had to solve to make 0-RTT work. Another complication arises from the fact that the server can reject 0-RTT for any reason (typically DoS protection or because it doesn’t consider the QUIC transport parameters acceptable anymore). In that case, 0-RTT packets are discarded and the handshake continues as a regular (1-RTT) QUIC handshake. This necessitated a new [API for deciding about 0-RTT rejection](https://github.com/golang/go/issues/60107) and for clients to be informed of it.
 
 ## Current Status
 
