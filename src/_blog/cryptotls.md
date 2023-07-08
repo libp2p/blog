@@ -45,7 +45,7 @@ This is only one of the problems we had to solve to make 0-RTT work. Another com
 
 ## Current Status
 
-After an intense period of collaboration and development, we are thrilled to have all these changes included in the Go 1.21 release. The implementation of these proposals in the standard library was performed by Damien Neil and Filippo Valsorda. On the quic-go side, we made use of the new APIs as soon as the CLs (Google-speak for pull requests) were published. This allowed us to use quic-go's test suite to stress-test the implementation. This was really valuable, since quic-go’s test suite is quite extensive and covers a large number of corner cases. And it indeed found a small issue, which we subsequently [fixed](https://go-review.googlesource.com/c/go/+/498215).
+After an intense period of collaboration and development, we are thrilled to have all these changes included in the Go 1.21 release. The implementation of these proposals in the standard library was performed by Damien Neil and Filippo Valsorda. On the quic-go side, we made use of the new APIs as soon as the changes were published. This allowed us to use quic-go's test suite to stress-test the implementation. This was really valuable, since quic-go’s test suite is quite extensive and covers a large number of corner cases. And it indeed found a small issue, which we subsequently [fixed](https://go-review.googlesource.com/c/go/+/498215).
 
 And while we have a small workaround for one remaining [issue](https://github.com/golang/go/issues/60506), we are hopeful of a resolution in the next release.
 
