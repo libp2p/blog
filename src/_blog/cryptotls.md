@@ -4,7 +4,7 @@ tags:
 - go
 - standard library
 - crypto/tls
-title: A QUIC API for crypto/tls
+title: Adding a QUIC API for Go's standard library TLS package
 description:
 date: 2023-08-15
 permalink: "/2023-08-15-quic-crypto-tls/"
@@ -13,7 +13,7 @@ header_image: /quic-crypto-tls.png
 author: Marten Seemann
 ---
 
-# A QUIC API for crypto/tls
+# Adding a QUIC API for Go's standard library TLS package
 
 You might have heard us talk about this before: QUIC has become the most important transport in libp2p. For example, in the IPFS network, QUIC connections account for a whopping 80-90% of the connections. go-libp2p uses [quic-go](https://github.com/quic-go/quic-go), a QUIC implementation written in pure Go. quic-go not only powers QUIC support in go-libp2p, but also in [Caddy](https://caddyserver.com/), a full-featured webserver (for its HTTP/3 support), [Adguard](https://github.com/AdguardTeam/AdGuardHome) (for providing DNS over QUIC), and in the synchronization tool [syncthing](https://github.com/syncthing/syncthing/), and [many other projects](https://github.com/quic-go/quic-go#projects-using-quic-go).
 
