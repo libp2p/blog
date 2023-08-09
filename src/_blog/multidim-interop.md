@@ -72,7 +72,7 @@ This system supports testing browsers by having the node use [Playwright](https:
 
 Right now, the system tests 6 different libp2p implementations and runs about 1700 tests. The tests are also run on each PR in {Go, Rust, JS, Nim, and Zig}-libp2p. Are you working on a libp2p implementation and want to make sure you’re compatible? Checkout the [README.md](https://github.com/libp2p/test-plans/blob/master/multidim-interop/README.md) for the specifics on how to implement this test.
 
-![Screenshot 2023-06-30 at 11.51.37 AM.png](Multidimensional%20Interoperability%206d2cc542309e413a930b4ec233b8cc5e/Screenshot_2023-06-30_at_11.51.37_AM.png)
+![Multidim Interop coverage matrix](../assets/multidim-interop-coverage.png)
 
 See the latest full run at: [https://github.com/libp2p/test-plans/actions/workflows/multidim-interop.yml?query=branch%3Amaster](https://github.com/libp2p/test-plans/actions/workflows/multidim-interop.yml?query=branch%3Amaster). The run is defined by this [GitHub action](https://github.com/libp2p/test-plans/blob/master/.github/actions/run-interop-ping-test/action.yml).
 
