@@ -5,8 +5,8 @@ tags:
 - grafana
 title: Metrics in go-libp2p
 description:
-date: 2023-06-29
-permalink: "/2023-06-29-metrics-in-go-libp2p/"
+date: 2023-08-15
+permalink: "/2023-18-15-metrics-in-go-libp2p/"
 author: Sukun Tarachandani
 header_image: "/metrics-in-go-libp2p-header.png"
 ---
@@ -79,7 +79,8 @@ go-libp2p provides metrics and Grafana dashboards for all its major subsystems o
     </figure>
 </div>
 
-To see the dashboards in action check the [Metrics and Dashboards](https://github.com/libp2p/go-libp2p/tree/master/examples/metrics-and-dashboards) example in the go-libp2p repo. This example sets up a dummy libp2p app configured with a Prometheus and Grafana instance. You can check all the dashboards available at <http://localhost:3000/dashboards>.
+To see the dashboards in action, check the [Public Dashboards](https://github.com/libp2p/go-libp2p/tree/master/dashboards/README.md#public-dashboards). For an example of setting up an app with metrics collection and dashboards, check the [Metrics and Dashboards](https://github.com/libp2p/go-libp2p/tree/master/examples/metrics-and-dashboards) example in the go-libp2p repo.
+
 
 ### Local development and debugging setup
 
