@@ -6,7 +6,7 @@ tags:
 title: Metrics in go-libp2p
 description:
 date: 2023-08-15
-permalink: "/2023-18-15-metrics-in-go-libp2p/"
+permalink: "/2023-08-15-metrics-in-go-libp2p/"
 author: Sukun Tarachandani
 header_image: "/metrics-in-go-libp2p-header.png"
 ---
@@ -15,11 +15,13 @@ header_image: "/metrics-in-go-libp2p-header.png"
 
 ## Introduction
 
-libp2p is the core networking component for many projects such as IPFS, Filecoin, the Ethereum Beacon Chain, and more.
+go-libp2p is the core networking component for many projects such as IPFS, Filecoin, the Ethereum Beacon Chain, and more.
 We as maintainers of go-libp2p, want to be able to observe the state of libp2p components and also enable our users to do the same in their production systems.
 To that effect, we've been added instrumentation to collect metrics from various components over the last few months.
 In fact, they've already helped us debug some nuanced go-libp2p issues and helped with the development of features (discussed in detail below).
 Today, we'd like to share some of the choices we made, our learnings, and point you to resources that will help you monitor your deployments of go-libp2p.
+
+Check out the [links here](https://github.com/libp2p/go-libp2p/tree/master/dashboards/README.md#public-dashboards) to see the public dashboards of different libp2p components.
 
 ## Why Prometheus?
 
