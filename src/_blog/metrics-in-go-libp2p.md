@@ -15,20 +15,20 @@ header_image: "/metrics-in-go-libp2p-header.png"
 
 ## Introduction
 
-go-libp2p is the core networking component for many projects such as IPFS, Filecoin, the Ethereum Beacon Chain, and more.
-We as maintainers of go-libp2p, want to be able to observe the state of libp2p components and also enable our users to do the same in their production systems.
-To that effect, we've been added instrumentation to collect metrics from various components over the last few months.
+go-libp2p is the core networking component for many go-based implementations of projects such as Kubo (IPFS), Lotus (Filecoin), Prysm (the Ethereum Beacon Chain), and more.
+We as maintainers of go-libp2p want to be able to observe the state of libp2p components and enable our users to do the same in their production systems.
+To that effect, we've added instrumentation to collect metrics from various components over the last few months.
 In fact, they've already helped us debug some nuanced go-libp2p issues and helped with the development of features (discussed in detail below).
 Today, we'd like to share some of the choices we made, our learnings, and point you to resources that will help you monitor your deployments of go-libp2p.
 
-Check out the [links here](https://github.com/libp2p/go-libp2p/tree/master/dashboards/README.md#public-dashboards) to see the public dashboards of different libp2p components.
+Check out the [public dashboards](https://github.com/libp2p/go-libp2p/tree/master/dashboards/README.md#public-dashboards) to see the metrics different libp2p components in production.
 
 ## Why Prometheus?
 
 We were first faced with the question of choosing a metrics collection and monitoring system. Among our choices were Prometheus, OpenCensus, and OpenTelemetry. The details of the discussion can be found [here](https://github.com/libp2p/go-libp2p/issues/1356).
 
 We noticed that [OpenCensus creates a lot of allocations](https://github.com/libp2p/go-libp2p/issues/1955), which would lead to increased GC pressure. OpenTelemetry's metrics API is still unstable as of writing this blog. In contrast, Prometheus is performant (zero-alloc) and ubiquitous. This allows us to add metrics without sacrificing performance, even for frequently exercised code paths.
-We also added ready-to-use Grafana dashboards, since Grafana is the preferred visualization tool for a lot of our users.
+We also added ready-to-use Grafana dashboards, since Grafana is the preferred visualization tool for many of our users.
 
 ## How Users can enable Metrics
 
@@ -90,7 +90,7 @@ We've made it extremely easy to get started with metrics for local development. 
 
 First add these lines to your code. This exposes a metrics collection endpoint at <http://localhost:5001/debug/metrics/prometheus>
 
-```
+```go
 import "github.com/prometheus/client_golang/prometheus/promhttp"
 
 go func() {
@@ -104,13 +104,13 @@ Now run `docker compose up` and access your application's metrics at <http://loc
 
 ## How are Metrics useful?  
 
-I'll share two cases where having metrics were extremely helpful for us in go-libp2p. One case deals with being able to debug a memory leak and one where adding two new metrics helped us with development of a new feature. 
+I'll share two cases where having metrics was extremely helpful for us in go-libp2p. One case deals with being able to debug a memory leak, and one where adding two new metrics helped us with the development of a new feature. 
 
 ### Debugging with Metrics
 
 We were excited about adding metrics because it gave us the opportunity to observe exactly what was happening within the system. One of the first systems we added metrics to was the Event Bus. 
 The event bus is used to pass event notifications between different libp2p components.
-When we added event bus metrics, we were immediately able to see discrepancy between two of our metrics, `EvtLocalReachabilityChanged` and `EvtLocalAddressesUpdated`. You can see the details on the [GitHub issue](https://github.com/libp2p/go-libp2p/issues/2046)
+When we added event bus metrics, we were immediately able to see a discrepancy between two of our metrics, `EvtLocalReachabilityChanged` and `EvtLocalAddressesUpdated`. You can see the details on the [GitHub issue](https://github.com/libp2p/go-libp2p/issues/2046)
 
 <div class="container" style="display:flex; column-gap:10px; justify-content: center; align-items: center;">
     <figure>
@@ -130,7 +130,7 @@ When we added event bus metrics, we were immediately able to see discrepancy bet
     </figure>
 </div>
 
-Ideally when a node's reachability changes, its addresses should also change as it tries to obtain a [relay reservation](https://github.com/libp2p/specs/blob/master/relay/circuit-v2.md). This pointed us to an issue with [AutoNAT](https://github.com/libp2p/specs/tree/master/autonat). Upon debugging we realised that the we were emitting reachability changed events when the reachability had not changed and only the address to which the autonat dial succeeded had changed. 
+Ideally when a node's reachability changes, its addresses should also change as it tries to obtain a [relay reservation](https://github.com/libp2p/specs/blob/master/relay/circuit-v2.md). This pointed us to an issue with [AutoNAT](https://github.com/libp2p/specs/tree/master/autonat). Upon debugging we realised that we were emitting reachability changed events when the reachability had not changed and only the address to which the autonat dial succeeded had changed. 
 
 The graph for event `EvtLocalProtocolsUpdated` pointed us to another problem. 
 
@@ -147,9 +147,9 @@ A node's supported protocols shouldn't change if its reachability has not change
 
 ### Development using Metrics
 
-In go-libp2p [v0.28.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.28.0) we introduced smart dialing. When connecting with a peer instead of dialing all the addresses of the peer in parallel, we now prioritise QUIC dials. This significantly reduces dial cancellations and reduces unnecessary load on the network. Check the smart dialing [PR](https://github.com/libp2p/go-libp2p/pull/2260) for more information on the algorithm used and the impact of smart dialing.
+In go-libp2p [v0.28.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.28.0) we introduced smart dialing. When connecting with a peer, instead of dialing all the addresses of the peer in parallel, we now prioritise QUIC dials. This significantly reduces dial cancellations and reduces unnecessary load on the network. Check the smart dialing [PR](https://github.com/libp2p/go-libp2p/pull/2260) for more information on the algorithm used and the impact of smart dialing.
 
-Not dialing all addresses in parallel increases latency for establishing a connection if the first dial doesn't succeed. We wanted to ensure that most of the connections succeeded with no additional latency. To help us better gauge the impact we added two metrics
+Not dialing all addresses in parallel increases latency for establishing a connection if the first dial doesn't succeed. We wanted to ensure that most of the connections succeeded with no additional latency. To help us better gauge the impact, we added two metrics
 1. Dial ranking delay. This metric tracks the latency in connection establishment introduced by the dial prioritisation logic. 
 2. Dials per connection. This metric counts the number of addresses dialed before a connection was established with the peer. 
 
