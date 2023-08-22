@@ -50,9 +50,3 @@ After an intense period of collaboration and development, we are thrilled to hav
 And while we have a small workaround for one remaining [issue](https://github.com/golang/go/issues/60506), we are hopeful of a resolution in the next release.
 
 The newly introduced changes have been released in quic-go v0.37 (TODO: link), and in go-libp2p (TODO: insert version). We anticipate that these changes will work seamlessly once users update their dependencies and compiler version, but please let us know if you run into any problems!
-
-## A few words on the Go team’s QUIC efforts
-
-It looks like the Go team has started working on [their own QUIC implementation](https://github.com/golang/go/issues/58547). As we know from the 8-year journey implementing quic-go, writing a performant QUIC stack is a massive undertaking. And we’re not done yet, we’re still investing significant resources into optimizing it. 
-
-We have [offered](https://github.com/golang/go/issues/58547#issuecomment-1463211376) to use quic-go as a basis for the standard library implementation, and even made a [concrete proposal](https://github.com/golang/go/issues/58547#issuecomment-1569583646) how it could be used to add HTTP/3 support to the net/http package. Unfortunately, the Go team has never reached out to us, or taken up our proposal to jump on a call to evaluate the feasibility of this approach.
