@@ -49,4 +49,4 @@ After an intense period of collaboration and development, we are thrilled to hav
 
 And while we have a small workaround for one remaining [issue](https://github.com/golang/go/issues/60506), we are hopeful of a resolution in the next release.
 
-The newly introduced changes have been released in quic-go v0.37 (TODO: link), and in go-libp2p (TODO: insert version). We anticipate that these changes will work seamlessly once users update their dependencies and compiler version, but please let us know if you run into any problems!
+The newly introduced changes have been released in [quic-go v0.37](https://github.com/quic-go/quic-go/releases/tag/v0.37.0), and in [go-libp2p v0.30](https://github.com/libp2p/go-libp2p/releases/tag/v0.30.0). We anticipate that these changes will work seamlessly once users update their dependencies and compiler version, but please let us know if you run into any problems!
