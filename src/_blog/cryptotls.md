@@ -27,15 +27,15 @@ This meant:
 
 1. A lot of extra effort for us every time a new Go version was released. Applying the changes to the fork could get quite complicated, if there were lots of changes in crypto/tls.
 2. Every time there was a security-related fix in crypto/tls, users had to update to a new (patch) release of quic-go as well.
-3. Since the layout of the configuraiton structs in crypto/tls could change in future Go versions, quic-go had to restrict the Go versions that could be used to build quic-go. This lack of forwards-compatibility prompted regular complaints from users.
+3. Since the layout of the configuration structs in crypto/tls could change in future Go versions, quic-go had to restrict the Go versions that could be used to build quic-go. This lack of forwards-compatibility prompted regular complaints from users.
 
 ## Solving the Problem once and for all
 
-To tackle this situation, we joined forces with Filippo Valsorda, a former member of Google’s Go team. Although he has left the company he is still maintaining crypto/tls and other crypto packages in the standard library. Filippo—now a full-time maintainer—is sponsored by Protocol Labs for his remarkable [open-source work](https://words.filippo.io/full-time-maintainer/).
+To tackle this situation, we joined forces with Filippo Valsorda, a former member of Google’s Go team. Although he has left the company, he is still maintaining crypto/tls and other crypto packages in the standard library. Filippo—now a full-time open-source maintainer—is sponsored by Protocol Labs for his [remarkable work](https://words.filippo.io/full-time-maintainer/).
 
 Our first joint endeavor established an API for crypto/tls that enables QUIC implementations to use crypto/tls; detailed in this [GitHub issue](https://github.com/golang/go/issues/44886). This new API was designed to only support the normal (1-RTT) QUIC handshake, not the 0-RTT handshake; more on that below.
 
-After long discussions—both over Zoom and on the GitHub issue—we arrived at a much cleaner proposal than our homegrown qtls API.
+After long discussions—both over calls and on the GitHub issue—we arrived at a much cleaner proposal than our homegrown qtls API.
 
 0-RTT allows clients to resume connections to servers they have previously connected to and send application data in an encrypted first packet. Adding support for 0-RTT was a fairly large endeavor. This is because the TLS and the QUIC stacks must coordinate quite a lot to enable this feature. For example, both the client and the server need to remember certain configuration parameters—called QUIC transport parameters—from the original QUIC connection. Among others, these transport parameters include values like flow control windows (i.e. how many bytes a client is allowed to send on a newly established stream) and how many streams the client is allowed to open. This information is needed for the client to stay within these limits when resuming a connection. The server typically encrypts these values and stores them in the session ticket. When the client restores the session, it sends the session ticket to the server—as part of the TLS ClientHello message—allowing the server to restore the transport parameters without having to persist them after a connection closes!. The client also needs to store some of its parameters alongside the ticket, so it can restore them when resuming the session.
 
