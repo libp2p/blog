@@ -23,8 +23,9 @@ tested), I love state-of-the-art code. Btw, I should not forget to mention that 
 
 ## Peer To Peer Networking
 
-So, it started more or less two years ago when a good friend of my was talking about cryptocurrency, specifically Ethereum. I had (and still have) my Kubernetes "cluster" running (just one single node) and I thought: "Well, why not deploy
-Ethereum nodes in my cluster?". Nothing fancy, because it was not connected to main-net, but it was working. Nice! And that made me curious, because I knew cryptocurrency, or at least the technology behind it, is decentralized. How do these
+So, it started more or less two years ago when a good friend of mine was talking about cryptocurrency, specifically Ethereum. I had (and still have) a Kubernetes "cluster" running at home (just one single node) and I thought: "Well, why not
+deploy Ethereum nodes in my cluster?". Nothing fancy, because it was not connected to main-net, but it was working. Nice! And that made me curious, because I knew cryptocurrency, or at least the technology behind it, is decentralized. How
+do these
 nodes communicate with each other? Because it must be entirely different from client-server communication. How do these nodes find each other? How can a node directly connect to another node (NAT, Firewall)? If 'A' sends something to 'B',
 perhaps it passes first 'C', 'D' and 'E'. How does it find the optimal route between 'A' and 'B'? And if a node in the mesh network disconnects, or a new node connects, how does the mesh deal with this dynamic behaviour? And that made me
 very interested into peer-to-peer networking.
@@ -46,7 +47,7 @@ The main reason for me to start this project is educational, and for research pu
 noise? And multiformats? And datastore? Etc... Each time my hands were itching to implement the next part, and the next. And from one thing comes the other. I consider software as an art. Just like Van Gogh loves to paint, I love to create
 software. I love to see Kademlia working, I love to see Quic working, etc. etc.
 
-And, the other part is, its open source. I mean, others can use parts of the software that is beneficial for them. Maybe not the whole project, but some ideas, algorithms, etc.
+And, the other part is, its open source. Meaning, others can use parts of the software that is beneficial for them. Maybe not the whole project, but some ideas, algorithms, etc.
 
 ## Challenges
 
@@ -54,22 +55,30 @@ When I think of challenges, three areas pops up: threading, Mplex and Swarm.
 
 I didn't like the threading part in Java, it was not performing well. And, threads don't scale well. So, I was looking for a "light-threads" library and was considering "Project Loom" at the time. However, Project Loom is still in its
 infancy stage, and didn't continue with it. Via a colleague I heard about Kotlin and I immediately became enthusiastic, I think it's a very nice language and coroutines are awesome. For people that don’t know: Kotlin is a language developed
-by JetBrains and is the preferred language for Android development (but I personally use it for backend work). The Kotlin compiler compiles Kotlin into JVM bytecode (the same bytecode as Java) so Kotlin can run on any compliant JVM and is
-fully interoperable with Java. Although coroutines are great, I had to be aware of several things. For example: Suspendable methods can not be called from non-suspendable methods (I think Go does not have this limitation). This is okay,
+by JetBrains and is the preferred language for Android development. The Kotlin compiler compiles Kotlin into JVM bytecode (the same bytecode as Java) so Kotlin can run on any compliant JVM and is fully interoperable with Java. Although
+coroutines are great, I had to be aware of several things. For example: Suspendable methods can not be called from non-suspendable methods (I think Go does not have this limitation). This is okay,
 however, you have to take this into account when designing/developing the software. And, dead-locks can occur when using thread locking mechanisms such as ReentrantLock. Because when a function acquires a lock and is suspended while holding
 the lock, when the function is resumed again, it can run on a different thread.
 
-Although the Mplex protocol is rather trivial, I had some nasty issues while closing streams and connections in the right order. Streams send a 'ClosedFrame' to its peer to indicate the stream is half closed. But, since several streams
-share the same Connection, they also share the same output channel which is managed by the Connection. When I close the stream and also the connection. Due to ordering, the connection close can happen before the stream close. In such a
+Although the Mplex protocol is rather trivial, I had some nasty issues while closing streams and closing connections in the right order. Streams send a 'ClosedFrame' to its peer to indicate the stream is half closed. But, since several
+streams
+share the same Connection, they also share the same output channel which is managed by the Connection. When I close the stream and also the connection, and due to ordering, the connection close can happen before the stream close. In such a
 case, the '
 CloseFrame' can not be sent on a closed channel. So, the connection close has to wait until all streams are closed (which is not trivial since a lot of things happen lazily).
 
-The Swarm opens connections to peers and synchronizing this is a bit tricky. Imagine multiple clients want to open a connection to the same peer. In this case, only one dial should be made to the peer and the connection must be shared
+Lastly, the Swarm is responsible for opening connections to peers. And synchronizing this is a bit tricky. Imagine multiple clients want to open a connection to the same peer. In this case, only one dial should be made to the peer and the
+connection must be shared
 between those clients (clients have distinct streams running atop of this shared connection). Also, a peer can have multiple addresses and I didn't want to have multiple connections to the same peer using different addresses. So, the
 addresses are prioritized. First the first address is dialed. If this fails, the second address is dialed. And so on. The last challenge with swarming that I solved was the retrying mechanism. If a peer is offline, I want retry the dial by
-first waiting (this increases between dial attempts) and then do the redial. I synchronized everything by using a priority-queue with timestamps. A feature that I didn't implement yet is dial limiting, e.g. a maximum of N dials can occur
-simultaneously.
+first waiting (this increases between dial attempts) and then do the redial. And then multiple times. I synchronized everything by using a priority-queue with timestamps. A feature that I didn't implement yet is dial limiting, e.g. a
+maximum of N dials can occur simultaneously.
 
-## 
+## Satisfactions
+
+The things the I loved to implement were several: Swarm, Datastore, Eventbus, and more. But the nicest satisfaction I had was the way how to handle ktor streams. I use Ktor as a low-level network library (opening sockets, sending/receiving
+packets, etc). Ktor is very generic and there are several ways to do the same thing, using packets(builders), using lambdas, but they all had their limitations/issues. In the end I settled with byte-channels and up till now they fulfil all
+my needs. Actually, it is pretty straightforward: using a coroutine that reads N bytes from a byte-channel, do some processing (multiplexing/decrypting/encrypting/etc) and put it on another byte-channel which is shared by the next 'hub',
 
 ## What's Next?
+
+The next part is probably finishing the Identify protocol implementation (because I already started that) and then I start implementing Quic. After Quic I would like to implement Kademlia. Note that I currently do this in my spare time, so I have limited time available.
