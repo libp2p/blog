@@ -4,7 +4,7 @@ tags:
   - kotlin
 title: Introducing Kotlin-libp2p
 description:
-date: 2023-08-29
+date: 2023-09-01
 permalink: ""
 translationKey: ''
 header_image: /kotlin-2023.png
@@ -75,10 +75,13 @@ maximum of N dials can occur simultaneously.
 
 ## Satisfactions
 
-The things the I loved to implement were several: Swarm, Datastore, Eventbus, and more. But the nicest satisfaction I had was the way how to handle ktor streams. I use Ktor as a low-level network library (opening sockets, sending/receiving
-packets, etc). Ktor is very generic and there are several ways to do the same thing, using packets(builders), using lambdas, but they all had their limitations/issues. In the end I settled with byte-channels and up till now they fulfil all
-my needs. Actually, it is pretty straightforward: using a coroutine that reads N bytes from a byte-channel, do some processing (multiplexing/decrypting/encrypting/etc) and put it on another byte-channel which is shared by the next 'hub',
+The things that I loved to implement were several: Swarm, Datastore, Eventbus, and more. But the nicest satisfaction I had was the way how to handle ktor streams. I use Ktor as a low-level network library (opening sockets, sending/receiving
+packets, etc.). Ktor is very generic and there are several ways to do the same thing, using packets(builders), using lambdas, but they all had their limitations/issues. In the end I settled with byte-channels and up till now they fulfil all
+my needs. Actually, it is pretty straightforward: using a coroutine that reads N bytes from a byte-channel, do some processing (multiplexing/decrypting/encrypting/etc.) and put it on another byte-channel which is shared by the next 'hub' of
+the processing pipeline. And Kotlin knows the concept of structured concurrency, such that a parent coroutine always waits for completion of its child coroutines (in a tree like structure). And, when a parent is cancelled, all its children
+are cancelled as well.
 
 ## What's Next?
 
-The next part is probably finishing the Identify protocol implementation (because I already started that) and then I start implementing Quic. After Quic I would like to implement Kademlia. Note that I currently do this in my spare time, so I have limited time available.
+The next part is probably finishing the Identify protocol implementation (because I already started that) and then I start implementing Quic. After Quic I would like to implement Kademlia. Note that I currently do this in my spare time, so
+I have limited time available.
