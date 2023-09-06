@@ -15,7 +15,7 @@ author: Marten Seemann
 
 # Adding a QUIC API for Go's standard library TLS package
 
-You might have [heard us talk about this before](https://www.youtube.com/watch?v=aDHymXQJ4bs): QUIC has become the most important transport in libp2p. For example, in the IPFS network, QUIC connections account for 80-90% of all connections. [quic-go](https://github.com/quic-go/quic-go) is a QUIC implementation written in pure Go that is not only used in go-libp2p, but also in [Caddy](https://caddyserver.com/), a full-featured webserver (for its HTTP/3 support), [Adguard](https://github.com/AdguardTeam/AdGuardHome), for providing DNS over QUIC, and in the synchronization tool [syncthing](https://github.com/syncthing/syncthing/), and [many other projects](https://github.com/quic-go/quic-go#projects-using-quic-go).
+You might have [heard us talk about this before](https://www.youtube.com/watch?v=aDHymXQJ4bs): QUIC has become the most important transport in libp2p. For example, QUIC accounts for 80-90% of the connections made to PL-run bootstrappers participating in the public IPFS DHT (see our [public go-libp2p dashboard](https://protocollabs.grafana.net/public-dashboards/2bd3f1bee9964d40b6786fbe3eafd9fc?orgId=1)). [quic-go](https://github.com/quic-go/quic-go) is a QUIC implementation written in pure Go that is not only used in go-libp2p, but also in [Caddy](https://caddyserver.com/), a full-featured webserver (for its HTTP/3 support), [Adguard](https://github.com/AdguardTeam/AdGuardHome), for providing DNS over QUIC, and in the synchronization tool [syncthing](https://github.com/syncthing/syncthing/), and [many other projects](https://github.com/quic-go/quic-go#projects-using-quic-go).
 
 ## QUIC and TLS 1.3
 
