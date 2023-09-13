@@ -6,10 +6,10 @@ tags:
 - crypto/tls
 title: Adding a QUIC API for Go's standard library TLS package
 description:
-date: 2023-08-15
-permalink: "/2023-08-15-quic-crypto-tls/"
+date: 2023-09-13
+permalink: "/2023-09-13-quic-crypto-tls/"
 translationKey: ''
-header_image: /quic-crypto-tls.png
+header_image: /crypto_tls_header.png
 author: Marten Seemann
 ---
 
