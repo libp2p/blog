@@ -56,7 +56,7 @@ The HTTP transport is a normal HTTPS server/client. There’s is nothing libp2p 
 
 ## HTTP Semantics
 
-HTTP semantics differ from the HTTP transport in that they are the abstract form of HTTP. They don’t specify ***how*** an HTTP message will be encoded and sent to a remote node, they only specify ****what**** an HTTP message is and its interpretation. These semantics are defined by [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). This difference means we can adopt HTTP semantics without limiting ourselves to ****only**** an HTTP transport. We can use WebTransport, WebRTC, or a hole-punched QUIC connection to make an HTTP request. This allows developers to create applications using familiar HTTP tools in a p2p setting. On a technical level, this is implemented by opening a new stream for every HTTP request and encoding the HTTP message as HTTP/1.1.
+HTTP semantics differ from the HTTP transport in that they are the abstract form of HTTP. They don’t specify **how** an HTTP message will be encoded and sent to a remote node, they only specify **what** an HTTP message is and its interpretation. These semantics are defined by [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html). This difference means we can adopt HTTP semantics without limiting ourselves to **only** an HTTP transport. We can use WebTransport, WebRTC, or a hole-punched QUIC connection to make an HTTP request. This allows developers to create applications using familiar HTTP tools in a p2p setting. On a technical level, this is implemented by opening a new stream for every HTTP request and encoding the HTTP message as HTTP/1.1.
 
 ## .well-known/libp2p
 
