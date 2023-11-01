@@ -13,34 +13,42 @@ header_image: /rust-libp2p.jpeg
 author: DougAnderson444
 ---
 
-# Rust libp2p in the Browser with WebRTC!
+# Rust-libp2p WebRTC now available in the Browser
 
-## What is rust-libp2p?
+WebRTC is now available (in alpha) for use as a browser Transport for rust-libp2p! Before now, WebRTC was only available on the server-side in rust-libp2p, but after months of coding and reviews, it is available on both the server and in the browser.
 
-Rust-libp2p is a set of libraries that allow you to connect to the libp2p network. Libp2p is a modular peer-to-peer networking stack that is used by many projects in the IPFS ecosystem. It is also used by many other projects outside of IPFS, such as Ethereum, Polkadot, and many others.
+## Why WebRTC?
 
-## What is WebRTC?
+### Data Channels
 
-WebRTC is a peer-to-peer protocol that allows browsers to connect to each other. It is used by many projects, such as Zoom, Google Meet, and many others. It is a protocol that is built into the browser, and allows for peer-to-peer connections without the need for a server.
+WebRTC is a peer-to-peer protocol that allows browsers and servers to connect to each other. It's main focus is to connect media (audio and video), however there is also a [data channel](https://webrtc.org/getting-started/data-channels) available which is what libp2p uses. By tapping into the data channel API, we have been able to build libp2p Transports over WebRTC.
 
-## Benefits of WebRTC over websockets and webtransport
+### Server vs Browser WebRTC
 
-WebRTC is a peer-to-peer protocol that anables browsers and servers to connect with each other. It is a protocol that is built into the browser, and allows for peer-to-peer connections without the need for a server. The benefit os using WebRTC on the server side is that the server does not need certificates provided by a domain name -- you can run a home server without a dotcom!
+Using WebRTC on the server involves using a Rust library, but in the browser it is available to Rust libraries through browser bindings from a crate called [`web-sys`](https://docs.rs/web-sys/latest/web_sys/). By tying the libp2p code to these WebRTC bindings, we have been able to connect in the browser over WebRTC in pure Rust!
 
-With WebRTC in the browser, this enables developers to build full stack applications in rust without the need for a domain name or external server.
+### Benefits of WebRTC over websockets and webtransport
 
-## WebRTC options we had available in libp2p
+The benefit of using WebRTC on the server is that the server does not need certificates provided by TLS and a domain name -- you can run a home server over WebRTC without a dotcom! In rust-libp2p we can use self-signed certificates to enable the connections. Websocket would require TLS certificates. Webtransport can connect with self-signed certificates, however this transport cannot connect browser-to-browser like WebRTC can.
 
-There were a few options available to us when we wanted to implement WebRTC in rust-libp2p. The first option was to use the [js-libp2p](https://github.com/libp2p/js-libp2p). The second was the `wasm-ext` protocol, which is now deprecated. And the third option (the option we implemented) was to use the bidnings to the browser provided by [web-sys](https://docs.rs/web-sys/latest/web_sys/).
+With WebRTC rust-libp2p now available in the browser, we can enable developers to build full stack applications in rust without the need for a domain name or external server.
 
-## Why full stack rust-libp2p WebRTC is so beneficial
+### Benefits over using js-libp2p-webrtc
 
-When I used js-libp2p, troubleshooting was difficult to do since there were two stacks, two languages, two styles of implementation. With rust-libp2p, we can now build full stack applications in rust, and use the same language and style of implementation on both the client and the server. This makes both developing applications easier as we can re-use code in both the browser and on the server, and as it makes troubleshooting much easier since the stack is in a single language with a single protocol. Even though js-libp2p and rust-libp2p implement the same libp2p spec, it's much more difficult to switch between languages when troubleshooting bugs and data flow.
+Before now, the only way the browser could connect to a rust-libp2p server over WebRTC was to use [js-libp2p](https://github.com/libp2p/js-libp2p).
+
+However, full stack rust-libp2p WebRTC is so beneficial. First, troubleshooting was much more difficult to do in two stacks, two languages, two styles of implementation. Even though js-libp2p and rust-libp2p implement the same libp2p spec, it's much more difficult to switch between languages when troubleshooting bugs and data flow. With full-stack rust-libp2p, we can now build applications that run in the browser and on the server in rust, using the same language and style of implementation on both the client and the server. This makes both developing applications fatser and easier as we can re-use code in both the browser and on the server. In fact, we were able to move a lot of code out of the server crate into a [common WebRTC utilities crate within the rust-libp2p repo](https://github.com/libp2p/rust-libp2p/tree/master/misc/webrtc-utils), This will apply to libp2p applications as well!
 
 ## How does libp2p use WebRTC?
 
 The bindings to web_sys are implemented as a Transport. This means that you can connect to the network in the browser as you would on the server. There is a full stack example [in the repo](https://github.com/libp2p/rust-libp2p/tree/master/examples/browser-webrtc).
 
+## Tutorial
+
+Code walk through?
+
 ## What's next?
 
-There is still work to be done to connect browser-to-browser in rust using web_sys. The spec is complete, and we are always looking for more help from other community members as well. Rust-libp2p using web_sys WebRTC means you can tap into the rich crate.io ecosystem of rust to build really cool connected apps.
+There is still work to be done to connect browser-to-browser in rust using `web-sys`. The [spec](https://github.com/libp2p/specs/tree/master/webrtc) is complete, and just needs to be implemented! We are always looking for more help from other community members to make this happen.
+
+Having `rust-libp2p` available in the browser means we can tap into the rich [crates.io](crates.io) ecosystem of rust to build really cool connected apps. Apps built with front-end frameworks like [Leptos](https://www.leptos.dev/), [Yew](https://yew.rs/), and [dioxus](https://dioxuslabs.com/) can now plug into libp2p within Rust.
