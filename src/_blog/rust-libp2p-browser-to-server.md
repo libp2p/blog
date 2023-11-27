@@ -38,7 +38,7 @@ The second major benefit of WebRTC is it enables (eventual\*) direct browser-to-
 
 > \*Note: This is a common point of confusion for WebRTC when connecting two browsers together. Although the browser can _eventually_ connect directly, to set up this direct connection we need a signalling server. In the case of libp2p, we can use a libp2p server to conduct this signalling by using circuit relay. But we always need the WebRTC server first. This server can be any libp2p node that is not running in the browser, it could be a home computer for example.
 
-With WebRTC rust-libp2p now available in the browser, we can enable developers to build full stack applications in rust without the need for a domain name or external server.
+With WebRTC rust-libp2p now available in the browser, we can enable developers to build full stack applications in rust without the need for certificate authorities or external server.
 
 ### Benefits of Full Stack rust-webrtc
 
