@@ -8,7 +8,7 @@ tags:
   - webassembly
   - wasm
 title: Rust-libp2p in the Browser with WebRTC!
-description: News about how rust-libp2p now connects with the network via WebRTC
+description: News about how rust-libp2p in the browser connects to nodes in a network using WebRTC
 date: 2023-11-07
 permalink: ''
 translationKey: ''
