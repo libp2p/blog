@@ -32,7 +32,7 @@ Using WebRTC on the server involves using a Rust crate (currently [webrtc-rs](ht
 
 ### Benefits of WebRTC over websockets and webtransport
 
-One of the main benefits of using WebRTC on the server is that the it does not need TLS certificates from a DNS domain -- you can run a home server over WebRTC without a dotcom! Instead, with `rust-libp2p` we can use self-signed certificates to provide the secure connections. Websockets however would require TLS certificates.
+One of the main benefits of using WebRTC on the server is that it does not need TLS certificates from a DNS domain -- you can run a home server over WebRTC without a dotcom! Instead, with `rust-libp2p` we can use self-signed certificates to provide the secure connections. Websockets however would require TLS certificates.
 
 The second major benefot of WebRTC is it enables (eventual\*) direct browser-to-browser communication. Though webtransport can connect with self-signed certificates, it cannot connect browser-to-browser like WebRTC can.
 
