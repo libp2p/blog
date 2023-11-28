@@ -105,7 +105,7 @@ The js-libp2p ecosystem once consisted of over 81 repositories! This made it the
 
 ## Modernization of Tooling
 
-We've completely re-written our codebase in Typescript, I won't delve into all the benefits of Typescript here, but suffice to say we've eliminated whole classes of bugs. We've standardized our modules through ESM when packaging our code. We've also ugpraded our logs to be a lot more configurable, adding the ability to append or prefix `peerIds`, more formatting options and the ability to have a custom logger passed in at the component level. We've introduced dependency checking to ensure there are no unused dependencies, more standardized linting and formatting rules as well as PR templates. We're hoping these tools make it faster for developers to iterate.
+We've completely re-written our codebase in TypeScript, I won't delve into all the benefits of TypeScript here, but suffice to say we've eliminated whole classes of bugs. We've standardized our modules through ESM when packaging our code. We've also ugpraded our logs to be a lot more configurable, adding the ability to append or prefix `peerIds`, more formatting options and the ability to have a custom logger passed in at the component level. We've introduced dependency checking to ensure there are no unused dependencies, more standardized linting and formatting rules as well as PR templates. We're hoping these tools make it faster for developers to iterate.
 
 ## Documentation Improvements
 
