@@ -50,7 +50,11 @@ You can read more about Circuit Relay v2 [here](https://github.com/libp2p/specs/
 
 ## Webtransport
 
-js-libp2p is currently the only browser libp2p implementation that supports WebTransport. WebTransport is a new web standard that allows for the creation of bidirectional, multiplexed connections between a client and a server. WebTransport is a low-level API that can be used to implement higher-level protocols, such as QUIC. WebTransport is a major advantage for js-libp2p, and is a major advantage for the browser ecosystem as it allows for the creation of a low-latency, high-bandwidth connection between two peers. You can read more about WebTransport [here](https://github.com/libp2p/specs/tree/master/webtransport).
+Historically, WebSockets were the only way for browsers to establish full-duplex two-way communication with servers. One of the challenges with WebSockets is that they require a TLS certificate signed by a certificate authority tied to a hostname when a page is loaded over HTTPS — something that nodes in peer-to-peer network often don't have. 
+
+WebTransport is a new web standard that allows for the creation of bidirectional, multiplexed connections between a client and a server built on top of QUIC. One of the many benefits of WebTransport is support for verification of a TLS certificate hash. This allows establishing WebTransport connections to servers that only have self-signed certificates. The browser trusts the server if the hash of the certificate used during the handshake matches its expected hash.  
+
+WebTransport is a major advantage for js-libp2p, and is a major advantage for the browser ecosystem as it allows for the creation of a low-latency, high-bandwidth connection between two peers without relying on certificate authorities. You can read more about WebTransport in the [blog post](https://blog.libp2p.io/2022-12-19-libp2p-webtransport/) and the [spec](https://github.com/libp2p/specs/tree/master/webtransport).
 
 
 # Performance Improvements and Optimizations 🔧
