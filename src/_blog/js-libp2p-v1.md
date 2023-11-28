@@ -4,7 +4,7 @@ tags:
 - transport
 - webrtc
 - js-libp2p
-title: js-libp2p-v1
+title: Announcing the release of js-libp2p v1.0.0 🎉
 description:
 date: 2023-11-22
 permalink: "/2023-11-22-js-libp2p/"
@@ -15,7 +15,7 @@ author: Chad Nehemiah
 
 ## Announcing the release of js-libp2p v1.0.0 🎉
 
-Having been used in production for many years in IPFS and Ethereum along with a [wide variety of other ecosystems](https://github.com/libp2p/js-libp2p/network/dependents), we have learnt about some of the shortcomings of js-libp2p. This has guided us through the many improvements we have made to get js-libp2p to this point and today we are excited to announce the release of js-libp2p v1.0.0 🎉
+js-libp2p has been used in production for many years in IPFS and Ethereum along with a [wide variety of other ecosystems](https://github.com/libp2p/js-libp2p/network/dependents). Over the years we have worked tireless to improve it's functionality based on feedback and insights from the community. This has guided us through the many improvements we have made to get js-libp2p to this point and today we are excited to announce the release of js-libp2p v1.0.0 🎉
 
 
 # What's new? 🤩
@@ -24,9 +24,9 @@ Having been used in production for many years in IPFS and Ethereum along with a 
 
 One of the major inefficiencies we recognized was in the dialling of peers; particularly in the browser. Some peers were being dialled on the same address multiple times despite having recent failures, and some peers were being dialled when they were not even online. Dials were also being wasted on peers on unreachable parts of the network, as in the scenario where IPv6 is not supported. This excessive dialling and wasted resources lead us to the development of smart dialling, which is a dialling strategy that is more aware of the network topology and the reachability of the multiaddrs it is dialling. Smart dialling is able to make intelligent decisions about which peers to dial, and when to dial them. This has led to a significant reduction in the number of dials made, and has also led to a significant reduction in the number of failed dials. This has resulted in a much more efficient network, and better peer management.
 
-## DCUtR
+##  NAT Hole punching with DCUtR
 
-One of the major hurdles in establishing a connection is NAT traversal. Relays are used to traverse NATs by acting as proxies, but this can be expensive to scale and maintain, and may result in low-bandwidth, high-latency connections. Hole punching is another technique that enables NAT traversal by enabling two nodes behind NATs to communicate directly. The libp2p DCUtR (Direct Connection Upgrade through Relay) is a protocol for establishing direct connections between nodes through hole punching, without a signaling server. DCUtR involves synchronizing and opening connections to each peer’s predicted external addresses. You can read more about DCUtR [here](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md). Implementing this in js-libp2p has benefitted browser nodes significantly, as it has enabled them to establish direct connections with other nodes without the need for a relay.
+One of the major hurdles in establishing a connection is NAT traversal. Relays are used to traverse NATs by acting as proxies, but this can be expensive to scale and maintain, and may result in low-bandwidth, high-latency connections. Hole punching is another technique that enables NAT traversal by enabling two nodes behind NATs to communicate directly. The libp2p DCUtR (Direct Connection Upgrade through Relay) is a protocol for establishing direct connections between nodes through hole punching, without a signaling server. DCUtR involves synchronizing and opening connections to each peer’s observed external addresses. You can read more about DCUtR [here](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md). Implementing this in js-libp2p has benefitted browser nodes significantly, as it has enabled them to establish direct connections with other nodes without the need for a relay.
 
 ## WebRTC Private-to-Private Connectivity
 
