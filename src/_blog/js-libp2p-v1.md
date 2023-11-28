@@ -105,7 +105,7 @@ We've completely re-written our codebase in Typescript, I won't delve into all t
 
 ## Documentation Improvements
 
-This was perhaps one of the biggest hurdles for potential contributors, and it is still an area we are actively improving on. Over the last year we have introduced tools to automate and validate our docs. We introduced a JS-docs based documentation generator which is intended to keep the API docs up to date. We've also introduced a tool which allows us to statically analyze the TS code snippets in our docs to ensure that the code can be copy-pasted and then run. We've added architectural diagrams which help to explain the various components of jslibp2p, and how they interact. We're hoping these tools make it easier for developers to get started with libp2p, and we're hoping it makes it easier for developers to contribute to libp2p.
+This was perhaps one of the biggest hurdles for potential contributors, and it is still an area we are actively improving on. Over the last year we have introduced tools to automate and validate our docs. We introduced a JS-docs based documentation generator which is intended to keep the API docs up to date. We've also introduced a tool which allows us to statically analyze the TS code snippets in our docs to ensure that the code can be copy-pasted and then run. We've added [architectural diagrams](https://github.com/libp2p/js-libp2p/blob/main/doc/ARCHITECTURE.md) which help to explain the various components of js-libp2p, and how they interact. We're hoping these tools make it easier for developers to get started with libp2p, and we're hoping it makes it easier for developers to contribute to libp2p.
 
 # What's next? 🚀
 
