@@ -65,7 +65,7 @@ Here is how libp2p uses WebRTC:
 
 There is a full stack example [in the repo](https://github.com/libp2p/rust-libp2p/tree/master/examples/browser-webrtc).
 
-The demo runs an example local `rust-libp2p` WebRTC server, and also hosts the WebAssembly code to connect and ping back and forth with that server. It's intended to be a simple example to get you up and running with WebRTC as a Transport.
+The demo runs an example local `rust-libp2p` WebRTC server, compiles the Rust to WebAssembly and hosts code to connect and ping back and forth with that server. It's intended to be a simple example to get you up and running with WebRTC as a Transport.
 
 ## What's next?
 
