@@ -13,7 +13,7 @@ header_image: ''
 author: Chad Nehemiah
 ---
 
-# Introduction
+## Announcing the release of js-libp2p v1.0.0 🎉
 
 Having been used in production for many years in IPFS and Ethereum along with a [wide variety of other ecosystems](https://github.com/libp2p/js-libp2p/network/dependents), we have learnt about some of the shortcomings of js-libp2p. This has guided us through the many improvements we have made to get js-libp2p to this point and today we are excited to announce the release of js-libp2p v1.0.0 🎉
 
