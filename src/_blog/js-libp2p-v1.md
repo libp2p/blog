@@ -30,7 +30,7 @@ One of the major hurdles in establishing a connection is NAT traversal. Relays a
 
 ## WebRTC Private-to-Private Connectivity
 
-Currently js-libp2p is the only implementation that supports private-to-private browser connectivity using WebRTC. This is a major advantage for js-libp2p, and is a major advantage for the browser ecosystem as allows direct peer-to-peer connecitvity within the browser regardless of whether nodes are located behind NATs / Firewalls. A lot of effort was invested in making this a stable and resource senstive transport that can be reasonably used across browser nodes. For more information on the private-to-private webRTC spec you can read [here](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md).
+Currently js-libp2p is the only implementation that supports private-to-private browser connectivity using WebRTC. This is a major advantage for js-libp2p, and is a major advantage for the browser ecosystem as allows direct peer-to-peer connecitvity within the browser regardless of whether nodes are located behind NATs / Firewalls. A lot of effort was invested in making this a stable and resource senstive transport that can be reasonably used across browser nodes. For more information, check out the [private-to-private WebRTC spec](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md).
 
 
 ## Circuit Relay v2
