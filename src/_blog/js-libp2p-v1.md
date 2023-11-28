@@ -48,7 +48,7 @@ The circuit relay protocol was inspired by [TURN](https://en.wikipedia.org/wiki/
 You can read more about Circuit Relay v2 [here](https://github.com/libp2p/specs/blob/master/relay/circuit-v2.md)
 
 
-## Webtransport
+## WebTransport
 
 Historically, WebSockets were the only way for browsers to establish full-duplex two-way communication with servers. One of the challenges with WebSockets is that they require a TLS certificate signed by a certificate authority tied to a hostname when a page is loaded over HTTPS — something that nodes in peer-to-peer network often don't have. 
 
