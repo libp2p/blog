@@ -15,8 +15,7 @@ author: Chad Nehemiah
 
 ## Announcing the release of js-libp2p v1.0.0 🎉
 
-js-libp2p has been used in production for many years in IPFS and Ethereum along with a [wide variety of other ecosystems](https://github.com/libp2p/js-libp2p/network/dependents). Over the years we have worked tireless to improve it's functionality based on feedback and insights from the community. This has guided us through the many improvements we have made to get js-libp2p to this point and today we are excited to announce the release of js-libp2p v1.0.0 🎉
-
+js-libp2p has been used in production for many years in IPFS and Ethereum along with a [wide variety of other ecosystems](https://github.com/libp2p/js-libp2p/network/dependents). Over the years we have worked tirelessly to improve its functionality based on feedback and insights from real world usage in peer to peer networks. Today, we're excited to announce the release of js-libp2p v1.0.0 🎉
 
 # What's new? 🤩
 
@@ -24,18 +23,9 @@ js-libp2p has been used in production for many years in IPFS and Ethereum along 
 
 One of the major inefficiencies we recognized was in the dialling of peers; particularly in the browser. Some peers were being dialled on the same address multiple times despite having recent failures, and some peers were being dialled when they were not even online. Dials were also being wasted on peers on unreachable parts of the network, as in the scenario where IPv6 is not supported. This excessive dialling and wasted resources lead us to the development of smart dialling, which is a dialling strategy that is more aware of the network topology and the reachability of the multiaddrs it is dialling. Smart dialling is able to make intelligent decisions about which peers to dial, and when to dial them. This has led to a significant reduction in the number of dials made, and has also led to a significant reduction in the number of failed dials. This has resulted in a much more efficient network, and better peer management.
 
-##  NAT Hole punching with DCUtR
-
-One of the major hurdles in establishing a connection is NAT traversal. Relays are used to traverse NATs by acting as proxies, but this can be expensive to scale and maintain, and may result in low-bandwidth, high-latency connections. Hole punching is another technique that enables NAT traversal by enabling two nodes behind NATs to communicate directly. The libp2p DCUtR (Direct Connection Upgrade through Relay) is a protocol for establishing direct connections between nodes through hole punching, without a signaling server. DCUtR involves synchronizing and opening connections to each peer’s observed external addresses. You can read more about DCUtR [here](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md). Implementing this in js-libp2p has benefitted browser nodes significantly, as it has enabled them to establish direct connections with other nodes without the need for a relay.
-
-## WebRTC Private-to-Private Connectivity
-
-Currently js-libp2p is the only implementation that supports private-to-private browser connectivity using WebRTC. This is a major advantage for js-libp2p, and is a major advantage for the browser ecosystem as allows direct peer-to-peer connecitvity within the browser regardless of whether nodes are located behind NATs / Firewalls. A lot of effort was invested in making this a stable and resource senstive transport that can be reasonably used across browser nodes. For more information, check out the [private-to-private WebRTC spec](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md).
-
-
 ## Circuit Relay v2
 
-Circuit relay was introduced as a means to establish connectivity between libp2p nodes that wouldn't otherwise be able to establish a direct connection to each other. In many cases, peers were be unable to traverse their NAT and/or firewall in a way that made them publicly accessible.
+One of the major hurdles in establishing a connection is NAT traversal. Circuit relay was introduced as a means to establish connectivity between libp2p nodes that wouldn't otherwise be able to establish a direct connection to each other. In many cases, peers were be unable to traverse their NAT and/or firewall in a way that made them publicly accessible.
 
 To enable peer-to-peer architectures in the face of connectivity barriers like NAT, libp2p defined a protocol called p2p-circuit. When a peer isn’t able to listen on a public address, it can dial out to a relay peer, which will keep a long-lived connection open. Other peers will be able to dial through the relay peer using a p2p-circuit address, which will forward traffic to its destination.
 
@@ -47,12 +37,19 @@ The circuit relay protocol was inspired by [TURN](https://en.wikipedia.org/wiki/
 
 You can read more about Circuit Relay v2 [here](https://github.com/libp2p/specs/blob/master/relay/circuit-v2.md)
 
+##  NAT Hole punching with DCUtR
+
+As mentioned in Circuit Relay v2, relays are used to traverse NATs by acting as proxies, but this can be expensive to scale and maintain; and may result in low-bandwidth, high-latency connections. Hole punching is another technique that enables NAT traversal by enabling two nodes behind NATs to communicate directly. The libp2p DCUtR (Direct Connection Upgrade through Relay) is a protocol for establishing direct connections between nodes through hole punching, without a signaling server. DCUtR involves synchronizing and opening connections to each peer’s observed external addresses. You can read more about DCUtR [here](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md). Implementing this in js-libp2p has benefitted browser nodes significantly, as it has enabled them to establish direct connections with other nodes without the need for a relay.
+
+## WebRTC Private-to-Private Connectivity
+
+Currently js-libp2p is the only implementation that supports private-to-private browser connectivity using WebRTC. This is a major advantage for js-libp2p, and is a major advantage for the browser ecosystem as allows direct peer-to-peer connecitvity within the browser regardless of whether nodes are located behind NATs / Firewalls. A lot of effort was invested in making this a stable and resource senstive transport that can be reasonably used across browser nodes. For more information, check out the [private-to-private WebRTC spec](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md).
 
 ## WebTransport
 
-Historically, WebSockets were the only way for browsers to establish full-duplex two-way communication with servers. One of the challenges with WebSockets is that they require a TLS certificate signed by a certificate authority tied to a hostname when a page is loaded over HTTPS — something that nodes in peer-to-peer network often don't have. 
+Historically, WebSockets were the only way for browsers to establish full-duplex two-way communication with servers. One of the challenges with WebSockets is that they require a TLS certificate signed by a certificate authority tied to a hostname when a page is loaded over HTTPS — something that nodes in peer-to-peer network often don't have.
 
-WebTransport is a new web standard that allows for the creation of bidirectional, multiplexed connections between a client and a server built on top of QUIC. One of the many benefits of WebTransport is support for verification of a TLS certificate hash. This allows establishing WebTransport connections to servers that only have self-signed certificates. The browser trusts the server if the hash of the certificate used during the handshake matches its expected hash.  
+WebTransport is a new web standard that allows for the creation of bidirectional, multiplexed connections between a client and a server built on top of QUIC. One of the many benefits of WebTransport is support for verification of a TLS certificate hash. This allows establishing WebTransport connections to servers that only have self-signed certificates. The browser trusts the server if the hash of the certificate used during the handshake matches its expected hash.
 
 WebTransport is a major advantage for js-libp2p, and is a major advantage for the browser ecosystem as it allows for the creation of a low-latency, high-bandwidth connection between two peers without relying on certificate authorities. You can read more about WebTransport in the [blog post](https://blog.libp2p.io/2022-12-19-libp2p-webtransport/) and the [spec](https://github.com/libp2p/specs/tree/master/webtransport).
 
@@ -94,6 +91,9 @@ We've been continously imnproving the throughput of js-libp2p, and currently js-
 
 We realized that the libp2p bundle size was unnecessarily big, and that we could reduce the bundle size by removing some of the modules that need not be included for many use cases, such as `fetch` , `UPnP`, `keychain` etc. This reduced the bundle size by over 40%! We still think there is room for even further reduction, and we will be working on this in the future.
 
+## Package Provenance
+
+There is no single answer to the problem of software supply chain integrity. However, there are a variety of techniques that can be used to mitigate the risk of supply chain attacks. One of the techniques we've implemented is package provenance. When you download libp2p from the npm registry you now have visibility into the process by which the source code was translated into the published artifact. You can verify the integrity of provenance attestations via the npm CLI. You can read more about package provenance [here](https://github.blog/2023-04-19-introducing-npm-package-provenance/)
 
 # Developer Experience Improvements 🌈
 
