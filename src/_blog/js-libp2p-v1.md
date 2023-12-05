@@ -133,7 +133,7 @@ If you would like to learn more about libp2p, a great place to start is always t
 
 * [js-libp2p Discussions](https://github.com/libp2p/js-libp2p/discussions)
   * This is a great place to discuss issues, ideas, and enhancements with the community.
-* [Slack / Discord / Matrix](https://filecoinproject.slack.com/archives/C03K82MU486)
+* [Slack - the libp2p-implementers channel](filecoin.io/slack)
   * This is a great place to have real-time discussions with the community.
 * [libp2p Specifications](https://github.com/libp2p/specs/)
   * This describes the various libp2p specifications across implementations.
