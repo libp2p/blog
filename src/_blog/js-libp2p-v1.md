@@ -19,9 +19,9 @@ js-libp2p has been used in production for many years in IPFS and [Ethereum](http
 
 # What's new? 🤩
 
-## Smart Dialling
+## Smart Dialing
 
-One of the major inefficiencies we recognized was in the dialling of peers; particularly in the browser. Some peers were being dialled on the same address multiple times despite having recent failures, and some peers were being dialled when they were not even online. Dials were also being wasted on peers on unreachable parts of the network, as in the scenario where IPv6 is not supported. This excessive dialling and wasted resources lead us to the development of smart dialling, which is a dialling strategy that is more aware of the network topology and the reachability of the multiaddrs it is dialling. Smart dialling is able to make intelligent decisions about which peers to dial, and when to dial them. This has led to a significant reduction in the number of dials made, and has also led to a significant reduction in the number of failed dials. This has resulted in a much more efficient network, and better peer management.
+One of the major inefficiencies we recognized was in the dialing of peers; particularly in the browser. Some peers were being dialled on the same address multiple times despite having recent failures, and some peers were being dialled when they were not even online. Dials were also being wasted on peers on unreachable parts of the network, as in the scenario where IPv6 is not supported. This excessive dialing and wasted resources lead us to the development of smart dialing, which is a dialing strategy that is more aware of the network topology and the reachability of the multiaddrs it is dialing. Smart dialing is able to make intelligent decisions about which peers to dial, and when to dial them. This has led to a significant reduction in the number of dials made, and has also led to a significant reduction in the number of failed dials. This has resulted in a much more efficient network, and better peer management.
 
 ## Circuit Relay v2
 
@@ -65,7 +65,7 @@ We've made a variety of performance improvements and optimizations to js-libp2p 
 The [perf protocol](https://github.com/libp2p/specs/blob/master/perf/perf.md) was created to help us analyze performance libp2p implementations through client-driven benchmarks. This revealed a variety of performance issues, and subsequently, allowed us to make a variety of optimizations. You can read more about the specifics of the test setup [here](https://github.com/libp2p/test-plans/tree/master/perf) but essentially two libp2p nodes are spun up on different AWS servers, and they then send data to each other continously over a period of time. The data is then analyzed to determine the performance of the libp2p implementation, you can view these visualizations on our [performance dashboard](https://observablehq.com/@libp2p-workspace/performance-dashboard). Here are some of the optimizations we made based on the results of the perf protocol:
 
 ### Reducing latency
-On average 60% improvement in the time it takes to establish a connection between two nodes.
+On average 80% improvement in the time it takes to establish a connection between two nodes.
 
 <div class="container" style="display:flex; column-gap:10px; justify-content: center; align-items: center;">
     <figure>
@@ -77,7 +77,7 @@ On average 60% improvement in the time it takes to establish a connection betwee
 </div>
 
 ### Increasing throughput
-We've been continously imnproving the throughput of js-libp2p, and currently js-libp2p has the highest throughput of any libp2p implementations averaging 1.9GB/s on both uploads and downloads!
+We've been continously imnproving the throughput of js-libp2p, and currently js-libp2p has the highest throughput of any libp2p implementations averaging 2.06GB/s on both uploads and downloads!
 
 <div class="container" style="display:flex; column-gap:10px; justify-content: center; align-items: center;">
     <figure>
