@@ -15,7 +15,7 @@ author: Chad Nehemiah
 
 ## Announcing the release of js-libp2p v1.0.0 🎉
 
-js-libp2p has been used in production for many years in IPFS and Ethereum along with a [wide variety of other ecosystems](https://github.com/libp2p/js-libp2p/network/dependents). Over the years we have worked tirelessly to improve its functionality based on feedback and insights from real world usage in peer to peer networks. Today, we're excited to announce the release of js-libp2p v1.0.0 🎉
+js-libp2p has been used in production for many years in IPFS and [Ethereum](https://github.com/ChainSafe/lodestar) along with a [wide variety of other ecosystems](https://github.com/libp2p/js-libp2p/network/dependents). Over the years we have worked tirelessly to improve its functionality based on feedback and insights from real world usage in peer to peer networks. Today, we're excited to announce the release of [js-libp2p v1.0.0](https://github.com/libp2p/js-libp2p/releases/tag/libp2p-v1.0.0) 🎉
 
 # What's new? 🤩
 
