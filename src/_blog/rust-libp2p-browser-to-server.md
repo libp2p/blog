@@ -67,7 +67,6 @@ Here is how libp2p uses WebRTC:
 - This Transport is made available for any application (such as Kademlia, Gossipsub, etc.) to use
 - Finally, the Rust code is compiled to WebAssembly and runs in the browser's runtime
 
-
 ## Demo
 
 There is a full stack example [in the repo](https://github.com/libp2p/rust-libp2p/tree/master/examples/browser-webrtc).
