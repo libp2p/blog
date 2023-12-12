@@ -6,7 +6,7 @@ tags:
 - js-libp2p
 title: Announcing the release of js-libp2p v1.0.0 🎉
 description: Recap of the major improvements and features in js-libp2p over the last year.
-date: 2023-12-22
+date: 2023-12-12
 permalink: "/2023-12-12-js-libp2p/"
 translationKey: ''
 header_image: /js-libp2p-v1-header.png
