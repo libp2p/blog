@@ -8,6 +8,7 @@ data:
   date: 2023-11-14
   publish_date: 
   path: https://protocol.ai/blog/advancing-ipfs-and-libp2p-governance/
+  card_image: "/news-coverage-placeholder.png"
   tags:
   - IPFS
   - libp2p
