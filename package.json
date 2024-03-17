@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@vuepress/plugin-blog": "^1.9.4",
-    "@vuepress/plugin-html-redirect": "^0.1.4",
+    "@vuepress/plugin-html-redirect": "^0.2.1",
     "@vuepress/plugin-last-updated": "^1.9.9",
     "autoprefixer": "^9.8.6",
     "eslint": "^7.30.0",
