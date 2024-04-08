@@ -8,7 +8,7 @@ description:
 date: 2024-04-08
 permalink: "/2024-04-08-libp2p-rpgf/"
 translationKey: ''
-header_image:
+header_image: /libp2p-rpgf-1.png
 author: Prithvi Shahi
 ---
 
