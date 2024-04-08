@@ -38,12 +38,13 @@ The rounds will follow the Optimism template:
 For this first round, the badgeholder selection process will include input from stakeholders across the libp2p ecosystem. In upcoming rounds, the badgeholder selection process and pool will be further opened.
 
 Anyone can nominate a project that has achieved impact in the past 12 months in one of the following categories:
-- Software Dependencies
+- Software & Dependencies
 - Infrastructure, Tooling, & Utilities
 - Education, Outreach, and Applications
 - Research & Development
 - Other
 
 The round begins today! Nominate projects [on Github](https://github.com/libp2p/libp2p/discussions)!
+
 This round of libp2p-rPGF-1 aims to disburse $125,000 USD worth of OP, with plans to grow in the future. More documentation on processes incoming soon.
 Lastly, we would like to thank the participants & sponsors for pushing the ecosystem forward and helping bootstrap public goods funding into the libp2p project!
