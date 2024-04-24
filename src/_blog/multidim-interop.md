@@ -74,7 +74,7 @@ Right now, the system tests 6 different libp2p implementations and runs about 17
 
 ![Multidim Interop coverage matrix](../assets/multidim-interop-coverage.png)
 
-See the latest full run at: [https://github.com/libp2p/test-plans/actions/workflows/multidim-interop.yml?query=branch%3Amaster](https://github.com/libp2p/test-plans/actions/workflows/multidim-interop.yml?query=branch%3Amaster). The run is defined by this [GitHub action](https://github.com/libp2p/test-plans/blob/master/.github/actions/run-interop-ping-test/action.yml).
+See the latest full run at: [https://github.com/libp2p/test-plans/actions/workflows/transport-interop.yml?query=branch%3Amaster](https://github.com/libp2p/test-plans/actions/workflows/transport-interop.yml?query=branch%3Amaster). The run is defined by this [GitHub action](https://github.com/libp2p/test-plans/blob/master/.github/actions/run-interop-ping-test/action.yml).
 
 # Impact realized so far
 
