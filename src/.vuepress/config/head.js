@@ -30,6 +30,7 @@ module.exports = [
   ['meta', { name: 'msapplication-TileColor', content: '#156ff7' }],
   ['meta', { name: 'apple-mobile-web-app-title', content: 'libp2p Blog & News' }],
   ['meta', { name: 'application-name', content: 'libp2p Blog & News' }],
+  ['meta', { name: 'discourse-username', content: 'system' }],
   [
     'script',
     {

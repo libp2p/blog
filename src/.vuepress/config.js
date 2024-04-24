@@ -14,7 +14,7 @@ const themeConfigDefaults = {
     },
     {
       text: 'YouTube',
-      link: 'https://www.youtube.com/channel/UCBPd00n1y9AwbdFHQrO2agw',
+      link: 'https://www.youtube.com/@libp2p',
       icon: 'youtube-icon',
     },
     {
@@ -24,7 +24,7 @@ const themeConfigDefaults = {
     },
     {
       text: 'LinkedIn',
-      link: 'https://www.linkedin.com/company/protocollabs/',
+      link: 'https://www.linkedin.com/company/libp2p/',
       icon: 'linkedin-icon',
     },
   ],
