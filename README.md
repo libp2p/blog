@@ -57,7 +57,8 @@ To build a local copy, run the following:
 1. Start the application in _dev mode_:
 
    ```bash
-   npm start
+   npm ci
+   NODE_OPTIONS=--openssl-legacy-provider npm start
    ```
 
 1. Open [localhost:8080](http://localhost:8080) in your browser.
