@@ -27,7 +27,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import countly from '../../util/countly'
 
 export default {
   name: 'PostAuthor',
@@ -57,13 +56,6 @@ export default {
   },
   methods: {
     handleAuthorClick(author) {
-      const authorTracking = {
-        author: author.name,
-        method: `${this.parent}-select`,
-      }
-
-      countly.trackEvent(countly.events.FILTER, authorTracking)
-
       this.$store.commit('appState/setActiveAuthor', author)
     },
   },
