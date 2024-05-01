@@ -4,18 +4,15 @@
     :to="{ path: $localePath, query: { tags: tag.slug } }"
     :class="computedClass"
     rel="nofollow"
-    @click.native="handleTagClick"
   >
     #{{ tag.name }}
   </router-link>
-  <button v-else :class="computedClass" @click="addNewTag">
+  <button v-else :class="computedClass">
     #{{ tag.name }}
   </button>
 </template>
 
 <script>
-import countly from '../../util/countly'
-
 export default {
   name: 'PostTag',
   props: {
@@ -55,24 +52,6 @@ export default {
       ]
     },
   },
-  methods: {
-    handleTagClick() {
-      this.trackTag()
-      this.$store.commit('appState/setActiveTags', [this.tag.slug])
-    },
-    addNewTag() {
-      this.trackTag()
-      this.$store.commit('appState/addNewTag', [this.tag.slug])
-      this.callback()
-    },
-    trackTag() {
-      const tagTracking = {
-        tag: this.tag.name,
-        method: `${this.parent}-select`,
-      }
-
-      countly.trackEvent(countly.events.FILTER, tagTracking)
-    },
-  },
+  methods: {},
 }
 </script>

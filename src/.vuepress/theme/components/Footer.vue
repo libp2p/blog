@@ -12,7 +12,6 @@
                 :key="'link-' + index"
                 class="sm:mr-10 last:mr-0"
                 :class="[{ 'mb-4': item.children && item.children.length }]"
-                @click="onlinkClick(item)"
               >
                 <NavLink
                   :item="item"
@@ -26,7 +25,6 @@
                     v-for="(childItem, childIndex) in item.children"
                     :key="'link-child' + childIndex"
                     class="mb-2 last:mb-0"
-                    @click="onlinkClick(item)"
                   >
                     <NavLink
                       :item="childItem"
@@ -50,8 +48,6 @@ import SocialLinks from '@theme/components/SocialLinks'
 import FooterLegal from '@theme/components/FooterLegal'
 import NavLink from '@theme/components/NavLink.vue'
 
-import countly from '../util/countly'
-
 export default {
   name: 'Footer',
   components: { SocialLinks, NavLink, FooterLegal },
@@ -60,15 +56,7 @@ export default {
       return this.$themeLocaleConfig.footerLinks
     },
   },
-  methods: {
-    onlinkClick(item) {
-      countly.trackEvent(countly.events.LINK_CLICK_FOOTER, {
-        path: this.$route.path,
-        text: item.text,
-        href: item.link,
-      })
-    },
-  },
+  methods: {},
 }
 </script>
 

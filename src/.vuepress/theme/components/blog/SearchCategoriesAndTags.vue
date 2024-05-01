@@ -63,8 +63,6 @@
 import Multiselect from 'vue-multiselect'
 import { mapState } from 'vuex'
 
-import countly from '../../util/countly'
-
 export default {
   name: 'SearchCategoriesAndTags',
   components: { Multiselect },
@@ -201,13 +199,6 @@ export default {
       this.selectedTags = newTags
     },
     setActiveCategory(category) {
-      const categoryTracking = {
-        category: category.name,
-        method: 'filter-select',
-      }
-
-      countly.trackEvent(countly.events.FILTER, categoryTracking)
-
       this.$store.commit(
         'appState/setActiveCategory',
         this.categoriesList
@@ -240,25 +231,11 @@ export default {
         value: text,
       }
 
-      const textTracking = {
-        text: text,
-        method: 'filter-select',
-      }
-
-      countly.trackEvent(countly.events.FILTER, textTracking)
-
       this.selectedTags.push(option)
       this.calculateTagsLimit([...this.selectedTags, option])
       this.$refs.select2.focus()
     },
     focusOnSubmit(option) {
-      const tagTracking = {
-        tag: option.name,
-        method: 'filter-select',
-      }
-
-      countly.trackEvent(countly.events.FILTER, tagTracking)
-
       this.calculateTagsLimit()
       this.$refs.select2.focus()
     },
