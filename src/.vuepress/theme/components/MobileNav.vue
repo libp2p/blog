@@ -18,7 +18,6 @@
                   <Link
                     class="mobile-nav__link type-h1"
                     :item="page"
-                    :on-click="onClickNavLink"
                   />
                 </li>
               </ul>
@@ -36,8 +35,6 @@ import { mapState } from 'vuex'
 import SocialLinks from '@theme/components/SocialLinks'
 import Link from '@theme/components/base/Link'
 import trapFocus from '@theme/util/trapFocus'
-
-import countly from '../util/countly'
 
 export default {
   name: 'MobileNav',
@@ -88,13 +85,6 @@ export default {
     },
     afterEnter() {
       this.setTabItems()
-    },
-    onClickNavLink(item) {
-      countly.trackEvent(countly.events.LINK_CLICK_NAV, {
-        view: this.$route.path,
-        href: item.link,
-        text: item.text,
-      })
     },
   },
 }
