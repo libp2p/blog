@@ -23,7 +23,7 @@
           itemprop="articleBody"
           class="blog type-rich mb-10 mt-4 pt-4 border-t-2 border-gray border-opacity-25 px-2 sm:px-6 md:px-0"
         />
-        <Comments v-if="showComments" />
+        <!-- <Comments v-if="showComments" /> -->
       </div>
     </article>
   </Layout>
@@ -33,7 +33,7 @@
 import Layout from '@theme/layouts/Layout.vue'
 import LazyImage from '@theme/components/base/LazyImage'
 import PostHero from '@theme/components/blog/PostHero'
-import Comments from '@theme/components/blog/Comments'
+//import Comments from '@theme/components/blog/Comments'
 
 export default {
   name: 'BlogPost',
@@ -41,11 +41,13 @@ export default {
     Layout,
     LazyImage,
     PostHero,
-    Comments,
+    //Comments,
   },
+  /*
   data: () => ({
     showComments: null,
   }),
+  */
   computed: {
     // hidden field set in plugins/pageData.js
     isVisible() {
@@ -82,12 +84,14 @@ export default {
       })
     }
 
+    /*
     this.showComments =
       !!ipfsPathPrefix ||
       window.location.hostname.includes('.ipns.localhost') ||
       window.location.hostname === 'blog.libp2p.io' ||
       window.location.hostname === 'libp2p-blog.on.fleek.co' ||
       window.location.hostname === 'libp2p-blog-staging.on.fleek.co'
+    */
   },
 }
 </script>

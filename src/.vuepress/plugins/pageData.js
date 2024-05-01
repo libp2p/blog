@@ -41,7 +41,7 @@ module.exports = (options, context) => ({
 
     if (typeof frontmatter.author === 'string') {
       frontmatter.author = frontmatter.author
-        .split(/,|and|&/)
+        .split(/,| and |&/)
         .map((author) => ({ name: author.trim(), slug: slug(author) }))
     }
 
