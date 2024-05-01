@@ -64,7 +64,6 @@ import uniqBy from 'lodash/uniqBy'
 import pick from 'lodash/pick'
 import isEqual from 'lodash/isEqual'
 import orderBy from 'lodash/orderBy'
-import countly from '../util/countly'
 
 const defaultCategory = { name: 'Blog post', slug: 'blog-post' }
 
@@ -268,46 +267,6 @@ export default {
 
     const queryText = query.search
 
-    if (queryCategory !== '') {
-      const categoryTracking = {
-        category: filteredCategory.name,
-        method: 'urlQuery',
-      }
-
-      countly.trackEvent(countly.events.FILTER, categoryTracking)
-    }
-
-    if (queryTags.length > 0) {
-      queryTags.forEach((queryTag) => {
-        const tagTracking = {
-          tag: this.tagsList.find((tag) => tag.slug === queryTag).name,
-          method: 'urlQuery',
-        }
-
-        countly.trackEvent(countly.events.FILTER, tagTracking)
-      })
-    }
-
-    if (queryText) {
-      queryText.split(',').forEach((text) => {
-        const textTracking = {
-          text: text,
-          method: 'urlQuery',
-        }
-
-        countly.trackEvent(countly.events.FILTER, textTracking)
-      })
-    }
-
-    if (queryAuthor) {
-      const authorTracking = {
-        author: queryAuthor,
-        method: 'urlQuery',
-      }
-
-      countly.trackEvent(countly.events.FILTER, authorTracking)
-    }
-
     this.$store.commit('appState/setActiveTags', queryTags)
     this.$store.commit(
       'appState/setActiveCategory',
@@ -363,8 +322,6 @@ export default {
       this.numberOfPagesToShow = this.numberOfPagesToShow + 24
     },
     handleLoadMoreClick() {
-      countly.trackEvent(countly.events.LOAD_MORE_BUTTON)
-
       this.infiniteScroll = true
       this.numberOfPagesToShow = this.numberOfPagesToShow + 24
     },
