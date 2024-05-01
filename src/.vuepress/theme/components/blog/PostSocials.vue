@@ -11,7 +11,6 @@
       hashtags=""
       :twitter-user="social.twitterHandle"
       class="mr-1 last:mr-0"
-      @open="shareClick(social)"
     >
       <SVGIcon
         class="w-6 h-6 opacity-50 fill-current text-blueGreen hover:opacity-100 transition transition-opacity duration-300 ease-in-out"
@@ -23,8 +22,6 @@
 </template>
 <script>
 import SVGIcon from '@theme/components/base/SVGIcon'
-
-import countly from '../../util/countly'
 
 export default {
   name: 'PostSocials',
@@ -60,13 +57,6 @@ export default {
     this.currentUrl = window.location.href
     this.host = window.location.host
   },
-  methods: {
-    shareClick(social) {
-      countly.trackEvent(countly.events.SOCIAL_MEDIA_SHARE, {
-        view: this.$route.path,
-        text: social.text,
-      })
-    },
-  },
+  methods: {},
 }
 </script>

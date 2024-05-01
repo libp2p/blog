@@ -1,8 +1,6 @@
 <script>
 import { mapState } from 'vuex'
 
-import countly from '../../util/countly'
-
 export default {
   name: 'NewsletterForm',
   props: {},
@@ -12,10 +10,6 @@ export default {
   computed: {
     ...mapState('appState', ['latestWeeklyPost']),
   },
-  methods: {
-    subscribeClick() {
-      countly.trackEvent(countly.events.NEWSLETTER_SUBSCRIBE)
-    },
-  },
+  methods: {},
 }
 </script>
