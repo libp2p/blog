@@ -48,7 +48,7 @@
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-prettier": "^3.0.0",
     "svg-sprite-loader": "^6.0.9",
-    "svgo": "^3.0.2",
+    "svgo": "^3.2.0",
     "svgo-loader": "^3.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.2",
     "tailwindcss-line-clamp": "^1.0.5",
