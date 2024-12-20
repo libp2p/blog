@@ -138,9 +138,7 @@ On the other hand, libp2p's security model is anchored to PeerIDs: unique identi
 
 ## Conclusion
 
-Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this.
-
-AutoTLS is provided as a public good service and operated by [Interplanetary Shipyard](https://ipshipyard.com).
+Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this. Therefore, we're excited to announce AutoTLS as a public good service operated by us.
 
 AutoTLS is available in:
 
