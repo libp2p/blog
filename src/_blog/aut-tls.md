@@ -18,7 +18,7 @@ tags:
 
 ## Announcing AutoTLS: Bridging the Gap Between libp2p and the Web
 
-[Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is excited to announce AutoTLS, a new service that automates the issuance of Let's Encrypt wildcard TLS certificates for libp2p nodes.
+[Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is excited to announce [AutoTLS](https://registration.libp2p.direct/), a new service that automates the issuance of Let's Encrypt wildcard TLS certificates for libp2p nodes.
 
 This is a major leap for the libp2p ecosystem, because it allows connectivity between browsers and libp2p nodes using Secure WebSockets, opening up a new class of use cases for libp2p that were previously cumbersome.
 
@@ -31,17 +31,17 @@ If you're interested in trying it out, we have an example with go-libp2p and js-
 
 ## Why is browser-node connectivity hard?
 
-Historically, the Web relied solely on HTTP, which is unencrypted, undermining user privacy and exposing users to MITM attacks. With the advent of TLS, HTTPS, and automated certificate authorities like Let's Encrypt, encryption is now the norm. So much so that [Chrome warns users "Not secure"](https://blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/) when they're visiting a site over an unencrypted HTTP connection.
+Historically, the Web relied solely on HTTP, which is unencrypted, undermining user privacy and exposing users to MITM attacks. With the advent of TLS, HTTPS, and automated certificate authorities like Let's Encrypt, encryption is now the norm. So much so that [Chrome warns users "Not secure"](https://blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/) when they're visiting a site over an unencrypted HTTP connection, or produce "mixed-content" errors when a page tries to fetch unencrypted subresources.
 
 ![Chrome warning](../assets/autotls/computer-says-no.png)
 
 In libp2p, [all connections are encrypted](https://docs.libp2p.io/concepts/secure-comm/overview/#overview) by default, using either Noise or TLS.
 
-For as long as libp2p has existed, browser-node connectivity has been a challenge. Up until recently, connecting to libp2p nodes from the browser required configuring a domain names and obtaining a TLS certificate.
+For as long as libp2p has existed, browser-node connectivity has been a challenge. Browser does not see Noise-encrypted WebSocket  connections as part of "[Secure Context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)", leaving us with TLS encryption as the only viable option. 
 
-Moreover, browsers require HTTPS and WebSocket connections, requires a TLS certificate signed by a certificate authority (CA).
+Up until recently, configuring libp2p node to be reachable from the browser required additional effort, as node operators had to own and manually configure a domain name and obtain a TLS certificate signed by a certificate authority (CA).
 
-Recent investments in WebTransport and WebRTC have helped to solve this problem, but they have their own drawbacks outlined below.
+Recent investments in [WebTransport](https://connectivity.libp2p.io/#webtransport) and [WebRTC](https://connectivity.libp2p.io/#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
 
 Experience has shown that WebSockets are still the most common and reliable way to establish a bi-directional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 6 round trips to establish a connection](https://connectivity.libp2p.io/#websocket?tab=websocket-in-libp2p). By comparison, [WebTransport requires 3 round trips](https://connectivity.libp2p.io/#webtransport?tab=webtransport-in-libp2p), which is why we believe WebTransport is the future of browser-node connectivity.
 
@@ -90,7 +90,7 @@ The trick here is that the IP address is encoded in the DNS name. Dots are subst
 
 ## Bringing it all together
 
-Once a libp2p node has a TLS certificate for `*.<PeerID>.libp2p.direct`, it will typically announce it via the identify protocol and
+Once a libp2p node has a TLS certificate for `*.<PeerID>.libp2p.direct`, it will typically announce a matching Secure WebSocket address via the identify protocol.
 
 The multiaddr for a libp2p node with `libp2p.direct` TLS certificate looks like this:
 
@@ -140,7 +140,7 @@ On the other hand, libp2p's security model is anchored to PeerIDs: unique identi
 
 Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this. Therefore, we're excited to announce AutoTLS as a public good service operated by us.
 
-AutoTLS is available in:
+AutoTLS is an opt-in feature and can be enabled in:
 
 - [Kubo starting with v0.32.1](https://github.com/ipfs/kubo/releases/tag/v0.32.1).
 - [IPFS Desktop starting with v0.40.0](https://github.com/ipfs/ipfs-desktop/releases/tag/v0.40.0).
