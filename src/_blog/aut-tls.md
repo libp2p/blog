@@ -50,7 +50,7 @@ Experience has shown that WebSockets are still the most common and reliable way 
 With AutoTLS, the end result is:
 
 1. Your libp2p node, identified by a PeerID, has a wild card certificate for `*.<PeerID>.libp2p.direct`.
-2. The authoritative DNS server `*.<PeerID>.libp2p.direct` (part of the AutoTLS service) maps DNS names to your libp2p node's IP addresses statelessly.
+2. The authoritative DNS server of `libp2p.direct` (part of the AutoTLS service) maps DNS names to your libp2p node's IP addresses statelessly.
 
 With that in mind, let's track back how AutoTLS works starting with Let's Encrypt and ACME.
 
