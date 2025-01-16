@@ -52,6 +52,8 @@ With AutoTLS, the end result is:
 1. Your libp2p node, identified by a PeerID, has a wild card certificate for `*.<PeerID>.libp2p.direct`.
 2. The authoritative DNS server of `libp2p.direct` (part of the AutoTLS service) maps DNS names to your libp2p node's IP addresses statelessly.
 
+> **Note:** `<PeerID>` is [base36 encoded](https://cid.ipfs.tech/#k51qzi5uqu5dh72mdzh50ohq411bo2tzdcdirjw0597vujl9w4hmkn4r8550r0) to keep the DNS label length under 63 characters ([RFC 1034](https://tools.ietf.org/html/rfc1034#page-7)).
+
 With that in mind, let's track back how AutoTLS works starting with Let's Encrypt and ACME.
 
 ### Let's Encrypt and ACME
@@ -84,7 +86,7 @@ The second part of the AutoTLS service is the authoritative DNS server for `libp
 
 It's main role is to map DNS names to the libp2p node's IP addresses statelessly. For example, `1-2-3-4.<peerID>.libp2p.direct` resolves to the A record with the IP `1.2.3.4`.
 
-The trick here is that the IP address is encoded in the DNS name. Dots are substituted with dashes to ensure the TLS certificate remains valid. The benefit of this approach is that whenever a libp2p node's IP address changes, it's resolvable without coordination. This keeps the DNS server stateless and simple to operate while ensuring that even when a libp2p IP address changes, it's resolvable without coordination.
+The trick here is that the **IP address is encoded in the DNS name**. Dots are substituted with dashes to ensure the TLS certificate remains valid. The benefit of this approach is that whenever a libp2p node's IP address changes, it's resolvable without coordination. This keeps the DNS server stateless and simple to operate while ensuring that even when a libp2p IP address changes, it's resolvable without coordination.
 
 ![AutoTLS part 2](../assets/autotls/auto-tls-2.svg)
 
