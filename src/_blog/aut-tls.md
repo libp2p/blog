@@ -37,9 +37,9 @@ Historically, the Web relied solely on HTTP, which is unencrypted, undermining u
 
 In libp2p, [all connections are encrypted](https://docs.libp2p.io/concepts/secure-comm/overview/#overview) by default, using either Noise or TLS.
 
-For as long as libp2p has existed, browser-node connectivity has been a challenge. Browser does not see Noise-encrypted WebSocket  connections as part of "[Secure Context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)", leaving us with TLS encryption as the only viable option. 
+For as long as libp2p has existed, browser-node connectivity has been a challenge. Browsers do not consider libp2p's encryption layer for WebSocket connections as part of "[Secure Context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)", leaving us with browser-negotiated TLS encryption as the only viable option. 
 
-Up until recently, configuring libp2p node to be reachable from the browser required additional effort, as node operators had to own and manually configure a domain name and obtain a TLS certificate signed by a certificate authority (CA).
+Up until recently, configuring a libp2p node to be connectable from browsers required additional effort, as node operators had to own and manually configure a domain name and obtain a TLS certificate signed by a certificate authority (CA).
 
 Recent investments in [WebTransport](https://connectivity.libp2p.io/#webtransport) and [WebRTC](https://connectivity.libp2p.io/#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
 
@@ -97,10 +97,6 @@ The multiaddr for a libp2p node with `libp2p.direct` TLS certificate looks like 
 `/ip4/147.75.63.129/tcp/4002/tls/sni/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/ws`
 
 This multiaddr can be dialed from any browser with `js-libp2p`. You can see this in action with the[Helia Identify Tool](https://helia-identify.on.fleek.co/?peer-or-maddr=%2Fip4%2F147.75.63.129%2Ftcp%2F4002%2Ftls%2Fsni%2F147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct%2Fws)
-
-
-<!-- In libp2p, [all connections are encrypted](https://docs.libp2p.io/concepts/secure-comm/overview/#overview) by default, using either Noise or TLS. -->
-
 ### What about other browser transports?
 
 Solving the problem of browser-node connectivity has been a goal for the libp2p project. In recent years, libp2p introduced support for both WebTransport and WebRTC to solve this problem with varying degrees of success.
