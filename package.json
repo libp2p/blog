@@ -4,7 +4,7 @@
   "description": "libp2p blog",
   "main": "index.js",
   "scripts": {
-    "start": "npm run dev",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider npm run dev",
     "dev": "vuepress dev src",
     "build": "vuepress build src && npm run postbuild",
     "postbuild": "./scripts/data/index.js",
