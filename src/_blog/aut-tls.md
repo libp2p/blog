@@ -20,7 +20,7 @@ tags:
 
 [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is excited to announce [AutoTLS](https://registration.libp2p.direct/), a new service that automates the issuance of Let's Encrypt wildcard TLS certificates for libp2p nodes.
 
-This is a major leap for the libp2p ecosystem, because it allows connectivity between browsers and libp2p nodes using Secure WebSockets, opening up a new class of use cases for libp2p that were previously cumbersome.
+This is a major leap for the libp2p ecosystem, as it allows connectivity between browsers and libp2p nodes using Secure WebSockets, opening up a new class of use cases for libp2p that were previously cumbersome.
 
 This blog post explores the use-cases for AutoTLS, challenges of browser-node connectivity, how AutoTLS works, and how it fits into the libp2p project and the browser ecosystem.
 
@@ -31,15 +31,19 @@ If you're interested in trying it out, we have an example with go-libp2p and js-
 
 ## Use-cases for AutoTLS
 
-Browser-node connectivity can seem rather banal pretty amorphous, but we've identified a few use-cases that are enabled by AutoTLS.
+Browser-node connectivity is foundational to any libp2p based network or application looking to expand its user base, through web-based clients. Since the libp2p ecosystem exhibits a wide range of network topologies, we've identified a few use-cases that benefit from AutoTLS.
 
-For example, blockchains relying on libp2p like Ethereum, could leverage AutoTLS for light browser-based blockchain clients, with the goal of helping to increase client side verification
+Blockchains already relying on libp2p, of which are over 10, like [Ethereum](https://ethereum.org/en/developers/docs/nodes-and-clients/light-clients/#why-are-light-clients-important) and Filecoin could leverage AutoTLS for browser-based and mobile light clients, with the goal of helping to increase client side verification of transactions. By extension, AutoTLS would also help with [Ethereum's statelessness roadmap](https://ethereum.org/en/roadmap/statelessness/), by allowing a wider set of nodes to serve data to light clients. This would decrease the reliance on centralized RPC providers, and increase the decentralization of such networks.
+
+![Chains using libp2p](../assets/autotls/networks-using-libp2p.jpg)
 
 Another example, which also served as the initial catalyst for AutoTLS, is to enable direct browser retrieval from IPFS nodes, without needing intermediary gateways. The [Service Worker Gateway](https://inbrowser.link) supports discovery and retrieval from AutoTLS-enabled IPFS nodes.
 
+With that in mind, let's explore the challenges of browser-node connectivity.
+
 ## Why is browser-node connectivity hard?
 
-Historically, the Web relied solely on HTTP, which is unencrypted, undermining user privacy and exposing users to MITM attacks. With the advent of TLS, HTTPS, and automated certificate authorities like Let's Encrypt, encryption is now the norm. So much so that [Chrome warns users "Not secure"](https://blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/) when they're visiting a site over an unencrypted HTTP connection, or produce "mixed-content" errors when a page tries to fetch unencrypted subresources.
+Historically, the Web relied solely on unencrypted HTTP as the default transport, undermining user privacy and exposing users to MITM attacks. With the advent of TLS, HTTPS, and automated Certificate Authorities like Let's Encrypt, encryption is now the norm. So much so that [Chrome warns users "Not secure"](https://blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/) when they're visiting a site over an unencrypted HTTP connection, or produce "mixed-content" errors when a page tries to fetch unencrypted subresources.
 
 ![Chrome warning](../assets/autotls/computer-says-no.png)
 
