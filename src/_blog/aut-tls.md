@@ -153,7 +153,9 @@ On the other hand, libp2p's security model is anchored to PeerIDs: unique identi
 
 ## Conclusion
 
-Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this. Therefore, we're excited to announce AutoTLS as a public good service for the libp2p community.
+Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this. We built AutoTLS as a public good service for the libp2p ecosystem. Addmitedly, it may seem paradoxical that a centralized public good service like AutoTLS could help the Web become more decentralized. But the reality is that AutoTLS is a necessary step to this end, as well as being lean, [open source](https://github.com/ipshipyard/p2p-forge), and built on open standards.
+
+In the long term, WebTransport with self-signed certificates is positioned to become the recommended transport for browser-node connectivity. However, until [WebTransport is production ready](https://github.com/libp2p/js-libp2p/issues/2572), AutoTLS and Secure WebSockets are the best way to enable browser-node connectivity.
 
 AutoTLS is an opt-in feature and can be enabled in:
 
