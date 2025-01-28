@@ -33,7 +33,7 @@ If you're interested in trying it out, we have an example with go-libp2p and js-
 
 Browser-node connectivity is foundational to any libp2p based network or application looking to expand its user base, through web-based clients. Since the libp2p ecosystem exhibits a wide range of network topologies, we've identified a few use-cases that benefit from AutoTLS.
 
-Blockchains using libp2p, such as Ethereum and Filecoin, could integrate AutoTLS and improve access to chain state for browser-based [light clients](https://ethereum.org/en/developers/docs/nodes-and-clients/light-clients/#why-are-light-clients-important) and wallets. This would promote client-side transaction and state verification. Though it remains to be seen how much of a benefit this will be, since blockchains will typically have both a wire-protocol for long-lived connections between nodes and frontend specific APIs for request/response style interactions from apps. But the core idea is that AutoTLS enables reliable browser-based clients to connect to libp2p nodes, regardless of the network topology.
+Blockchains using libp2p, such as Ethereum and Filecoin, could integrate AutoTLS and improve access to chain state for browser-based [light clients](https://ethereum.org/en/developers/docs/nodes-and-clients/light-clients/#why-are-light-clients-important) and wallets. This would promote client-side transaction and state verification. Though it remains to be seen how practical this will be, the core idea is that AutoTLS enables reliable browser-based clients to connect to libp2p nodes, regardless of the network topology; which improves resilience and opens up a window to more capable browser clients.
 
 ![Chains using libp2p](../assets/autotls/networks-using-libp2p.jpg)
 
@@ -55,7 +55,7 @@ Up until recently, configuring a libp2p node to be connectable from browsers req
 
 Recent investments in [WebTransport](https://connectivity.libp2p.io/#webtransport) and [WebRTC](https://connectivity.libp2p.io/#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
 
-Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 6 round trips to establish a connection](https://connectivity.libp2p.io/#websocket?tab=websocket-in-libp2p) Additional, Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
+Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 6 round trips to establish a connection](https://connectivity.libp2p.io/#websocket?tab=websocket-in-libp2p), no support for backpressure on streams (with the exception of [`WebSocketStream` in Chrome](https://developer.chrome.com/docs/capabilities/web-apis/websocketstream)), and Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
 
 By comparison, [WebTransport requires 3 round trips](https://connectivity.libp2p.io/#webtransport?tab=webtransport-in-libp2p), which is why we believe WebTransport is the future of browser-node connectivity.
 
@@ -112,7 +112,7 @@ The multiaddr for a libp2p node with `libp2p.direct` TLS certificate looks like 
 
 `/ip4/147.75.63.129/tcp/4002/tls/sni/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/ws`
 
-> **Note:** An equivalent and valid shorter representation of the multiaddr is `/dns4/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/tcp/4002/tls/ws`.
+> **Note:** Another valid shorter representation of the multiaddr is `/dns4/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/tcp/4002/tls/ws`, but it requires a DNS lookup to resolve the IP address. In theory, avoiding the DNS lookup is a performance win, but in practice, browsers don't let you manually set the SNI hostname for a WebSocket connection, so the browser WebSocket API will always need the DNS name for the Secure WebSocket connection.
 
 This multiaddr can be dialed from any browser with `js-libp2p`. You can see this in action with the[Helia Identify Tool](https://helia-identify.on.fleek.co/?peer-or-maddr=%2Fip4%2F147.75.63.129%2Ftcp%2F4002%2Ftls%2Fsni%2F147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct%2Fws)
 
