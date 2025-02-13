@@ -34,7 +34,7 @@ If you're interested in trying it out, we have an example with go-libp2p and js-
 If you prefer a turn-key implementation:
 
 - [IPFS Kubo](https://docs.ipfs.tech/install/command-line/) >= 0.33: Opt-in via [`AutoTLS.Enabled` configuration flag](https://github.com/ipfs/kubo/blob/master/docs/config.md#autotlsenabled)
-- [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/) >= 0.49: enabled by default
+- [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/) >= 0.41: enabled by default
 
 ## Use-cases for AutoTLS
 
@@ -188,9 +188,9 @@ In the long term, WebTransport with self-signed certificates is positioned to be
 
 AutoTLS is an opt-in feature and can be enabled in:
 
-- [Kubo starting with v0.32.1](https://github.com/ipfs/kubo/releases/tag/v0.32.1).
-- [IPFS Desktop starting with v0.40.0](https://github.com/ipfs/ipfs-desktop/releases/tag/v0.40.0).
-- [Helia starting with v5.2.0](https://github.com/ipfs/helia/releases/tag/helia-v5.2.0).
+- [Kubo](https://github.com/ipfs/kubo/releases/tag/v0.33.0) >= 0.33.
+- [IPFS Desktop](https://github.com/ipfs/ipfs-desktop/releases/tag/v0.41.0) >= 0.41.
+- [Helia](https://github.com/ipfs/helia/releases/tag/helia-v5.2.0) >= 5.2.0.
 - [js-libp2p](https://github.com/libp2p/js-libp2p/tree/main/packages/auto-tls) for Node.js.
 - [go-libp2p](https://github.com/libp2p/go-libp2p/tree/master/examples/autotls).
 
