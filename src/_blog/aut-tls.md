@@ -165,6 +165,21 @@ The AutoTLS broker instance at `libp2p.direct` bridges both worlds while complyi
 
 The AutoTLS registration API ensures that only the owner of the private key for a PeerID can request a TLS certificate. Beyond that, the API is used quarterly upon certificate renewal. Secrets never leave the end user's machine. And each end user is responsible for the security of their certificates, and revocation is limited to peer-specific subdomains.
 
+## Working towards a better Web platform
+
+A key theme running through this initiative is the challenge of advancing the Web platform to be both more secure and more open. This includes working with browser vendors and [Igalia](https://www.igalia.com/) towards the resolution of various issues with WebTransport, WebRTC, etc.
+
+If you'd like to support our work, please reach out to us at `contact [AT] ipshipyard.com`, and check out the [in-web-browsers](https://github.com/ipfs/in-web-browsers) repository where we're tracking these efforts.
+
+## When _Not_ to use AutoTLS
+
+AutoTLS is designed for production use with Web browsers and should not be used in:
+
+- **Testing/Development**: Unnecessary for local or non-production setups.
+- **CI Systems**: Temporary instances waste certificates and may hit rate limits.
+- **Non-Public Nodes**: If your node is not publicly dialable (e.g., behind a firewall without port forwarding or UPnP) it won't benefit from `/tls/ws` transport.
+- **Private Networks (PNETs)**: AutoTLS is not compatible with libp2p PNET.
+
 ## Conclusion
 
 Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this. We built AutoTLS and run `registration.libp2p.direct` as a public good service for the libp2p ecosystem. Admittedly, it may seem paradoxical that a centralized public good service like AutoTLS could help the Web become more decentralized. But the reality is that AutoTLS is a necessary step to this end, as well as being lean, [open source](https://github.com/ipshipyard/p2p-forge), and built on open standards.
