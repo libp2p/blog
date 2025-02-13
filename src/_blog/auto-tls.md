@@ -191,12 +191,12 @@ AutoTLS is an opt-in feature and can be enabled in:
 - [Kubo](https://github.com/ipfs/kubo/releases/tag/v0.33.0) >= 0.33.
 - [IPFS Desktop](https://github.com/ipfs/ipfs-desktop/releases/tag/v0.41.0) >= 0.41.
 - [Helia](https://github.com/ipfs/helia/releases/tag/helia-v5.2.0) >= 5.2.0.
-- [js-libp2p](https://github.com/libp2p/js-libp2p/tree/main/packages/auto-tls) for Node.js.
-- [go-libp2p](https://github.com/libp2p/go-libp2p/tree/master/examples/autotls).
+- [js-libp2p](https://www.npmjs.com/package/@libp2p/auto-tls) for Node.js.
+- [go-libp2p](https://github.com/ipshipyard/p2p-forge/tree/main/client).
 
 To see code examples of how to use AutoTLS with js-libp2p and go-libp2p, check out the following repositories:
 
-- [go-libp2p](https://github.com/libp2p/go-libp2p/tree/master/examples/autotls)
-- [js-libp2p](https://github.com/libp2p/js-libp2p-example-auto-tls)
+- GO: [go-libp2p/examples/autotls](https://github.com/libp2p/go-libp2p/tree/master/examples/autotls)
+- JS: [js-libp2p-example-auto-tls](https://github.com/libp2p/js-libp2p-example-auto-tls)
 
 Try it out and let us know what you think!
