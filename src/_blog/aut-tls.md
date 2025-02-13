@@ -109,7 +109,7 @@ The following diagram illustrates the AutoTLS DNS-01 challenge broker in action:
 
 The second part of the AutoTLS service is the authoritative DNS server for `libp2p.direct`.
 
-Its main role is to map DNS names to the libp2p node's IP addresses statelessly. For example, `1-2-3-4.<peerID>.libp2p.direct` resolves to the A record with the IP `1.2.3.4`.
+Its main role is to map DNS names to the libp2p node's IP addresses statelessly. For example, `203-0-113-1.<peerID>.libp2p.direct` resolves to the A record with the IP `203.0.113.1`.
 
 The trick here is that the **IP address is encoded in the DNS name**. Dots are substituted with dashes to ensure the TLS certificate remains valid. The benefit of this approach is that whenever a libp2p node's IP address changes, it's resolvable without coordination. This keeps the DNS server stateless and simple to operate while ensuring that even when a libp2p IP address changes, it's resolvable without coordination.
 
@@ -121,9 +121,9 @@ Once a libp2p node has a TLS certificate for `*.<PeerID>.libp2p.direct`, it will
 
 The multiaddr for a libp2p node with `libp2p.direct` TLS certificate looks like this (`/p2p/PeerID` suffix omitted for brevity):
 
-`/ip4/147.75.63.129/tcp/4002/tls/sni/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/ws`
+`/ip4/145.40.89.101/tcp/4002/tls/sni/145-40-89-101.k51qzi5uqu5dj0wvrbb8keygfyxe2v0fi1qbqz4pl3zzozle7oaqhf97mqazo4.libp2p.direct/ws`
 
-> **Note:** Another valid shorter representation of the multiaddr is `/dns4/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/tcp/4002/tls/ws`, but it requires a DNS lookup to resolve the IP address. In theory, avoiding the DNS lookup is a performance win, but in practice, browsers don't let you manually set the SNI hostname for a WebSocket connection, so the browser WebSocket API will always need the DNS name for the Secure WebSocket connection.
+> **Note:** Another valid shorter representation of the multiaddr is `/dns4/145-40-89-101.k51qzi5uqu5dj0wvrbb8keygfyxe2v0fi1qbqz4pl3zzozle7oaqhf97mqazo4.libp2p.direct/tcp/4002/tls/ws`, but it requires a DNS lookup to resolve the IP address. In theory, avoiding the DNS lookup is a performance win, but in practice, browsers don't let you manually set the SNI hostname for a WebSocket connection, so the browser WebSocket API requires the DNS name for the Secure WebSocket connection.
 
 This multiaddr can be dialed from any browser with `js-libp2p`. You can see this in action with the [Helia Identify Tool](https://helia-identify.on.fleek.co/?peer-or-maddr=%2Fdns4%2F145-40-89-101.k51qzi5uqu5dj0wvrbb8keygfyxe2v0fi1qbqz4pl3zzozle7oaqhf97mqazo4.libp2p.direct%2Ftcp%2F4001%2Ftls%2Fws%2Fp2p%2F12D3KooWHVXoJnv2ifmr9K6LWwJPXxkfvzZRHzjiTZMvybeTnwPy)
 
@@ -148,13 +148,12 @@ While we still believe in the longer term promise of WebTransport, we've reorien
 
 ### WebRTC
 
-[WebRTC-Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md) is an approach using WebRTC to allow browser-to-node communication. It's unique in that it doesn't require [SDP](https://en.wikipedia.org/wiki/Session_Description_Protocol) signaling, and saves the round trips by constructing the SDP from the information in the webrtc-direct multiaddr (a technique called "SDP munging"). Moreover, WebRTC, doesn't require a domain name and CA-signed TLS certificate.
+[WebRTC-Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md) is a libp2p approach using WebRTC to allow browser-to-node communication. It's unique in that it doesn't require [SDP](https://en.wikipedia.org/wiki/Session_Description_Protocol) signaling, and saves round trips by constructing the SDP from the information in the webrtc-direct multiaddr (a technique called "SDP munging"). Moreover, WebRTC doesn't require a domain name and CA-signed TLS certificate.
 
 However, there are a number of drawbacks to WebRTC:
 
 - WebRTC is not supported in [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
 - [Chrome limits the number of WebRTC connections per window to 500](https://issues.chromium.org/issues/41378764) after which it will prevent establishing new connections.
-- WebRTC-Direct is relatively complex to implement and is [not yet supported in Node.js with js-libp2p](https://github.com/libp2p/js-libp2p/issues/2581).
 
 ## Origins vs. PeerIDs
 
