@@ -111,7 +111,7 @@ The second part of the AutoTLS service is the authoritative DNS server for `libp
 
 Its main role is to map DNS names to the libp2p node's IP addresses statelessly. For example, `203-0-113-1.<peerID>.libp2p.direct` resolves to the A record with the IP `203.0.113.1`.
 
-The trick here is that the **IP address is encoded in the DNS name**. Dots are substituted with dashes to ensure the TLS certificate remains valid. The benefit of this approach is that whenever a libp2p node's IP address changes, it's resolvable without coordination. This keeps the DNS server stateless and simple to operate while ensuring that even when a libp2p IP address changes, it's resolvable without coordination.
+The trick here is that the **IP address is encoded in the DNS name**. Dots are substituted with dashes to ensure the TLS certificate remains valid. The benefit of this approach is that whenever a libp2p node's IP address changes, it's resolvable without coordination. This keeps the DNS server stateless and simple to operate.
 
 ![AutoTLS part 2](../assets/autotls/auto-tls-2.svg)
 
