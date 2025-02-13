@@ -190,6 +190,7 @@ AutoTLS is an opt-in feature and can be enabled in:
 
 - [Kubo starting with v0.32.1](https://github.com/ipfs/kubo/releases/tag/v0.32.1).
 - [IPFS Desktop starting with v0.40.0](https://github.com/ipfs/ipfs-desktop/releases/tag/v0.40.0).
+- [Helia starting with v5.2.0](https://github.com/ipfs/helia/releases/tag/helia-v5.2.0).
 - [js-libp2p](https://github.com/libp2p/js-libp2p/tree/main/packages/auto-tls) for Node.js.
 - [go-libp2p](https://github.com/libp2p/go-libp2p/tree/master/examples/autotls).
 
