@@ -1,7 +1,7 @@
 ---
 title: 'Announcing AutoTLS: Bridging the Gap Between libp2p and the Web'
 description: "AutoTLS is a new service that automates the issuance of Let's Encrypt wildcard TLS certificates for libp2p nodes."
-date: 2024-12-20
+date: 2025-02-13
 permalink: '/autotls/'
 translationKey: ''
 header_image: /libp2p_WebTransport_Blog_Header.png
@@ -14,6 +14,8 @@ tags:
   - go-libp2p
   - lets encrypt
   - TLS
+  - AutoTLS
+  - libp2p.direct
 ---
 
 ## Announcing AutoTLS: Bridging the Gap Between libp2p and the Web
@@ -28,6 +30,10 @@ If you're interested in trying it out, we have an example with go-libp2p and js-
 
 - [AutoTLS example for go-libp2p](https://github.com/libp2p/go-libp2p/tree/master/examples/autotls)
 - [AutoTLS example for js-libp2p](https://github.com/libp2p/js-libp2p-example-auto-tls)
+
+If you prefer a turn-key implementation:
+- [IPFS Kubo](https://docs.ipfs.tech/install/command-line/) >= 0.33: Opt-in via [`AutoTLS.Enabled` configuration flag](https://github.com/ipfs/kubo/blob/master/docs/config.md#autotlsenabled)
+- [IPFS Desktop](https://docs.ipfs.tech/install/ipfs-desktop/) >= 0.49: enabled by default
 
 ## Use-cases for AutoTLS
 
@@ -55,15 +61,15 @@ Up until recently, configuring a libp2p node to be connectable from browsers req
 
 Recent investments in [WebTransport](https://connectivity.libp2p.io/#webtransport) and [WebRTC](https://connectivity.libp2p.io/#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
 
-Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 6 round trips to establish a connection](https://connectivity.libp2p.io/#websocket?tab=websocket-in-libp2p), no support for backpressure on streams (except for [`WebSocketStream` in Chrome](https://developer.chrome.com/docs/capabilities/web-apis/websocketstream)), and Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
+Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 5 round trips to establish a connection](https://connectivity.libp2p.io/#websocket?tab=websocket-in-libp2p), no support for backpressure on streams (except for [`WebSocketStream` in Chrome](https://developer.chrome.com/docs/capabilities/web-apis/websocketstream)), and Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
 
-By comparison, [WebTransport requires 3 round trips](https://connectivity.libp2p.io/#webtransport?tab=webtransport-in-libp2p), which is why we believe WebTransport is the future of browser-node connectivity.
+By comparison, [WebTransport requires 3 round trips](https://connectivity.libp2p.io/#webtransport?tab=webtransport-in-libp2p), which is why we believe WebTransport is well positioned to be the recommended transport for browser-node connectivity, alas, only once WebTransport is stable and widely supported by browsers.
 
 ## How AutoTLS works
 
 With AutoTLS, the end result is:
 
-1. Your libp2p node, identified by a PeerID, has a wild card certificate for `*.<PeerID>.libp2p.direct`.
+1. Your libp2p node, identified by a [PeerID](https://docs.libp2p.io/concepts/fundamentals/peers/#peer-id), has a wild card certificate for `*.<PeerID>.libp2p.direct`.
 2. The authoritative DNS server of `libp2p.direct` (part of the AutoTLS service) maps DNS names to your libp2p node's IP addresses statelessly.
 
 > **Note:** `<PeerID>` is [base36 encoded](https://cid.ipfs.tech/#k51qzi5uqu5dh72mdzh50ohq411bo2tzdcdirjw0597vujl9w4hmkn4r8550r0) to keep the DNS label length under 63 characters ([RFC 1034](https://tools.ietf.org/html/rfc1034#page-7)).
@@ -108,13 +114,13 @@ The trick here is that the **IP address is encoded in the DNS name**. Dots are s
 
 Once a libp2p node has a TLS certificate for `*.<PeerID>.libp2p.direct`, it will typically announce a matching Secure WebSocket address via the identify protocol.
 
-The multiaddr for a libp2p node with `libp2p.direct` TLS certificate looks like this:
+The multiaddr for a libp2p node with `libp2p.direct` TLS certificate looks like this (`/p2p/PeerID` suffix omitted for brevity):
 
 `/ip4/147.75.63.129/tcp/4002/tls/sni/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/ws`
 
 > **Note:** Another valid shorter representation of the multiaddr is `/dns4/147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct/tcp/4002/tls/ws`, but it requires a DNS lookup to resolve the IP address. In theory, avoiding the DNS lookup is a performance win, but in practice, browsers don't let you manually set the SNI hostname for a WebSocket connection, so the browser WebSocket API will always need the DNS name for the Secure WebSocket connection.
 
-This multiaddr can be dialed from any browser with `js-libp2p`. You can see this in action with the[Helia Identify Tool](https://helia-identify.on.fleek.co/?peer-or-maddr=%2Fip4%2F147.75.63.129%2Ftcp%2F4002%2Ftls%2Fsni%2F147-75-63-129.k51qzi5uqu5dht5qyglpp8q4qldzx6d094lqdffp5n80zj5u6vfxk7n4pmutoo.libp2p.direct%2Fws)
+This multiaddr can be dialed from any browser with `js-libp2p`. You can see this in action with the [Helia Identify Tool](https://helia-identify.on.fleek.co/?peer-or-maddr=%2Fdns4%2F145-40-89-101.k51qzi5uqu5dj0wvrbb8keygfyxe2v0fi1qbqz4pl3zzozle7oaqhf97mqazo4.libp2p.direct%2Ftcp%2F4001%2Ftls%2Fws%2Fp2p%2F12D3KooWHVXoJnv2ifmr9K6LWwJPXxkfvzZRHzjiTZMvybeTnwPy)
 
 ### What about other browser transports?
 
@@ -137,7 +143,7 @@ While we still believe in the longer term promise of WebTransport, we've reorien
 
 ### WebRTC
 
-[WebRTC-Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md) is an approach using WebRTC to allow browser-to-node communication. It's unique in that it doesn't require SDP signaling, and saves the round trips by constructing the SDP from the information in the webrtc-direct multiaddr (a technique called "SDP munging"). Moreover, WebRTC, doesn't require a domain name and CA-signed TLS certificate.
+[WebRTC-Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md) is an approach using WebRTC to allow browser-to-node communication. It's unique in that it doesn't require [SDP](https://en.wikipedia.org/wiki/Session_Description_Protocol) signaling, and saves the round trips by constructing the SDP from the information in the webrtc-direct multiaddr (a technique called "SDP munging"). Moreover, WebRTC, doesn't require a domain name and CA-signed TLS certificate.
 
 However, there are a number of drawbacks to WebRTC:
 
@@ -151,9 +157,12 @@ The Web security model is anchored to domain names (origins). Moreover, browsers
 
 On the other hand, libp2p's security model is anchored to PeerIDs: unique identifiers derived from public keys generated by the libp2p node. Unlike CA-signed TLS certificates, PeerIDs can permissionlessly be generated.
 
+The AutoTLS broker instance at `libp2p.direct` bridges both worlds while complying with their respective security requirements. The domain was added to https://publicsuffix.org/ and functions as an [eTLD](https://developer.mozilla.org/en-US/docs/Glossary/eTLD), granting each peer its own Origin at `{PeerID}.libp2p.direct`.  
+
+The AutoTLS registration API ensures that only the owner of the private key for a PeerID can request a TLS certificate. Beyond that, the API is used quarterly upon certificate renewal. Secrets never leave the end user's machine. And each end user is responsible for the security of their certificates, and revocation is limited to peer-specific subdomains. 
 ## Conclusion
 
-Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this. We built AutoTLS as a public good service for the libp2p ecosystem. Addmitedly, it may seem paradoxical that a centralized public good service like AutoTLS could help the Web become more decentralized. But the reality is that AutoTLS is a necessary step to this end, as well as being lean, [open source](https://github.com/ipshipyard/p2p-forge), and built on open standards.
+Our long-standing goal at [Interplanetary Shipyard](https://blog.ipfs.tech/shipyard-hello-world/) is building a more resilient and participatory internet through decentralization, and we believe that the Web platform plays an important role in this. We built AutoTLS and run `registration.libp2p.direct` as a public good service for the libp2p ecosystem. Admittedly, it may seem paradoxical that a centralized public good service like AutoTLS could help the Web become more decentralized. But the reality is that AutoTLS is a necessary step to this end, as well as being lean, [open source](https://github.com/ipshipyard/p2p-forge), and built on open standards.
 
 In the long term, WebTransport with self-signed certificates is positioned to become the recommended transport for browser-node connectivity. However, until [WebTransport is production ready](https://github.com/libp2p/js-libp2p/issues/2572), AutoTLS and Secure WebSockets are the best way to enable browser-node connectivity.
 
