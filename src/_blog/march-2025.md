@@ -46,7 +46,7 @@ constraints—this upgrade ensures seamless peer connectivity for all. It’s a
 game-changer for developers and users alike, showcasing libp2p’s commitment to
 reliable, scalable networking.
 
-![The New Rust Universal Connectivity UI](../assets/autotls/rust-libp2p-peer.png)
+![The New Rust Universal Connectivity UI](../assets/rust-libp2p-peer.png)
 
 ## py-libp2p’s Impressive Strides 🐍
 The py-libp2p team has been on fire this month, delivering an astonishing
