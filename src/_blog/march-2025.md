@@ -4,7 +4,7 @@ description: "This is the latest updates on libp2p"
 date: 2025-03-28
 permalink: '/newsletters/2025/03'
 translationKey: ''
-header_image: /libp2p_WebTransport_Blog_Header.png
+header_image: "/news-coverage-placeholder.png"
 author: Dave Grantham
 tags:
   - libp2p
