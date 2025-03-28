@@ -73,6 +73,13 @@ project. Here’s to keeping the momentum going as we head into April!
 
 Cheers! 🍻
 
+### Did You Know libp2p Has a Discord Server?
+
+<iframe src="https://discord.com/widget?id=1204447718093750272&theme=dark" width="300" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+[Join our Discord server](https://discord.gg/5CUB5s4d) to chat with the libp2p
+community, ask questions, and make friends.
+
 [go-libp2p-release]: https://github.com/libp2p/go-libp2p/pull/3244
 [nim-libp2p-release]: https://github.com/vacp2p/nim-libp2p/releases/tag/v1.9.0
 [py-libp2p-release]: https://github.com/libp2p/py-libp2p/releases/tag/v0.2.4
