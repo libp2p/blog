@@ -18,7 +18,7 @@ tags:
 
 ## April 2025 Newsletter 📰
 Welcome to the April 2025 libp2p monthly newsletter! This month we had our
-first virtual libp2p day, PLDG Cohort 2 wrap-up, more record breaking meetings
+first virtual libp2p day, PLDG Cohort 2 wrap-up, more record-breaking meetings
 and lots of bug fixes and improvements across seven different implementation
 repos.
 
@@ -43,35 +43,35 @@ noise, kademlia, and bitswap protocols. Great work everyone!
 ## Community Updates 📅
 Each month the libp2p community gives a brief update as part of the [EngRes The
 Gathering community meeting](engres-meetings). This month our very own Manu
-Sheel Gupta of the Protocol Labs Developers Guild and a maintainer of the
+Sheel Gupta of the Protocol Labs Developers Guild, and a maintainer of the
 py-libp2p project stepped in to give the [libp2p update](libp2p-update). Great
 job Manu and thank you for your continued dedication to the libp2p community! 
 
 ## Interop Testing Improvements 🧇
 The [interop testing](interop-testing) framework is getting some significant
-upgrades. We use testing to ensure all of the libp2p implementations are
+upgrades. We use testing to ensure all the libp2p implementations are
 compatible with each other. We run tests between every pair of implementations
-and several versions of different implementations. As as consequence, the
-number of tests grows exponentially with the number of implementations added.
-Now that the libp2p project has nine active implementations (py, nim, js, rust,
-go, cpp, dotnet, jvm and litep2p) adding them all is not practical because the
-test run would take hours to complete.
+and several versions of different implementations. As a consequence, the number
+of tests grows exponentially with the number of implementations added. Now that
+the libp2p project has nine active implementations (Python, Nim, JS, Rust, Go,
+C++, .Net, JVM and litep2p) adding them all is not practical because the test
+run would take hours to complete.
 
 Recently a [pull request](interop-filter) was submitted to improve the test
-runner's ability to filter and ignore tests. This allows the default Github CI
+runner's ability to filter and ignore tests. This allows the default GitHub CI
 workflow to run the tests for the most commonly used implementations with
 specialized workflows for testing features (e.g. QUIC compatibility) or
 specific implementations (e.g. js-libp2p). Now there is nothing holding us back
-from adding all of the active implementations. Look for the addition of
+from adding all the active implementations. Look for the addition of
 py-libp2p, dotnet-libp2p, cpp-libp2p, and hopefully litep2p in the near future.
 
 Also, a new local testing runner script and caching server [pull
 request](interop-runner) was submitted to improve the experience of running the
 tests locally. Here's is a recording of a terminal session using the new runner
-script to run the tests for just the latest rust, go, and js libp2p releases.
+script to run the tests for just the latest Rust, Go, and JS libp2p releases.
 The local caching server enables the caching of Docker images and other
 artifacts to speed up each test run by avoiding the Docker build step. The test
-runner script runs the tests the same way as the Github CI workflow so you can
+runner script runs the tests the same way as the GitHub CI workflow so you can
 debug failing tests locally before pushing and waiting on CI.
 
 ![Local Interop Test Run](../assets/interop-tests.gif)
@@ -79,7 +79,7 @@ debug failing tests locally before pushing and waiting on CI.
 ## Congratulations and Thanks 🎉
 Each month seems to be improving on the last and April is no exception.
 Congratulations to every contributor who helped push libp2p forward as a
-project. Thank you to everyone of you who showed up to a meeting, filed an
+project. Thank you to every one of you who showed up to a meeting, filed an
 issue, submitted a pull request, or was just someone fun to chat with on
 Discord/Telegram/Slack.
 
