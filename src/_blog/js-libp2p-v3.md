@@ -236,7 +236,7 @@ node.use('/my/protocol', async (stream, connection, next) => {
 
 Prior to `libp2p@3.x.x` protocol handlers and topology callbacks had to be synchronous methods.
 
-Performing async work in a protocol handler was very common so a frequently used pattern was to create a resolved promise (e.g. `Promise.resolve().then(...)`) and to perform the continuation in the `then` callback.
+Performing async work in a protocol handler was very common, so a frequently used pattern was to create a resolved promise (e.g. `Promise.resolve().then(...)`) and to perform the continuation in the `then` callback.
 
 From v3 they can return promises to improve developer experience a tiny amount.
 
