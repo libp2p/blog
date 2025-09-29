@@ -25,7 +25,7 @@ Let's find out what's changed and why, and how you can upgrade your project to t
 
 Prior to v2 of libp2p, streams were [streaming iterables](https://gist.github.com/alanshaw/591dc7dd54e4f99338a347ef568d6ee9). This convention involves an object with `source` and `sink` properties - the `source` is an [AsyncIterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncIterator) which yields data received by the stream, and `source` is an async function that accepts an iterator (sync or async) and returns a promise that resolves when the passed iterator finishes and all bytes have been written into an underlying resource, or rejects if an error is encountered before this occurs.
 
-This interaction pattern has not been adopted outside of the libp2p project and it's surrounding ecosystem which raises the bar for new developers, and it also leans heavily on promises which can introduce a [surprising amount of latency](https://github.com/ChainSafe/js-libp2p-gossipsub/pull/361) to seemingly simple operations.
+This interaction pattern has not been adopted outside the libp2p project and it's surrounding ecosystem which raises the bar for new developers, and it also leans heavily on promises which can introduce a [surprising amount of latency](https://github.com/ChainSafe/js-libp2p-gossipsub/pull/361) to seemingly simple operations.
 
 As of v3, streams have become [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)s. These follow a pattern familiar to anyone who has written JavaScript for a website whereby you attach event listeners for incoming message events and write data synchronously into the underlying resource, perhaps pausing for a bit if the underlying resource signals back that it is overloaded.
 
@@ -63,7 +63,7 @@ With the new stream API a stream can apply back pressure by it's `.send()` metho
 
 ```ts
 import { pEvent } from 'p-event'
-import type { Stream, AbortOptions } from '@libp2p/interface
+import type { Stream, AbortOptions } from '@libp2p/interface'
 
 async function sendAllTheData (stream: Stream, bufs: Uint8Array[], options?: AbortOptions): Promise<void> {
   // send every member of `bufs`
@@ -72,7 +72,7 @@ async function sendAllTheData (stream: Stream, bufs: Uint8Array[], options?: Abo
       // the stream has signalled
       await pEvent(stream, 'drain', {
         rejectionEvents: [
-          'close
+          'close'
         ]
       })
     }
@@ -214,7 +214,7 @@ console.info(output) // { hello: 'world' }
 
 ### Stream middleware
 
-`libp2p@3.x.x` adds a `.use()` function, largely inspired by [express.js-style middleware](https://expressjs.com/en/guide/using-middleware.html) - this allows you to intercept incoming/outgoing libp2p streams and access/modify the stream data outside of the protocol handler.
+`libp2p@3.x.x` adds a `.use()` function, largely inspired by [express.js-style middleware](https://expressjs.com/en/guide/using-middleware.html) - this allows you to intercept incoming/outgoing libp2p streams and access/modify the stream data outside the protocol handler.
 
 This allows things like access control or data transformations to take place without needing to change the protocol handler, which you may not have direct control over.
 
@@ -236,14 +236,11 @@ node.use('/my/protocol', async (stream, connection, next) => {
 
 Prior to `libp2p@3.x.x` protocol handlers and topology callbacks had to be synchronous methods.
 
-It was very common to need to perform some async work in a protocol handler so
-a common pattern was to use `Promise.resolve().then(...)` and perform the
-continuation in the `then` callback.
+Performing async work in a protocol handler was very common so a frequently used pattern was to create a resolved promise (e.g. `Promise.resolve().then(...)`) and to perform the continuation in the `then` callback.
 
 From v3 they can return promises to improve developer experience a tiny amount.
 
-If the returned promise rejects the stream will be aborted using the rejection
-reason.
+If the returned promise rejects the stream will be aborted using the rejection reason.
 
 **Before**
 
